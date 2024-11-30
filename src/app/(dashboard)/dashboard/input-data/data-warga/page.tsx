@@ -1,0 +1,217 @@
+"use client";
+
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+
+import { toast } from "@/hooks/use-toast";
+import { Button } from "@/components/ui/button";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormMessage,
+} from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+
+import { saveDataWarga } from "./action";
+import { Loader2Icon } from "lucide-react";
+
+const wargaSchema = z
+  .object({
+    nama: z.string().min(1, { message: "Nama wajib diisi" }),
+    nik: z
+      .string()
+      .min(16, { message: "NIK harus 16 karakter" })
+      .max(16, { message: "NIK harus 16 karakter" }),
+    tanggalLahir: z.string().refine((value) => !isNaN(Date.parse(value)), {
+      message: "Tanggal Lahir tidak valid",
+    }),
+    dusun: z.string().optional(),
+  })
+  .superRefine((data, ctx) => {
+    Object.keys(data).forEach((key) => {
+      if (
+        data[key as keyof typeof data] === undefined ||
+        data[key as keyof typeof data] === ""
+      ) {
+        ctx.addIssue({
+          code: "custom",
+          path: [key],
+          message: "Data wajib diisi terlebih dahulu", // Pesan default
+        });
+      }
+    });
+  });
+
+export type WargaFormValues = z.infer<typeof wargaSchema>;
+
+export default function InputDataWarga() {
+  const form = useForm<WargaFormValues>({
+    resolver: zodResolver(wargaSchema),
+    mode: "onChange",
+    defaultValues: {
+      nama: "",
+      nik: "",
+      tanggalLahir: "",
+      dusun: "",
+    },
+  });
+
+  const onSubmit = async (data: WargaFormValues) => {
+    const age =
+      new Date().getFullYear() - new Date(data.tanggalLahir).getFullYear();
+    const wargaDataWithAge = {
+      ...data,
+      tanggalLahir: new Date(data.tanggalLahir),
+      umur: age,
+    };
+
+    const result = await saveDataWarga(wargaDataWithAge);
+
+    if (result.success) {
+      toast({
+        title: "Data berhasil disimpan",
+        description: "Data warga berhasil disimpan",
+      });
+
+      window.location.reload();
+    } else {
+      toast({
+        title: "Gagal menyimpan data",
+        description: result.error || "Terjadi kesalahan saat menyimpan data",
+        variant: "destructive",
+      });
+    }
+  };
+
+  return (
+    <main className="flex min-h-screen flex-col justify-start w-full">
+      <h1 className="mb-6 text-2xl font-bold">Tambah Data Warga</h1>
+
+      <Form {...form}>
+        <form
+          onSubmit={form.handleSubmit(onSubmit)}
+          className="mt-10 flex min-w-[300px] flex-col space-y-1 rounded-md sm:w-[400px]"
+        >
+          {/* Nama Field */}
+          <FormField
+            control={form.control}
+            name="nama"
+            render={({ field }) => (
+              <FormItem>
+                <Label htmlFor="nama">Nama Lengkap</Label>
+                <FormControl>
+                  <Input
+                    id="nama"
+                    placeholder="Masukkan nama lengkap"
+                    {...field}
+                    value={field.value ?? ""} // Ensure it's always controlled
+                  />
+                </FormControl>
+                <FormMessage>{form.formState.errors.nama?.message}</FormMessage>
+              </FormItem>
+            )}
+          />
+
+          {/* NIK Field */}
+          <FormField
+            control={form.control}
+            name="nik"
+            render={({ field }) => (
+              <FormItem>
+                <Label htmlFor="nik">NIK (Nomor Induk Kependudukan)</Label>
+                <FormControl>
+                  <Input
+                    id="nik"
+                    placeholder="Masukkan NIK 16 digit"
+                    {...field}
+                    value={field.value ?? ""} // Ensure it's always controlled
+                  />
+                </FormControl>
+                <FormMessage>{form.formState.errors.nik?.message}</FormMessage>
+              </FormItem>
+            )}
+          />
+
+          {/* Tanggal Lahir Field */}
+          <FormField
+            control={form.control}
+            name="tanggalLahir"
+            render={({ field }) => (
+              <FormItem>
+                <Label htmlFor="tanggalLahir">Tanggal Lahir</Label>
+                <FormControl>
+                  <Input
+                    id="tanggalLahir"
+                    type="date"
+                    placeholder="Masukkan tanggal lahir"
+                    {...field}
+                    value={field.value ?? ""} // Ensure it's always controlled
+                  />
+                </FormControl>
+                <FormMessage>
+                  {form.formState.errors.tanggalLahir?.message}
+                </FormMessage>
+              </FormItem>
+            )}
+          />
+
+          {/* Dusun Field */}
+          <FormField
+            control={form.control}
+            name="dusun"
+            render={({ field }) => (
+              <FormItem>
+                <Label htmlFor="dusun">Dusun</Label>
+                <FormControl>
+                  <Select
+                    onValueChange={field.onChange}
+                    value={field.value ?? ""} // Ensure it's always controlled
+                  >
+                    <SelectTrigger id="dusun">
+                      <SelectValue placeholder="Pilih dusun" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="Dusun 1">Dusun 1</SelectItem>
+                      <SelectItem value="Dusun 2">Dusun 2</SelectItem>
+                      <SelectItem value="Dusun 3">Dusun 3</SelectItem>
+                      <SelectItem value="Dusun 4">Dusun 4</SelectItem>
+                      <SelectItem value="Dusun 5">Dusun 5</SelectItem>
+                      <SelectItem value="Dusun 6">Dusun 6</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </FormControl>
+                <FormMessage>
+                  {form.formState.errors.dusun?.message}
+                </FormMessage>
+              </FormItem>
+            )}
+          />
+
+          <div className="flex w-full">
+            <Button
+              type="submit"
+              className="mt-5 w-full"
+              disabled={!form.formState.isValid || form.formState.isSubmitting}
+            >
+              {form.formState.isSubmitting && (
+                <Loader2Icon className="animate-spin" />
+              )}
+              {form.formState.isSubmitting ? "Menyimpan..." : "Simpan Data"}
+            </Button>
+          </div>
+        </form>
+      </Form>
+    </main>
+  );
+}

@@ -1,0 +1,97 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+model Warga {
+  id                 String           @id @default(uuid())
+  nama               String
+  nik                String           @unique
+  tanggalLahir       DateTime
+  umur               Int
+  createdAt          DateTime         @default(now())
+  updatedAt          DateTime         @updatedAt
+  dusun              String?
+  LayananIbuAnakAnak LayananIbuAnak[] @relation("Anak")
+  LayananIbuAnakAyah LayananIbuAnak[] @relation("Ayah")
+  LayananIbuAnakIbu  LayananIbuAnak[] @relation("Ibu")
+  LayananLansia      LayananLansia[]
+}
+
+model LayananLansia {
+  id           String   @id @default(uuid())
+  wargaId      String
+  warga        Warga    @relation(fields: [wargaId], references: [id])
+  beratBadan   Float?
+  tinggiBadan  Float?
+  asamUrat     Float?
+  gulaDarah    Float?
+  keterangan   String?
+  kolesterol   Float?
+  lingkarPerut Float?
+  tensiDarah   String?
+
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+model LayananIbuAnak {
+  id                 String       @id @default(uuid())
+  tinggiBadanAnak    Float?
+  beratBadanAnak     Float?
+  umurAnak           Float?
+  lingkarLenganAnak  Float?
+  lingkarKepalaAnak  Float?
+  tinggiBadanIbu     Float?
+  beratBadanIbu      Float?
+  lingkarLenganIbu   Float?
+  lingkarPinggangIbu Float?
+  alatKontrasepsi    String?
+  anakId             String
+  ayahId             String
+  ibuId              String
+  jenisKelaminAnak   JenisKelamin
+  
+  createdAt          DateTime     @default(now())
+  updatedAt          DateTime     @updatedAt
+  
+  anak               Warga        @relation("Anak", fields: [anakId], references: [id])
+  ayah               Warga        @relation("Ayah", fields: [ayahId], references: [id])
+  ibu                Warga        @relation("Ibu", fields: [ibuId], references: [id])
+}
+
+model blog {
+  id           String        @id @default(uuid())
+  createdAt    DateTime      @default(now())
+  title        String
+  image_url    String
+  is_premium   Boolean       @default(false)
+  is_published Boolean       @default(true)
+  blog_content blog_content?
+}
+
+model blog_content {
+  blog_id   String   @id @default(uuid())
+  content   String
+  createdAt DateTime @default(now())
+  blog      blog     @relation(fields: [blog_id], references: [id])
+}
+
+model JadwalPosyandu {
+  id        String   @id @default(uuid())
+  namaAcara String
+  tanggal   DateTime
+  jam       String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+enum JenisKelamin {
+  LAKI_LAKI
+  PEREMPUAN
+}
