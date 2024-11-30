@@ -23,8 +23,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-
-import { getAllDataWarga } from "@/app/(dashboard)/dashboard/input-data/data-warga/action";
 import { ComboboxWarga } from "@/components/warga/ComboBoxWarga";
 import { saveDataLayananIbuAnak } from "./action";
 import { Loader2Icon } from "lucide-react";
@@ -101,7 +99,16 @@ const layananSchema = z.object({
 
 type LayananFormValues = z.infer<typeof layananSchema>;
 
-export default function LayananIbuAnakForm() {
+type LayananIbuAnakFormProps = {
+  value: string;
+  label: string;
+};
+
+interface LayananIbuAnakProps {
+  data: LayananIbuAnakFormProps[];
+}
+
+const LayananIbuAnak: React.FC<LayananIbuAnakProps> = ({ data }) => {
   const [isSubmitting, setIsSubmitting] = React.useState(false);
 
   const { toast } = useToast();
@@ -157,31 +164,6 @@ export default function LayananIbuAnakForm() {
     window.location.reload();
   };
 
-  const [wargaOptions, setWargaOptions] = React.useState<
-    { value: string; label: string }[]
-  >([]);
-
-  React.useEffect(() => {
-    async function fetchData() {
-      try {
-        const result = await getAllDataWarga();
-        if (result.success && result.data) {
-          setWargaOptions(
-            result.data.map((warga: { id: string; nama: string }) => ({
-              value: warga.id,
-              label: warga.nama,
-            }))
-          );
-        } else {
-          console.error(result.error || "Data is undefined");
-        }
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    }
-    fetchData();
-  }, []);
-
   return (
     <Form {...form}>
       <form
@@ -197,7 +179,7 @@ export default function LayananIbuAnakForm() {
               <Label>Pilih Nama Ibu</Label>
               <FormControl>
                 <ComboboxWarga
-                  options={wargaOptions}
+                  options={data}
                   value={field.value}
                   onChange={(value) => field.onChange(value)}
                   placeholder="Pilih nama ibu..."
@@ -301,7 +283,7 @@ export default function LayananIbuAnakForm() {
               <Label>Pilih Nama Ayah</Label>
               <FormControl>
                 <ComboboxWarga
-                  options={wargaOptions}
+                  options={data}
                   value={field.value}
                   onChange={(value) => field.onChange(value)}
                   placeholder="Pilih nama ayah..."
@@ -321,7 +303,7 @@ export default function LayananIbuAnakForm() {
               <Label>Pilih Nama Anak/Balita</Label>
               <FormControl>
                 <ComboboxWarga
-                  options={wargaOptions}
+                  options={data}
                   value={field.value}
                   onChange={(value) => field.onChange(value)}
                   placeholder="Pilih nama anak/balita..."
@@ -458,4 +440,6 @@ export default function LayananIbuAnakForm() {
       </form>
     </Form>
   );
-}
+};
+
+export default LayananIbuAnak;

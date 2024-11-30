@@ -14,8 +14,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
-import { saveDataLayananLansia } from "./action"; // Server Actions will be used here
-import { getAllDataWarga } from "@/app/(dashboard)/dashboard/input-data/data-warga/action";
+import { saveDataLayananLansia } from "./action";
 import React from "react";
 import { ComboboxWarga } from "@/components/warga/ComboBoxWarga";
 import { Loader2Icon } from "lucide-react";
@@ -54,7 +53,16 @@ const layananLansiaSchema = z.object({
 
 type LayananLansiaFormValues = z.infer<typeof layananLansiaSchema>;
 
-export default function LayananLansiaForm() {
+interface LayananLansiaFormProps {
+  value: string;
+  label: string;
+}
+
+export default function LayananLansiaForm({
+  data,
+}: {
+  data: LayananLansiaFormProps[];
+}) {
   const [isSubmitting, setIsSubmitting] = React.useState(false);
   const { toast } = useToast();
   const form = useForm<LayananLansiaFormValues>({
@@ -105,31 +113,6 @@ export default function LayananLansiaForm() {
     window.location.reload();
   };
 
-  const [wargaOptions, setWargaOptions] = React.useState<
-    { value: string; label: string }[]
-  >([]);
-
-  React.useEffect(() => {
-    async function fetchData() {
-      try {
-        const result = await getAllDataWarga();
-        if (result.success && result.data) {
-          setWargaOptions(
-            result.data.map((warga: { id: string; nama: string }) => ({
-              value: warga.id,
-              label: warga.nama,
-            }))
-          );
-        } else {
-          console.error(result.error || "Data is undefined");
-        }
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    }
-    fetchData();
-  }, []);
-
   return (
     <Form {...form}>
       <form
@@ -145,7 +128,7 @@ export default function LayananLansiaForm() {
               <Label>Pilih Nama Lansia</Label>
               <FormControl>
                 <ComboboxWarga
-                  options={wargaOptions}
+                  options={data}
                   value={field.value}
                   onChange={(value) => field.onChange(value)}
                   placeholder="Cari nama lansia dari daftar..."

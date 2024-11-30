@@ -48,7 +48,7 @@ export async function saveDataWarga({
   }
 }
 
-export async function getAllDataWarga() {
+export async function getAllDataWargaIbuAnak() {
   try {
     const wargaList = await db.warga.findMany({
       include: {
