@@ -159,9 +159,9 @@ const LayananIbuAnak: React.FC<LayananIbuAnakProps> = ({ data }) => {
         variant: "destructive",
       });
     }
-    setIsSubmitting(false);
+    form.reset();
 
-    window.location.reload();
+    setIsSubmitting(false);
   };
 
   return (
@@ -423,6 +423,8 @@ const LayananIbuAnak: React.FC<LayananIbuAnakProps> = ({ data }) => {
                   <SelectContent className="border border-primary">
                     <SelectItem value="SUNTIK">Suntik</SelectItem>
                     <SelectItem value="IMPLAN">Implan</SelectItem>
+                    <SelectItem value="KB">KB</SelectItem>
+                    <SelectItem value="SUSUK">Susuk</SelectItem>
                   </SelectContent>
                 </Select>
               </FormControl>

@@ -1,6 +1,6 @@
 "use client";
 
-// import { Row } from "@tanstack/react-table";
+import { Row } from "@tanstack/react-table";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -13,13 +13,13 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Ellipsis } from "lucide-react";
 
-// interface DataTableRowActionsProps<TData> {
-//   row: Row<TData>;
-// }
+interface DataTableRowActionsProps<TData> {
+  row: Row<TData>;
+}
 
-// DataTableRowActions<TData>({row,}: DataTableRowActionsProps<TData>)
-
-export function DataTableRowActions() {
+export function DataTableRowActions<TData>({
+  row,
+}: DataTableRowActionsProps<TData>) {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>

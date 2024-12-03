@@ -83,8 +83,6 @@ export default function InputDataWarga() {
         title: "Data berhasil disimpan",
         description: "Data warga berhasil disimpan",
       });
-
-      window.location.reload();
     } else {
       toast({
         title: "Gagal menyimpan data",
@@ -92,6 +90,8 @@ export default function InputDataWarga() {
         variant: "destructive",
       });
     }
+
+    form.reset();
   };
 
   return (

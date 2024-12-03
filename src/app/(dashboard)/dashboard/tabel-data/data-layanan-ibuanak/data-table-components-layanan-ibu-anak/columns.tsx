@@ -8,7 +8,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 
 export const columns: ColumnDef<LayananIbuAnak>[] = [
   {
-    id: "select",
+    id: "selection",
     header: ({ table }) => (
       <Checkbox
         checked={
@@ -200,7 +200,7 @@ export const columns: ColumnDef<LayananIbuAnak>[] = [
   },
   {
     id: "actions",
-    cell: () => <DataTableRowActions />,
+    cell: ({ row }) => <DataTableRowActions row={row} />,
     // cell: ({ row }) => <DataTableRowActions row={row} />,
   },
 ];

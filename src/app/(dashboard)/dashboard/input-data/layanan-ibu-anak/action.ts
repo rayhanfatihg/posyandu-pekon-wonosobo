@@ -3,6 +3,7 @@
 import db from "@/lib/db";
 import { createClient } from "@/utils/supabase/server";
 import { JenisKelamin } from "@prisma/client";
+import { revalidatePath } from "next/cache";
 
 export async function saveDataLayananIbuAnak(data: {
   ibuId: string;
@@ -83,6 +84,7 @@ export async function saveDataLayananIbuAnak(data: {
       },
     });
 
+    revalidatePath("(dashboard)/dashboard/input-data");
     return { success: true };
   } catch (error) {
     if (error instanceof Error) {

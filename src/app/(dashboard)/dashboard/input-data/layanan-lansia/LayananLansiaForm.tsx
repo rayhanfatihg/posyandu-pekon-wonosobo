@@ -24,31 +24,31 @@ import { Textarea } from "@/components/ui/textarea";
 const layananLansiaSchema = z.object({
   wargaId: z.string().min(1, { message: "Warga ID wajib diisi" }),
   beratBadan: z.preprocess(
-    (val) => parseFloat(val as string),
-    z.number().min(1, { message: "Berat Badan harus lebih dari 0" })
+    (val) => (val === undefined ? undefined : parseFloat(val as string)),
+    z.number().optional()
   ),
   tinggiBadan: z.preprocess(
-    (val) => parseFloat(val as string),
-    z.number().min(1, { message: "Tinggi Badan harus lebih dari 0" })
+    (val) => (val === undefined ? undefined : parseFloat(val as string)),
+    z.number().optional()
   ),
   asamUrat: z.preprocess(
-    (val) => parseFloat(val as string),
+    (val) => (val === undefined ? undefined : parseFloat(val as string)),
     z.number().optional()
   ),
   gulaDarah: z.preprocess(
-    (val) => parseFloat(val as string),
+    (val) => (val === undefined ? undefined : parseFloat(val as string)),
     z.number().optional()
   ),
-  keterangan: z.string().min(1, { message: "Keterangan wajib diisi" }),
+  keterangan: z.string().optional(),
   kolesterol: z.preprocess(
-    (val) => parseFloat(val as string),
+    (val) => (val === undefined ? undefined : parseFloat(val as string)),
     z.number().optional()
   ),
   lingkarPerut: z.preprocess(
-    (val) => parseFloat(val as string),
+    (val) => (val === undefined ? undefined : parseFloat(val as string)),
     z.number().optional()
   ),
-  tensiDarah: z.string().min(1, { message: "Tensi darah wajib diisi" }),
+  tensiDarah: z.string().optional(),
 });
 
 type LayananLansiaFormValues = z.infer<typeof layananLansiaSchema>;
@@ -92,7 +92,6 @@ export default function LayananLansiaForm({
           title: "Data berhasil disimpan!",
           description: "Data layanan lansia berhasil disimpan",
         });
-        form.reset();
       } else {
         toast({
           title: "Gagal menyimpan data!",
@@ -108,9 +107,9 @@ export default function LayananLansiaForm({
         variant: "destructive",
       });
     }
-    setIsSubmitting(false);
+    form.reset();
 
-    window.location.reload();
+    setIsSubmitting(false);
   };
 
   return (

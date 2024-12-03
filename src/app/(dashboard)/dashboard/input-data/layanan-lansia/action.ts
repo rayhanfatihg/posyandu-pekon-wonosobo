@@ -2,17 +2,18 @@
 
 import db from "@/lib/db"; // Assuming db is set up with Prisma
 import { createClient } from "@/utils/supabase/server"; // If using Supabase authentication
+import { revalidatePath } from "next/cache";
 
 export async function saveDataLayananLansia(data: {
   wargaId: string;
-  beratBadan: number;
-  tinggiBadan: number;
+  beratBadan?: number;
+  tinggiBadan?: number;
   asamUrat?: number; // Optional field
   gulaDarah?: number; // Optional field
-  keterangan: string;
+  keterangan?: string;
   kolesterol?: number; // Optional field
   lingkarPerut?: number; // Optional field
-  tensiDarah: string;
+  tensiDarah?: string;
 }) {
   try {
     // Step 1: Ensure the user is authenticated
@@ -52,6 +53,7 @@ export async function saveDataLayananLansia(data: {
       },
     });
 
+    revalidatePath("(dashboard)/dashboard/input-data");
     return { success: true };
   } catch (error) {
     console.error("Error saving Layanan Lansia data:", error);
