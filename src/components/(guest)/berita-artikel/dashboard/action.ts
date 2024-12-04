@@ -107,7 +107,7 @@ export async function readBlogDeatailById(blogId: string): Promise<{
   image_url: string;
   is_premium: boolean;
   is_published: boolean;
-  blog_content: { createdAt: Date; blog_id: string; content: string }[];
+  blog_content: { createdAt: Date; blog_id: string; content: string };
 } | null> {
   try {
     const blog = await db.blog.findUnique({

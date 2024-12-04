@@ -19,6 +19,7 @@ export default async function ArticlePage({
 
   // Fetch article details asynchronously
   const artikel = await readBlogDeatailById(artikelId);
+  console.log(artikel);
 
   // If article not found, trigger the notFound page
   if (!artikel) {
@@ -29,7 +30,7 @@ export default async function ArticlePage({
     <main className="container">
       <Navbar />
 
-      <section className="container mt-40 flex max-w-[64rem] flex-col items-center gap-4 text-center">
+      <section className="container mt-40 flex max-w-[64rem] flex-col items-center gap-4 text-center mx-auto">
         <div className="flex flex-col items-center gap-5 md:flex-row">
           <Image
             src="/logo-posyandu.png"
@@ -50,10 +51,6 @@ export default async function ArticlePage({
         <h1 className="text-3xl font-semibold sm:text-5xl md:text-6xl lg:text-7xl">
           {artikel.title}
         </h1>
-
-        <p className="max-w-[42rem] text-sm font-normal leading-normal text-muted-foreground">
-          {artikel.blog_content[0]?.content.slice(0, 150) || ""}
-        </p>
       </section>
 
       <section className="mx-auto mt-10 flex w-full flex-col">
@@ -66,7 +63,7 @@ export default async function ArticlePage({
         />
 
         <div className="mx-auto max-w-5xl py-20">
-          <MarkdownPreview content={artikel.blog_content[0]?.content} />
+          <MarkdownPreview content={artikel.blog_content.content} />
         </div>
       </section>
 
