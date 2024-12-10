@@ -7,29 +7,34 @@ import { DataTableRowActions } from "./data-table-row-actions";
 import { Checkbox } from "@/components/ui/checkbox";
 
 export const columns: ColumnDef<LayananIbuAnak>[] = [
+  // {
+  //   id: "selection",
+  //   header: ({ table }) => (
+  //     <Checkbox
+  //       checked={
+  //         table.getIsAllPageRowsSelected() ||
+  //         (table.getIsSomePageRowsSelected() && "indeterminate")
+  //       }
+  //       onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
+  //       aria-label="Select all"
+  //       className="translate-y-0.5"
+  //     />
+  //   ),
+  //   cell: ({ row }) => (
+  //     <Checkbox
+  //       checked={row.getIsSelected()}
+  //       onCheckedChange={(value) => row.toggleSelected(!!value)}
+  //       aria-label="Select row"
+  //       className="translate-y-0.5"
+  //     />
+  //   ),
+  //   enableSorting: false,
+  //   enableHiding: false,
+  // },
   {
-    id: "selection",
-    header: ({ table }) => (
-      <Checkbox
-        checked={
-          table.getIsAllPageRowsSelected() ||
-          (table.getIsSomePageRowsSelected() && "indeterminate")
-        }
-        onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
-        aria-label="Select all"
-        className="translate-y-0.5"
-      />
-    ),
-    cell: ({ row }) => (
-      <Checkbox
-        checked={row.getIsSelected()}
-        onCheckedChange={(value) => row.toggleSelected(!!value)}
-        aria-label="Select row"
-        className="translate-y-0.5"
-      />
-    ),
-    enableSorting: false,
-    enableHiding: false,
+    id: "no",
+    header: () => <p className="text-left">No</p>,
+    cell: ({ row }) => <p className="text-left">{row.index + 1}</p>,
   },
   {
     accessorKey: "namaAnak",
@@ -164,6 +169,17 @@ export const columns: ColumnDef<LayananIbuAnak>[] = [
     ),
   },
   {
+    accessorKey: "lingkarLenganIbu", // Waist circumference of the mother
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title="Lingkar Lengan Ibu (cm)" />
+    ),
+    cell: ({ row }) => (
+      <div className="flex w-[100px] items-center">
+        <span>{row.getValue("lingkarLenganIbu")}</span>
+      </div>
+    ),
+  },
+  {
     accessorKey: "alatKontrasepsi", // Contraception method
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Alat Kontrasepsi" />
@@ -198,9 +214,19 @@ export const columns: ColumnDef<LayananIbuAnak>[] = [
       return rowDate >= startDate && rowDate <= endDate;
     },
   },
+  // {
+  //   id: "actions",
+  //   cell: ({ row }) => <DataTableRowActions row={row} />,
+  //   // cell: ({ row }) => <DataTableRowActions row={row} />,
+  // },
   {
-    id: "actions",
-    cell: ({ row }) => <DataTableRowActions row={row} />,
+    // id: "actions",
+    accessorKey: "id_layanan",
+    header: () => <p className="text-right">Aksi</p>,
+    cell: ({ row }) => (
+      <DataTableRowActions id_layanan={row.getValue("id_layanan")} row={row} />
+    ),
+    enableHiding: false,
     // cell: ({ row }) => <DataTableRowActions row={row} />,
   },
 ];

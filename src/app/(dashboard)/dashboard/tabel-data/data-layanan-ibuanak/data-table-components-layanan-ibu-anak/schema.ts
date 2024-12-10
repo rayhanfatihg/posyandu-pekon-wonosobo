@@ -41,12 +41,13 @@ export interface LayananIbuAnak {
 }
 
 export interface FormattedLayananIbuAnak {
+  id_layanan: string;
   namaAnak: string;
   namaIbu: string;
   namaAyah: string;
   tinggiBadanAnak: number | null;
   beratBadanAnak: number | null;
-  umurAnak: number | null;
+  umurAnak: string | null;
   lingkarLenganAnak: number | null;
   lingkarKepalaAnak: number | null;
   tinggiBadanIbu: number | null;

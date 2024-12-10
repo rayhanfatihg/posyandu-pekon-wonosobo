@@ -72,7 +72,7 @@ export function DataTable<TData, TValue>({
     <div className="space-y-4">
       <DataTableToolbar table={table} data={data} />
       <div className="overflow-y-auto rounded-md border">
-        <ScrollArea className="max-w-[340px] overflow-hidden rounded-md border sm:max-w-[600px] md:max-w-[700px] lg:max-w-[900px] xl:max-w-[1280px]">
+        <ScrollArea className="max-w-[350px] overflow-hidden rounded-md border sm:max-w-[650px] md:max-w-[700px] lg:max-w-[900px] xl:max-w-[1280px]">
           <Table>
             <TableHeader>
               {table.getHeaderGroups().map((headerGroup) => (

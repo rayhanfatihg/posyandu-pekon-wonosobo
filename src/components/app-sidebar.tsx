@@ -24,7 +24,7 @@ import getUser from "@/utils/supabase/getUser";
 
 const items = [
   {
-    title: "Reports",
+    title: "Laporan Grafik",
     url: "/",
     icon: Home,
   },
@@ -34,7 +34,7 @@ const items = [
     icon: Inbox,
   },
   {
-    title: "Input Data Posyandu",
+    title: "Layanan Data Posyandu",
     url: "/input-data",
     icon: Inbox,
   },

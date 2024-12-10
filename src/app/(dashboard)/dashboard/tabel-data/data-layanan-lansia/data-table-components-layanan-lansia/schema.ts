@@ -2,6 +2,7 @@
 
 export interface LayananLansia {
   id: string;
+  id_layanan?: string;
   wargaId: string;
   beratBadan?: number | null;
   tinggiBadan?: number | null;

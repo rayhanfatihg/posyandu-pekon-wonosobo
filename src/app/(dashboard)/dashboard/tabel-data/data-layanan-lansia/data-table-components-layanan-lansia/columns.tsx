@@ -7,29 +7,34 @@ import { DataTableRowActions } from "./data-table-row-actions";
 import { Checkbox } from "@/components/ui/checkbox";
 
 export const columns: ColumnDef<LayananLansia>[] = [
+  // {
+  //   id: "select",
+  //   header: ({ table }) => (
+  //     <Checkbox
+  //       checked={
+  //         table.getIsAllPageRowsSelected() ||
+  //         (table.getIsSomePageRowsSelected() && "indeterminate")
+  //       }
+  //       onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
+  //       aria-label="Select all"
+  //       className="translate-y-0.5"
+  //     />
+  //   ),
+  //   cell: ({ row }) => (
+  //     <Checkbox
+  //       checked={row.getIsSelected()}
+  //       onCheckedChange={(value) => row.toggleSelected(!!value)}
+  //       aria-label="Select row"
+  //       className="translate-y-0.5"
+  //     />
+  //   ),
+  //   enableSorting: false,
+  //   enableHiding: false,
+  // },
   {
-    id: "select",
-    header: ({ table }) => (
-      <Checkbox
-        checked={
-          table.getIsAllPageRowsSelected() ||
-          (table.getIsSomePageRowsSelected() && "indeterminate")
-        }
-        onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
-        aria-label="Select all"
-        className="translate-y-0.5"
-      />
-    ),
-    cell: ({ row }) => (
-      <Checkbox
-        checked={row.getIsSelected()}
-        onCheckedChange={(value) => row.toggleSelected(!!value)}
-        aria-label="Select row"
-        className="translate-y-0.5"
-      />
-    ),
-    enableSorting: false,
-    enableHiding: false,
+    id: "no",
+    header: () => <p className="text-left">No</p>,
+    cell: ({ row }) => <p className="text-left">{row.index + 1}</p>,
   },
   {
     accessorKey: "namaWarga", // Ganti dengan nama warga dari data Layanan Lansia
@@ -164,8 +169,28 @@ export const columns: ColumnDef<LayananLansia>[] = [
     },
   },
   {
-    id: "actions",
-    cell: () => <DataTableRowActions />,
+    accessorKey: "keterangan", // Keterangan tambahan
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title="Keterangan" />
+    ),
+    cell: ({ row }) => (
+      <div className="flex w-[200px] items-center">
+        {row.getValue("keterangan")}
+      </div>
+    ),
+  },
+  {
+    // id: "actions",
+    accessorKey: "id_layanan",
+    header: () => <p className="text-right">Aksi</p>,
+    cell: ({ row }) => (
+      <DataTableRowActions id_layanan={row.getValue("id_layanan")} row={row} />
+    ),
     // cell: ({ row }) => <DataTableRowActions row={row} />,
   },
+  // {
+  //   accessorKey: "id_layanan",
+  //   cell: ({ row }) => <p>{row.getValue("id_layanan")}</p>,
+  //   // cell: ({ row }) => <DataTableRowActions row={row} />,
+  // },
 ];

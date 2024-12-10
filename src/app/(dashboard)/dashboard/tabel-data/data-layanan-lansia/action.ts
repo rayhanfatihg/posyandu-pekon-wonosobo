@@ -41,6 +41,7 @@ export async function getDataLayananLansia() {
 
     // Format data untuk menyesuaikan dengan struktur yang diinginkan
     const formattedData = layananLansiaData.map((item) => ({
+      id_layanan: item.id,
       namaWarga: item.warga.nama,
       nik: item.warga.nik,
       tanggalLahir: item.warga.tanggalLahir, // Anda bisa format ini jika diperlukan

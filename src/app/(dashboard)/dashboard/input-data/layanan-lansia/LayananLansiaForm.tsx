@@ -116,7 +116,7 @@ export default function LayananLansiaForm({
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className="mt-10 flex w-[310px] flex-col space-y-2 rounded-md sm:w-[400px]"
+        className="mt-10 flex w-[310px] flex-col space-y-6 rounded-md sm:w-[400px]"
       >
         {/* Warga ID Selection */}
         <FormField

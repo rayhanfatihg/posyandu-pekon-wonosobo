@@ -74,7 +74,7 @@ export default function JadwalPosyanduPage() {
   };
 
   return (
-    <main className="flex min-h-screen flex-col">
+    <main className="flex min-h-screen flex-col items-center mx-auto md:justify-start md:items-start w-screen">
       <h1 className="text-2xl font-bold">Atur Jadwal Posyandu</h1>
       <div className="mt-10">
         <h2 className="mb-6 text-lg font-bold">

@@ -66,7 +66,7 @@ export default function InputDataPage() {
     <main className="min-h-screen w-full">
       <h1 className="text-2xl font-bold">Masukan Data Layanan Posyandu</h1>
 
-      <div className="mb-6 mt-10">
+      <div className="mb-6 mt-10 mx-auto w-full flex justify-center flex-col items-center md:justify-start md:items-start">
         <h1 className="text-lg font-semibold">Pilih Jenis Layanan</h1>
 
         <Tabs

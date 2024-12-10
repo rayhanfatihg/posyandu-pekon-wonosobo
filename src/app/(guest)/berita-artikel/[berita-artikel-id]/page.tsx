@@ -19,7 +19,6 @@ export default async function ArticlePage({
 
   // Fetch article details asynchronously
   const artikel = await readBlogDeatailById(artikelId);
-  console.log(artikel);
 
   // If article not found, trigger the notFound page
   if (!artikel) {
@@ -53,7 +52,7 @@ export default async function ArticlePage({
         </h1>
       </section>
 
-      <section className="mx-auto mt-10 flex w-full flex-col">
+      <section className="mx-auto mt-10 flex w-full flex-col px-2 text-justify">
         <Image
           src={artikel.image_url}
           alt={artikel.title}

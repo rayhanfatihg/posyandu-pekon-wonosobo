@@ -38,3 +38,30 @@ export async function togglePostStatus(id: string, is_published: boolean) {
     throw new Error("Gagal mengubah status posting");
   }
 }
+
+export async function deletePost(id: string) {
+  try {
+    if (!id) {
+      throw new Error("ID tidak valid");
+    }
+
+    // Hapus relasi terkait secara manual terlebih dahulu
+    await db.blog_content.deleteMany({
+      where: { blog_id: id },
+    });
+
+    // Hapus data utama (blog)
+    await db.blog.delete({
+      where: { id },
+    });
+
+    // Revalidate path
+    revalidatePath("/dashboard/tabel-berita-artikel");
+
+    return { success: true, id };
+  } catch (error) {
+    console.error("Gagal menghapus posting:", error);
+
+    return { success: false, message: "Gagal menghapus data blog." };
+  }
+}

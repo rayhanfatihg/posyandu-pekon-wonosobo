@@ -21,7 +21,7 @@ export default async function BlogTablePage() {
       <h1 className="mb-4 text-2xl font-bold">Atur Postingan Blog & Artikel</h1>
       {data.length > 0 ? (
         <div className="rounded-md border">
-          <ScrollArea className="max-w-[340px] overflow-hidden rounded-md border sm:max-w-[600px] md:max-w-[700px] lg:max-w-[900px] xl:max-w-[1280px]">
+          <ScrollArea className="max-w-[350px] overflow-hidden rounded-md border sm:max-w-[600px] md:max-w-[700px] lg:max-w-[900px] xl:max-w-[1280px]">
             <Table>
               <TableHeader>
                 <TableRow>
@@ -29,7 +29,7 @@ export default async function BlogTablePage() {
                   <TableHead>Judul</TableHead>
                   <TableHead>Gambar Utama</TableHead>
                   <TableHead>Dibuat pada</TableHead>
-                  <TableHead>Status Posting</TableHead>
+                  <TableHead>Aksi</TableHead>
                 </TableRow>
               </TableHeader>
 

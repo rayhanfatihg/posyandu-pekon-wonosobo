@@ -1,8 +1,9 @@
-"use client"
+"use client";
 
-import * as React from "react"
-import { TrendingUp } from "lucide-react"
-import { Label, Pie, PieChart } from "recharts"
+import * as React from "react";
+import { useEffect, useState } from "react";
+import { TrendingUp, TrendingDown } from "lucide-react";
+import { Label, Pie, PieChart } from "recharts";
 
 import {
   Card,
@@ -11,22 +12,16 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card"
+} from "@/components/ui/card";
 import {
   ChartConfig,
   ChartContainer,
   ChartTooltip,
   ChartTooltipContent,
-} from "@/components/ui/chart"
+} from "@/components/ui/chart";
+import { getStatusGiziAnak } from "./action";
 
-export const description = "Grafik Donat dengan teks untuk Status Gizi Anak"
-
-// Data mock untuk status gizi anak di posyandu
-const chartData = [
-  { status: "Gizi Baik", jumlah: 150, fill: "hsl(var(--chart-1))" },
-  { status: "Kurang Gizi", jumlah: 80, fill: "hsl(var(--chart-2))" },
-  { status: "Gizi Buruk", jumlah: 45, fill: "hsl(var(--chart-3))" },
-]
+export const description = "Grafik Donat dengan teks untuk Status Gizi Anak";
 
 const chartConfig = {
   jumlah: {
@@ -44,15 +39,55 @@ const chartConfig = {
     label: "Gizi Buruk",
     color: "hsl(var(--chart-3))",
   },
-} satisfies ChartConfig
+} satisfies ChartConfig;
 
 export function ChartDemo2() {
-  const totalAnak = React.useMemo(() => {
-    return chartData.reduce((acc, curr) => acc + curr.jumlah, 0)
-  }, [])
+  const [chartData, setChartData] = useState<
+    { status: string; jumlah: number; fill: string }[]
+  >([]);
+  const [totalAnak, setTotalAnak] = useState<number>(0);
+  const [tren, setTren] = useState<"meningkat" | "menurun" | "stabil">(
+    "stabil"
+  );
+
+  useEffect(() => {
+    async function fetchData() {
+      const response = await getStatusGiziAnak();
+      if (response.success && response.data) {
+        setChartData(response.data);
+
+        // Hitung total anak dari data
+        const total = response.data.reduce((acc, curr) => acc + curr.jumlah, 0);
+        setTotalAnak(total);
+
+        // Menentukan tren status gizi anak
+        const giziBaik =
+          response.data.find((item) => item.status === "Gizi Baik")?.jumlah ||
+          0;
+        const kurangGizi =
+          response.data.find((item) => item.status === "Kurang Gizi")?.jumlah ||
+          0;
+        const giziBuruk =
+          response.data.find((item) => item.status === "Gizi Buruk")?.jumlah ||
+          0;
+
+        if (giziBaik > kurangGizi && giziBaik > giziBuruk) {
+          setTren("meningkat");
+        } else if (giziBaik < kurangGizi || giziBaik < giziBuruk) {
+          setTren("menurun");
+        } else {
+          setTren("stabil");
+        }
+      } else {
+        console.error("Gagal memuat data status gizi:", response.error);
+      }
+    }
+
+    fetchData();
+  }, []);
 
   return (
-    <Card className="flex flex-col">
+    <Card className="flex flex-col flex-1">
       <CardHeader className="items-center pb-0">
         <CardTitle>Status Gizi Anak</CardTitle>
         <CardDescription>Data Terkini</CardDescription>
@@ -99,7 +134,7 @@ export function ChartDemo2() {
                           Anak
                         </tspan>
                       </text>
-                    )
+                    );
                   }
                 }}
               />
@@ -107,10 +142,25 @@ export function ChartDemo2() {
           </PieChart>
         </ChartContainer>
       </CardContent>
+
       <CardFooter className="flex-col gap-2 text-sm">
         <div className="flex items-center gap-2 font-medium leading-none">
-          Tren status gizi menunjukkan peningkatan{" "}
-          <TrendingUp className="h-4 w-4" />
+          {tren === "meningkat" ? (
+            <>
+              Tren status gizi menunjukkan peningkatan{" "}
+              <TrendingUp className="h-4 w-4 text-green-500" />
+            </>
+          ) : tren === "menurun" ? (
+            <>
+              Tren status gizi menunjukkan penurunan{" "}
+              <TrendingDown className="h-4 w-4 text-red-500" />
+            </>
+          ) : (
+            <>
+              Tren status gizi stabil{" "}
+              <TrendingUp className="h-4 w-4 text-yellow-500" />
+            </>
+          )}
         </div>
         <div className="leading-none text-muted-foreground">
           Menampilkan distribusi status gizi anak berdasarkan data posyandu
@@ -118,5 +168,5 @@ export function ChartDemo2() {
         </div>
       </CardFooter>
     </Card>
-  )
+  );
 }

@@ -1,7 +1,8 @@
-"use client"
+"use client";
 
-import { TrendingUp } from "lucide-react"
-import { Bar, BarChart, CartesianGrid, LabelList, XAxis } from "recharts"
+import { useEffect, useState } from "react";
+import { TrendingUp, TrendingDown, Minus } from "lucide-react";
+import { Bar, BarChart, CartesianGrid, LabelList, XAxis } from "recharts";
 
 import {
   Card,
@@ -10,40 +11,77 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card"
+} from "@/components/ui/card";
 import {
   ChartConfig,
   ChartContainer,
   ChartTooltip,
   ChartTooltipContent,
-} from "@/components/ui/chart"
-
-export const description =
-  "Grafik batang dengan label untuk pemeriksaan ibu hamil"
-
-// Data mock untuk jumlah pemeriksaan ibu hamil per bulan
-const chartData = [
-  { bulan: "Januari", pemeriksaan: 25 },
-  { bulan: "Februari", pemeriksaan: 30 },
-  { bulan: "Maret", pemeriksaan: 20 },
-  { bulan: "April", pemeriksaan: 35 },
-  { bulan: "Mei", pemeriksaan: 28 },
-  { bulan: "Juni", pemeriksaan: 40 },
-]
+} from "@/components/ui/chart";
+import { getCombinedLayananPerBulan } from "./action";
 
 const chartConfig = {
-  pemeriksaan: {
-    label: "Pemeriksaan Ibu Hamil",
+  pemeriksaanIbuAnak: {
+    label: "Pemeriksaan Ibu & Anak",
     color: "hsl(var(--chart-1))",
   },
-} satisfies ChartConfig
+  pemeriksaanLansia: {
+    label: "Pemeriksaan Lansia",
+    color: "hsl(var(--chart-2))",
+  },
+} satisfies ChartConfig;
 
 export function ChartDemo3() {
+  const [chartData, setChartData] = useState<
+    { bulan: string; pemeriksaanIbuAnak: number; pemeriksaanLansia: number }[]
+  >([]);
+  const [tren, setTren] = useState<"meningkat" | "menurun" | "stabil">(
+    "stabil"
+  );
+
+  useEffect(() => {
+    async function fetchData() {
+      const response = await getCombinedLayananPerBulan();
+      if (response.success) {
+        // Filter data: hanya tampilkan jika salah satu nilai > 0
+        const filteredData = response.data.filter(
+          (item: { pemeriksaanIbuAnak: number; pemeriksaanLansia: number }) =>
+            item.pemeriksaanIbuAnak > 0 || item.pemeriksaanLansia > 0
+        );
+
+        setChartData(filteredData);
+
+        // Hitung tren dari dua bulan terakhir
+        if (filteredData.length >= 2) {
+          const lastMonth = filteredData[filteredData.length - 1];
+          const previousMonth = filteredData[filteredData.length - 2];
+
+          const totalLastMonth =
+            lastMonth.pemeriksaanIbuAnak + lastMonth.pemeriksaanLansia;
+          const totalPreviousMonth =
+            previousMonth.pemeriksaanIbuAnak + previousMonth.pemeriksaanLansia;
+
+          if (totalLastMonth > totalPreviousMonth) {
+            setTren("meningkat");
+          } else if (totalLastMonth < totalPreviousMonth) {
+            setTren("menurun");
+          } else {
+            setTren("stabil");
+          }
+        }
+      } else {
+        console.error("Gagal memuat data chart:", response.error);
+      }
+    }
+
+    fetchData();
+  }, []);
+
   return (
-    <Card>
+    <Card className="flex-1">
       <CardHeader>
-        <CardTitle>Jumlah Pemeriksaan Ibu Hamil</CardTitle>
-        <CardDescription>Periode Januari - Juni</CardDescription>
+        <CardTitle>Jumlah Pemeriksaan Layanan</CardTitle>
+        <CardDescription>Periode Januari - Desember</CardDescription>
       </CardHeader>
       <CardContent>
         <ChartContainer config={chartConfig}>
@@ -51,7 +89,7 @@ export function ChartDemo3() {
             accessibilityLayer
             data={chartData}
             margin={{
-              top: 20,
+              top: 30,
             }}
           >
             <CartesianGrid vertical={false} />
@@ -67,8 +105,20 @@ export function ChartDemo3() {
               content={<ChartTooltipContent hideLabel />}
             />
             <Bar
-              dataKey="pemeriksaan"
-              fill="var(--color-pemeriksaan)"
+              dataKey="pemeriksaanIbuAnak"
+              fill="hsl(var(--chart-1))"
+              radius={8}
+            >
+              <LabelList
+                position="top"
+                offset={12}
+                className="fill-foreground"
+                fontSize={12}
+              />
+            </Bar>
+            <Bar
+              dataKey="pemeriksaanLansia"
+              fill="hsl(var(--chart-2))"
               radius={8}
             >
               <LabelList
@@ -83,13 +133,29 @@ export function ChartDemo3() {
       </CardContent>
       <CardFooter className="flex-col items-start gap-2 text-sm">
         <div className="flex gap-2 font-medium leading-none">
-          Tren pemeriksaan meningkat bulan ini{" "}
-          <TrendingUp className="h-4 w-4" />
+          {tren === "meningkat" && (
+            <>
+              Tren pemeriksaan meningkat bulan ini{" "}
+              <TrendingUp className="h-4 w-4 text-green-500" />
+            </>
+          )}
+          {tren === "menurun" && (
+            <>
+              Tren pemeriksaan menurun bulan ini{" "}
+              <TrendingDown className="h-4 w-4 text-red-500" />
+            </>
+          )}
+          {tren === "stabil" && (
+            <>
+              Tren pemeriksaan stabil{" "}
+              <Minus className="h-4 w-4 text-yellow-500" />
+            </>
+          )}
         </div>
         <div className="leading-none text-muted-foreground">
-          Menampilkan total pemeriksaan ibu hamil per bulan
+          Menampilkan total pemeriksaan layanan ibu & anak dan lansia per bulan
         </div>
       </CardFooter>
     </Card>
-  )
+  );
 }

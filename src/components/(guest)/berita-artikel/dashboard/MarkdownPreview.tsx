@@ -54,10 +54,10 @@ export default function MarkdownPreview({
         // Styling untuk gambar
         img: ({ node, ...props }) => {
           return (
-            <div className="my-6">
+            <div className="my-6 mx-auto">
               <img
                 {...props}
-                className="h-auto max-w-full rounded-lg shadow-lg"
+                className="h-auto max-w-full rounded-lg shadow-lg mx-auto"
                 alt={props.alt || "Image"}
               />
             </div>

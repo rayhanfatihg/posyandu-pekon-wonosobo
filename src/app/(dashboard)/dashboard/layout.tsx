@@ -13,7 +13,7 @@ export default function DashboardLayout({
       <main>
         <SidebarTrigger />
 
-        <div className="flex w-full flex-col px-2 py-16 md:p-16 justify-center md:justify-start">
+        <div className="flex w-full flex-col px-2 py-16 md:p-16 justify-center md:justify-start overflow-hidden">
           {children}
         </div>
       </main>

@@ -79,12 +79,12 @@ export function DataTableToolbar<TData>({
       </div>
 
       <div className="flex items-center gap-2">
-        {table.getFilteredSelectedRowModel().rows.length > 0 ? (
+        {/* {table.getFilteredSelectedRowModel().rows.length > 0 ? (
           <Button variant="outline" size="sm">
             <TrashIcon className="mr-2 size-4" aria-hidden="true" />
             Delete ({table.getFilteredSelectedRowModel().rows.length})
           </Button>
-        ) : null}
+        ) : null} */}
 
         <div className="flex justify-center items-center gap-2">
           <SaveButton data={data} />

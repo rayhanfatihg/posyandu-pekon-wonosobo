@@ -168,7 +168,7 @@ const LayananIbuAnak: React.FC<LayananIbuAnakProps> = ({ data }) => {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className="mt-10 flex w-[310px] flex-col space-y-2 rounded-md sm:w-[400px]"
+        className="mt-10 flex w-[310px] flex-col space-y-6 rounded-md sm:w-[400px]"
       >
         {/* Pilih Nama Ibu */}
         <FormField
@@ -405,6 +405,26 @@ const LayananIbuAnak: React.FC<LayananIbuAnakProps> = ({ data }) => {
           )}
         />
 
+        <FormField
+          control={form.control}
+          name="lingkarKepalaAnak"
+          render={({ field }) => (
+            <FormItem className="flex flex-col">
+              <Label>Lingkar Kepala Anak/Balita (cm)</Label>
+              <FormControl>
+                <Input
+                  type="number"
+                  placeholder="Masukkan Lingkar Lengan Anak/Balita"
+                  {...field}
+                />
+              </FormControl>
+              <FormMessage>
+                {form.formState.errors.lingkarKepalaAnak?.message}
+              </FormMessage>
+            </FormItem>
+          )}
+        />
+
         {/* Alat Kontrasepsi */}
         <FormField
           control={form.control}
@@ -417,10 +437,10 @@ const LayananIbuAnak: React.FC<LayananIbuAnakProps> = ({ data }) => {
                   value={field.value}
                   onValueChange={(value) => field.onChange(value)}
                 >
-                  <SelectTrigger className="border border-primary">
+                  <SelectTrigger>
                     <SelectValue placeholder="Pilih alat kontrasepsi" />
                   </SelectTrigger>
-                  <SelectContent className="border border-primary">
+                  <SelectContent>
                     <SelectItem value="SUNTIK">Suntik</SelectItem>
                     <SelectItem value="IMPLAN">Implan</SelectItem>
                     <SelectItem value="KB">KB</SelectItem>

@@ -72,24 +72,53 @@ export async function getDataLayananIbuAnak() {
       return `${year}-${month}-${day}`;
     };
 
+    const calculateAge = (tanggalLahir: Date) => {
+      const today = new Date();
+      let years = today.getFullYear() - tanggalLahir.getFullYear();
+      let months = today.getMonth() - tanggalLahir.getMonth();
+
+      if (months < 0) {
+        years -= 1;
+        months += 12;
+      }
+
+      const totalMonths = years * 12 + months;
+
+      if (totalMonths < 12) {
+        return `${totalMonths} bulan`;
+      } else {
+        return `${years} tahun ${months} bulan`;
+      }
+    };
+
     // Format the data to match the mock structure
-    const formattedData = layananData.map((item) => ({
-      namaAnak: item.anak.nama,
-      namaIbu: item.ibu.nama,
-      namaAyah: item.ayah.nama,
-      tinggiBadanAnak: item.tinggiBadanAnak ?? null,
-      beratBadanAnak: item.beratBadanAnak ?? null,
-      umurAnak: item.umurAnak ?? null,
-      lingkarLenganAnak: item.lingkarLenganAnak ?? null,
-      lingkarKepalaAnak: item.lingkarKepalaAnak ?? null,
-      tinggiBadanIbu: item.tinggiBadanIbu ?? null,
-      beratBadanIbu: item.beratBadanIbu ?? null,
-      lingkarLenganIbu: item.lingkarLenganIbu ?? null,
-      lingkarPinggangIbu: item.lingkarPinggangIbu ?? null,
-      alatKontrasepsi: item.alatKontrasepsi ?? null,
-      jenisKelaminAnak: item.jenisKelaminAnak,
-      date: formatDate(item.createdAt),
-    }));
+    const formattedData = layananData.map((item) => {
+      const umurFormatted = item.anak.tanggalLahir
+        ? calculateAge(new Date(item.anak.tanggalLahir))
+        : null;
+
+      return {
+        id_layanan: item.id,
+        namaAnak: item.anak.nama,
+        nikAnak: item.anak.nik,
+        namaIbu: item.ibu.nama,
+        nikIbu: item.ibu.nik,
+        namaAyah: item.ayah.nama,
+        nikAyah: item.ayah.nik,
+        tinggiBadanAnak: item.tinggiBadanAnak ?? null,
+        beratBadanAnak: item.beratBadanAnak ?? null,
+        umurAnak: umurFormatted,
+        lingkarLenganAnak: item.lingkarLenganAnak ?? null,
+        lingkarKepalaAnak: item.lingkarKepalaAnak ?? null,
+        tinggiBadanIbu: item.tinggiBadanIbu ?? null,
+        beratBadanIbu: item.beratBadanIbu ?? null,
+        lingkarLenganIbu: item.lingkarLenganIbu ?? null,
+        lingkarPinggangIbu: item.lingkarPinggangIbu ?? null,
+        alatKontrasepsi: item.alatKontrasepsi ?? null,
+        jenisKelaminAnak: item.jenisKelaminAnak,
+        date: formatDate(item.createdAt),
+      };
+    });
 
     return formattedData;
   } catch (error) {
