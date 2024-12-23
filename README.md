@@ -1,42 +1,18 @@
-POSYANDU DESA MARGA AGUNG - Next15
+# Website posyandu marga agung
 
-benerin blog
-report dashboard, delete & edit layanan
+## Team Members, Roles, Jobdesk
 
+| **No** | **Name**                         | **Role**                  |
+|--------|-----------------------------------|---------------------------|
+| 1      | Rustian Afencius Marbun          | Ketua Kelompok, Back End Developer, Video Editor |
+| 2      | Muhammad Yusuf                   | Project Manager, Video Editor |
+| 3      | Elsa Elisa Yohana Sianturi       | UI/UX Designer, Voice Over |
+| 4      | Abu Bakar Siddiq Siregar         | UI/UX Designer, PDD |
+| 5      | Nashwa Putri Laisya              | UI/UX Designer, PDD |
+| 6      | Rayhan Fatih Gunawan             | Front End Developer, PDD |
+| 7      | Nydia Renli Sinaga               | Front End Developer, PDD |
+| 8      | Dwi Arthur Revangga              | Back End Developer, Video Editor |
+| 9      | Toby Manurung                    | Project Assistant         |
+| 10     | Pannes Diba Sabila               | Project Assistant         |
 
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
-
-## Getting Started
-
-First, run the development server:
-
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+mengapa disini contributornya cuma Muhammad Yusuf, karena kami pindah repo ke email ksimargaagung yang lama ada di repo [muhamyusuf](https://github.com/muhamyusuf/posyandu-marga-agung/graphs/contributors)
