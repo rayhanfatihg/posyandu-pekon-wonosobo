@@ -1,8 +1,9 @@
-import type { Metadata } from "next";
-import localFont from "next/font/local";
 import "./globals.css";
+
+import type { Metadata } from "next";
 import { Toaster } from "@/components/ui/toaster";
 import { cn } from "@/lib/utils";
+import localFont from "next/font/local";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -11,11 +12,11 @@ const geistSans = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Posyandu Marga Agung",
+  title: "Posyandu Wonosobo",
   description:
-    "Posyandu Marga Agung adalah website yang digunakan untuk mencatat data posyandu di Desa Marga Agung",
+    "Posyandu Wonosobo adalah website yang digunakan untuk mencatat data posyandu di Pekon Wonosobo",
   authors: {
-    name: "Tim KSI ITERA 2024 Posyandu Marga Agung",
+    name: "Kelompok KKN PPM 26 Institut Teknologi Sumatera",
   },
 };
 
