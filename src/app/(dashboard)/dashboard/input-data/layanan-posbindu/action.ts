@@ -1,18 +1,16 @@
 "use server";
 
-import db from "@/lib/db"; // Assuming db is set up with Prisma
 import { createClient } from "@/utils/supabase/server"; // If using Supabase authentication
+import db from "@/lib/db"; // Assuming db is set up with Prisma
 import { revalidatePath } from "next/cache";
 
 export async function saveDataLayananLansia(data: {
   wargaId: string;
   beratBadan?: number;
   tinggiBadan?: number;
-  asamUrat?: number; // Optional field
-  gulaDarah?: number; // Optional field
   keterangan?: string;
-  kolesterol?: number; // Optional field
   lingkarPerut?: number; // Optional field
+  lingkarLengan?: number;
   tensiDarah?: string;
 }) {
   try {
@@ -39,15 +37,12 @@ export async function saveDataLayananLansia(data: {
     }
 
     // Step 3: Save the Layanan Lansia data
-    await db.layananLansia.create({
+    await db.layananPosbindu.create({
       data: {
         wargaId: data.wargaId,
         beratBadan: data.beratBadan,
         tinggiBadan: data.tinggiBadan,
-        asamUrat: data.asamUrat ?? null, // If not provided, set as null
-        gulaDarah: data.gulaDarah ?? null, // If not provided, set as null
-        keterangan: data.keterangan,
-        kolesterol: data.kolesterol ?? null, // If not provided, set as null
+        lingkarLengan: data.lingkarLengan,
         lingkarPerut: data.lingkarPerut ?? null, // If not provided, set as null
         tensiDarah: data.tensiDarah,
       },

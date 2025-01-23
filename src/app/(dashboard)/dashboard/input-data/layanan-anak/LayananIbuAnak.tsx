@@ -1,12 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
-import { z } from "zod";
 
-import { useToast } from "@/hooks/use-toast";
-import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
@@ -14,8 +9,6 @@ import {
   FormItem,
   FormMessage,
 } from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import {
   Select,
   SelectContent,
@@ -23,45 +16,27 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+
+import { Button } from "@/components/ui/button";
 import { ComboboxWarga } from "@/components/warga/ComboBoxWarga";
-import { saveDataLayananIbuAnak } from "./action";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import { Loader2Icon } from "lucide-react";
+import { saveDataLayananIbuAnak } from "./action";
+import { useForm } from "react-hook-form";
+import { useToast } from "@/hooks/use-toast";
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
 
 const layananSchema = z.object({
   ibuId: z.string().min(1, { message: "Wajib memilih nama ibu" }),
   ayahId: z.string().min(1, { message: "Wajib memilih nama ayah" }),
   anakId: z.string().min(1, { message: "Wajib memilih nama anak" }),
-  jenisKelaminAnak: z.enum(["LAKI_LAKI", "PEREMPUAN"], {
-    errorMap: () => ({ message: "Jenis Kelamin wajib dipilih" }),
-  }),
-  tinggiBadanIbu: z.preprocess(
-    (val) => (val === undefined ? undefined : parseFloat(val as string)),
-    z
-      .number()
-      .min(1, { message: "Tinggi Badan Ibu harus lebih dari 0" })
-      .optional()
-  ),
-  beratBadanIbu: z.preprocess(
-    (val) => (val === undefined ? undefined : parseFloat(val as string)),
-    z
-      .number()
-      .min(1, { message: "Berat Badan Ibu harus lebih dari 0" })
-      .optional()
-  ),
-  lingkarLenganIbu: z.preprocess(
-    (val) => (val === undefined ? undefined : parseFloat(val as string)),
-    z
-      .number()
-      .min(1, { message: "Lingkar lengan Ibu harus lebih dari 0" })
-      .optional()
-  ),
-  lingkarPinggangIbu: z.preprocess(
-    (val) => (val === undefined ? undefined : parseFloat(val as string)),
-    z
-      .number()
-      .min(1, { message: "Lingkar pinggang Ibu harus lebih dari 0" })
-      .optional()
-  ),
+  
+ 
+ 
+ 
+  
   alatKontrasepsi: z.string().optional(),
   tinggiBadanAnak: z.preprocess(
     (val) => (val === undefined ? undefined : parseFloat(val as string)),
@@ -119,15 +94,8 @@ const LayananIbuAnak: React.FC<LayananIbuAnakProps> = ({ data }) => {
       ibuId: "",
       ayahId: "",
       anakId: "",
-      jenisKelaminAnak: "LAKI_LAKI",
-      tinggiBadanIbu: undefined,
-      beratBadanIbu: undefined,
-      lingkarLenganIbu: undefined,
-      lingkarPinggangIbu: undefined,
-      alatKontrasepsi: "",
       tinggiBadanAnak: undefined,
       beratBadanAnak: undefined,
-      umurAnak: undefined,
       lingkarLenganAnak: undefined,
       lingkarKepalaAnak: undefined,
     },
@@ -190,89 +158,7 @@ const LayananIbuAnak: React.FC<LayananIbuAnakProps> = ({ data }) => {
           )}
         />
 
-        {/* Tinggi Badan Ibu */}
-        <FormField
-          control={form.control}
-          name="tinggiBadanIbu"
-          render={({ field }) => (
-            <FormItem className="flex flex-col">
-              <Label>Tinggi Badan Ibu (cm)</Label>
-              <FormControl>
-                <Input
-                  type="number"
-                  placeholder="Masukkan Tinggi Badan Ibu"
-                  {...field}
-                />
-              </FormControl>
-              <FormMessage>
-                {form.formState.errors.tinggiBadanIbu?.message}
-              </FormMessage>
-            </FormItem>
-          )}
-        />
-
-        {/* Berat Badan Ibu */}
-        <FormField
-          control={form.control}
-          name="beratBadanIbu"
-          render={({ field }) => (
-            <FormItem className="flex flex-col">
-              <Label>Berat Badan Ibu (kg)</Label>
-              <FormControl>
-                <Input
-                  type="number"
-                  placeholder="Masukkan Berat Badan Ibu"
-                  {...field}
-                />
-              </FormControl>
-              <FormMessage>
-                {form.formState.errors.beratBadanIbu?.message}
-              </FormMessage>
-            </FormItem>
-          )}
-        />
-
-        {/* Lingkar Lengan Ibu */}
-        <FormField
-          control={form.control}
-          name="lingkarLenganIbu"
-          render={({ field }) => (
-            <FormItem className="flex flex-col">
-              <Label>Lingkar Lengan Ibu (cm)</Label>
-              <FormControl>
-                <Input
-                  type="number"
-                  placeholder="Masukkan Lingkar Lengan Ibu"
-                  {...field}
-                />
-              </FormControl>
-              <FormMessage>
-                {form.formState.errors.lingkarLenganIbu?.message}
-              </FormMessage>
-            </FormItem>
-          )}
-        />
-
-        {/* Lingkar Pinggang Ibu */}
-        <FormField
-          control={form.control}
-          name="lingkarPinggangIbu"
-          render={({ field }) => (
-            <FormItem className="flex flex-col">
-              <Label>Lingkar Pinggang Ibu (cm)</Label>
-              <FormControl>
-                <Input
-                  type="number"
-                  placeholder="Masukkan Lingkar Pinggang Ibu"
-                  {...field}
-                />
-              </FormControl>
-              <FormMessage>
-                {form.formState.errors.lingkarPinggangIbu?.message}
-              </FormMessage>
-            </FormItem>
-          )}
-        />
+      
 
         {/* Pilih Nama Ayah */}
         <FormField
@@ -314,33 +200,6 @@ const LayananIbuAnak: React.FC<LayananIbuAnakProps> = ({ data }) => {
           )}
         />
 
-        <FormField
-          control={form.control}
-          name="jenisKelaminAnak"
-          render={({ field }) => (
-            <FormItem className="flex flex-col">
-              <Label>Jenis Kelamin Anak</Label>
-              <FormControl>
-                <Select
-                  value={field.value}
-                  onValueChange={field.onChange}
-                  defaultValue="LAKI_LAKI"
-                >
-                  <SelectTrigger>
-                    <SelectValue placeholder="Pilih jenis kelamin" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="LAKI_LAKI">Laki-laki</SelectItem>
-                    <SelectItem value="PEREMPUAN">Perempuan</SelectItem>
-                  </SelectContent>
-                </Select>
-              </FormControl>
-              <FormMessage>
-                {form.formState.errors.jenisKelaminAnak?.message}
-              </FormMessage>
-            </FormItem>
-          )}
-        />
 
         {/* Berat Badan Anak/Balita */}
         <FormField
@@ -425,35 +284,7 @@ const LayananIbuAnak: React.FC<LayananIbuAnakProps> = ({ data }) => {
           )}
         />
 
-        {/* Alat Kontrasepsi */}
-        <FormField
-          control={form.control}
-          name="alatKontrasepsi"
-          render={({ field }) => (
-            <FormItem className="flex flex-col">
-              <Label>Alat Kontrasepsi</Label>
-              <FormControl>
-                <Select
-                  value={field.value}
-                  onValueChange={(value) => field.onChange(value)}
-                >
-                  <SelectTrigger>
-                    <SelectValue placeholder="Pilih alat kontrasepsi" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="SUNTIK">Suntik</SelectItem>
-                    <SelectItem value="IMPLAN">Implan</SelectItem>
-                    <SelectItem value="KB">KB</SelectItem>
-                    <SelectItem value="SUSUK">Susuk</SelectItem>
-                  </SelectContent>
-                </Select>
-              </FormControl>
-              <FormMessage>
-                {form.formState.errors.alatKontrasepsi?.message}
-              </FormMessage>
-            </FormItem>
-          )}
-        />
+        
 
         <Button type="submit" disabled={isSubmitting} className="mt-4">
           {isSubmitting && <Loader2Icon className="animate-spin" />}

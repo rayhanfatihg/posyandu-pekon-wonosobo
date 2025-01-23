@@ -8,90 +8,87 @@ datasource db {
   directUrl = env("DIRECT_URL")
 }
 
-model Warga {
-  id                 String           @id @default(uuid())
-  nama               String
-  nik                String           @unique
-  tanggalLahir       DateTime
-  umur               Int
-  createdAt          DateTime         @default(now())
-  updatedAt          DateTime         @updatedAt
-  dusun              String?
-  LayananIbuAnakAnak LayananIbuAnak[] @relation("Anak")
-  LayananIbuAnakAyah LayananIbuAnak[] @relation("Ayah")
-  LayananIbuAnakIbu  LayananIbuAnak[] @relation("Ibu")
-  LayananLansia      LayananLansia[]
-}
-
-model LayananLansia {
-  id           String   @id @default(uuid())
-  wargaId      String
-  warga        Warga    @relation(fields: [wargaId], references: [id])
-  beratBadan   Float?
-  tinggiBadan  Float?
-  asamUrat     Float?
-  gulaDarah    Float?
-  keterangan   String?
-  kolesterol   Float?
-  lingkarPerut Float?
-  tensiDarah   String?
-
-  createdAt    DateTime @default(now())
-  updatedAt    DateTime @updatedAt
-}
-
-model LayananIbuAnak {
-  id                 String       @id @default(uuid())
-  tinggiBadanAnak    Float?
-  beratBadanAnak     Float?
-  umurAnak           Float?
-  lingkarLenganAnak  Float?
-  lingkarKepalaAnak  Float?
-  tinggiBadanIbu     Float?
-  beratBadanIbu      Float?
-  lingkarLenganIbu   Float?
-  lingkarPinggangIbu Float?
-  alatKontrasepsi    String?
-  anakId             String
-  ayahId             String
-  ibuId              String
-  jenisKelaminAnak   JenisKelamin
-  
-  createdAt          DateTime     @default(now())
-  updatedAt          DateTime     @updatedAt
-  
-  anak               Warga        @relation("Anak", fields: [anakId], references: [id])
-  ayah               Warga        @relation("Ayah", fields: [ayahId], references: [id])
-  ibu                Warga        @relation("Ibu", fields: [ibuId], references: [id])
-}
-
 model blog {
   id           String        @id @default(uuid())
-  createdAt    DateTime      @default(now())
-  title        String
-  image_url    String
-  is_premium   Boolean       @default(false)
-  is_published Boolean       @default(true)
+  created_at   DateTime      @default(now()) @db.Timestamptz(6)
+  title        String?
+  image_url    String?
+  is_premium   Boolean?
+  is_published Boolean?
   blog_content blog_content?
 }
 
 model blog_content {
-  blog_id   String   @id @default(uuid())
-  content   String
-  createdAt DateTime @default(now())
-  blog      blog     @relation(fields: [blog_id], references: [id])
+  blog_id    String   @id @default(uuid())
+  content    String?
+  created_at DateTime @default(now()) @db.Timestamptz(6)
+  blog       blog     @relation(fields: [blog_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
 }
 
 model JadwalPosyandu {
-  id        String   @id @default(uuid())
-  namaAcara String
-  tanggal   DateTime
-  jam       String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id         String    @id @default(uuid())
+  namaAcara  String?
+  tanggal    DateTime? @db.Date
+  jam        String?
+  created_at DateTime  @default(now()) @db.Timestamptz(6)
+  updatedAt  DateTime? @updatedAt @db.Timestamp(6)
 }
 
-enum JenisKelamin {
-  LAKI_LAKI
-  PEREMPUAN
+/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
+model LayananAnak {
+  id                              String    @id
+  tinggiBadanAnak                 Float?
+  beratBadanAnak                  Float?
+  lingkarLenganAnak               Float?
+  lingkarKepalaAnak               Float?
+  created_at                      DateTime  @default(now()) @db.Timestamptz(6)
+  updatedAt                       DateTime? @db.Timestamp(6)
+  anakId                          String?
+  ayahId                          String?
+  ibuId                           String?
+  warga_LayananAnak_anakIdTowarga warga?    @relation("LayananAnak_anakIdTowarga", fields: [anakId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  warga_LayananAnak_ayahIdTowarga warga?    @relation("LayananAnak_ayahIdTowarga", fields: [ayahId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  warga_LayananAnak_ibuIdTowarga  warga?    @relation("LayananAnak_ibuIdTowarga", fields: [ibuId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+}
+
+/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
+model LayananIbuHamil {
+  id            String    @id
+  created_at    DateTime  @default(now()) @db.Timestamptz(6)
+  bumilId       String?
+  tinggiBadan   Float?
+  beratBadan    Float?
+  lingkarLengan Float?
+  tinggiPerut   Float?
+  umurKehamilan Float?
+  updatedAt     DateTime? @db.Timestamp(6)
+  warga         warga?    @relation(fields: [bumilId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+}
+
+/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
+model warga {
+  id                                    String            @id
+  nama                                  String
+  nik                                   String            @unique
+  tanggalLahir                          DateTime          @db.Timestamp(6)
+  created_at                            DateTime          @default(now()) @db.Timestamptz(6)
+  updatedAt                             DateTime?         @db.Timestamp(6)
+  LayananAnak_LayananAnak_anakIdTowarga LayananAnak[]     @relation("LayananAnak_anakIdTowarga")
+  LayananAnak_LayananAnak_ayahIdTowarga LayananAnak[]     @relation("LayananAnak_ayahIdTowarga")
+  LayananAnak_LayananAnak_ibuIdTowarga  LayananAnak[]     @relation("LayananAnak_ibuIdTowarga")
+  LayananIbuHamil                       LayananIbuHamil[]
+  LayananPosbindu                       LayananPosbindu[]
+}
+
+model LayananPosbindu {
+  id            String   @id(map: "LayananLansia_pkey")
+  wargaId       String
+  beratBadan    Float?
+  tinggiBadan   Float?
+  lingkarPerut  Float?
+  lingkarLengan Float?
+  tensiDarah    String?
+  created_at    DateTime @default(now()) @db.Timestamptz(6)
+  updatedAt     DateTime @db.Timestamp(6)
+  warga         warga    @relation(fields: [wargaId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "LayananLansia_wargaId_fkey")
 }

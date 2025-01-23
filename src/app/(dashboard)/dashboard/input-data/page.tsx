@@ -1,12 +1,11 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
-import LayananIbuAnak from "./layanan-ibu-anak/LayananIbuAnak";
-import LayananLansiaForm from "./layanan-lansia/LayananLansiaForm";
-import { getAllDataWarga } from "./layanan-lansia/action";
+import LayananIbuAnak from "./layanan-anak/LayananIbuAnak";
+import LayananLansiaForm from "./layanan-posbindu/LayananLansiaForm";
+import { getAllDataWarga } from"./layanan-posbindu/action";
 
 function Skeleton() {
   return (

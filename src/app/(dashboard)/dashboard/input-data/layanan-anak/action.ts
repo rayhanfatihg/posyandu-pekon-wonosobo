@@ -1,23 +1,15 @@
 "use server";
 
-import db from "@/lib/db";
 import { createClient } from "@/utils/supabase/server";
-import { JenisKelamin } from "@prisma/client";
+import db from "@/lib/db";
 import { revalidatePath } from "next/cache";
 
 export async function saveDataLayananIbuAnak(data: {
   ibuId: string;
   ayahId: string;
   anakId: string;
-  tinggiBadanIbu?: number;
-  beratBadanIbu?: number;
-  lingkarLenganIbu?: number;
-  lingkarPinggangIbu?: number;
-  alatKontrasepsi?: string;
-  jenisKelaminAnak: JenisKelamin;
   tinggiBadanAnak?: number;
   beratBadanAnak?: number;
-  umurAnak?: number;
   lingkarLenganAnak?: number;
   lingkarKepalaAnak?: number;
 }) {
@@ -65,20 +57,13 @@ export async function saveDataLayananIbuAnak(data: {
     }
 
     // Menyimpan data layanan ibu-anak dengan umur anak yang dihitung
-    await db.layananIbuAnak.create({
+    await db.layananAnak.create({
       data: {
         ibuId: data.ibuId,
         ayahId: data.ayahId,
         anakId: data.anakId,
-        tinggiBadanIbu: data.tinggiBadanIbu,
-        beratBadanIbu: data.beratBadanIbu,
-        lingkarLenganIbu: data.lingkarLenganIbu,
-        lingkarPinggangIbu: data.lingkarPinggangIbu,
-        alatKontrasepsi: data.alatKontrasepsi,
-        jenisKelaminAnak: data.jenisKelaminAnak,
         tinggiBadanAnak: data.tinggiBadanAnak,
         beratBadanAnak: data.beratBadanAnak,
-        umurAnak: umurAnak, // Umur yang dihitung berdasarkan tanggal lahir
         lingkarLenganAnak: data.lingkarLenganAnak,
         lingkarKepalaAnak: data.lingkarKepalaAnak,
       },
