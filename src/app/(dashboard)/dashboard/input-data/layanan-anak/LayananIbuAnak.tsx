@@ -22,7 +22,7 @@ import { ComboboxWarga } from "@/components/warga/ComboBoxWarga";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Loader2Icon } from "lucide-react";
-import { saveDataLayananIbuAnak } from "./action";
+import { saveDataLayananAnak } from "./action";
 import { useForm } from "react-hook-form";
 import { useToast } from "@/hooks/use-toast";
 import { z } from "zod";
@@ -105,7 +105,7 @@ const LayananIbuAnak: React.FC<LayananIbuAnakProps> = ({ data }) => {
     setIsSubmitting(true);
 
     try {
-      const result = await saveDataLayananIbuAnak(data);
+      const result = await saveDataLayananAnak(data);
 
       if (result.success) {
         toast({

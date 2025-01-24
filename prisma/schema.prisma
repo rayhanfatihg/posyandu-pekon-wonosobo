@@ -59,7 +59,7 @@ model LayananIbuHamil {
   tinggiBadan   Float?
   beratBadan    Float?
   lingkarLengan Float?
-  tinggiPerut   Float?
+  tinggiPundus  Float?
   umurKehamilan Float?
   updatedAt     DateTime? @db.Timestamp(6)
   warga         warga?    @relation(fields: [bumilId], references: [id], onDelete: NoAction, onUpdate: NoAction)
@@ -81,14 +81,14 @@ model warga {
 }
 
 model LayananPosbindu {
-  id            String   @id(map: "LayananLansia_pkey")
+  id            String    @id(map: "LayananLansia_pkey")
   wargaId       String
   beratBadan    Float?
   tinggiBadan   Float?
   lingkarPerut  Float?
   lingkarLengan Float?
   tensiDarah    String?
-  created_at    DateTime @default(now()) @db.Timestamptz(6)
-  updatedAt     DateTime @db.Timestamp(6)
-  warga         warga    @relation(fields: [wargaId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "LayananLansia_wargaId_fkey")
+  created_at    DateTime  @default(now()) @db.Timestamptz(6)
+  updatedAt     DateTime? @db.Timestamp(6)
+  warga         warga     @relation(fields: [wargaId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "LayananLansia_wargaId_fkey")
 }

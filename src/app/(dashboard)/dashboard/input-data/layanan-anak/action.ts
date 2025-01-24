@@ -4,7 +4,7 @@ import { createClient } from "@/utils/supabase/server";
 import db from "@/lib/db";
 import { revalidatePath } from "next/cache";
 
-export async function saveDataLayananIbuAnak(data: {
+export async function saveDataLayananAnak(data: {
   ibuId: string;
   ayahId: string;
   anakId: string;
