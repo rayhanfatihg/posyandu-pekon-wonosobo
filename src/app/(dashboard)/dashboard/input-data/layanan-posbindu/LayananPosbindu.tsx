@@ -1,9 +1,5 @@
 "use client";
 
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { z } from "zod";
-import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
@@ -11,14 +7,19 @@ import {
   FormItem,
   FormMessage,
 } from "@/components/ui/form";
+
+import { Button } from "@/components/ui/button";
+import { ComboboxWarga } from "@/components/warga/ComboBoxWarga";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { useToast } from "@/hooks/use-toast";
-import { saveDataLayananLansia } from "./action";
-import React from "react";
-import { ComboboxWarga } from "@/components/warga/ComboBoxWarga";
 import { Loader2Icon } from "lucide-react";
+import React from "react";
 import { Textarea } from "@/components/ui/textarea";
+import { saveDataLayananPosbindu } from "./action";
+import { useForm } from "react-hook-form";
+import { useToast } from "@/hooks/use-toast";
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
 
 // Zod validation schema for Layanan Lansia
 const layananLansiaSchema = z.object({
@@ -85,7 +86,7 @@ export default function LayananLansiaForm({
     setIsSubmitting(true);
 
     try {
-      const result = await saveDataLayananLansia(data); // Calling server action
+      const result = await saveDataLayananPosbindu(data); // Calling server action
 
       if (result.success) {
         toast({

@@ -3,8 +3,9 @@
 import React, { useEffect, useState } from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
-import LayananIbuAnak from "./layanan-anak/LayananIbuAnak";
-import LayananLansiaForm from "./layanan-posbindu/LayananLansiaForm";
+import LayananIbuAnak from "./layanan-anak/LayananAnak";
+import LayananIbuHamil from "./layanan-ibu-hamil/layananIbuHamil";
+import LayananLansiaForm from "./layanan-posbindu/LayananPosbindu";
 import { getAllDataWarga } from"./layanan-posbindu/action";
 
 function Skeleton() {

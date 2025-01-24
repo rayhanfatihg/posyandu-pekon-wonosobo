@@ -4,7 +4,7 @@ import { createClient } from "@/utils/supabase/server"; // If using Supabase aut
 import db from "@/lib/db"; // Assuming db is set up with Prisma
 import { revalidatePath } from "next/cache";
 
-export async function saveDataLayananLansia(data: {
+export async function saveDataLayananPosbindu(data: {
   wargaId: string;
   beratBadan?: number;
   tinggiBadan?: number;

@@ -28,75 +28,75 @@ import { useToast } from "@/hooks/use-toast";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 
-const layananSchema = z.object({
-  ibuId: z.string().min(1, { message: "Wajib memilih nama ibu" }),
-  ayahId: z.string().min(1, { message: "Wajib memilih nama ayah" }),
-  anakId: z.string().min(1, { message: "Wajib memilih nama anak" }),
+const layananIbuHamilSchema = z.object({
+  bumilId: z.string().min(1, { message: "Wajib memilih nama ibu" }),
   
+  tinggiBadan: z.preprocess(
+    (val) => (val === undefined ? undefined : parseFloat(val as string)),
+    z
+      .number()
+      .min(1, { message: "Tinggi Badan harus lebih dari 0" })
+      .optional()
+  ),
+  beratBadan: z.preprocess(
+    (val) => (val === undefined ? undefined : parseFloat(val as string)),
+    z
+      .number()
+      .min(1, { message: "Berat Badan  harus lebih dari 0" })
+      .optional()
+  ),
   
-  alatKontrasepsi: z.string().optional(),
-  tinggiBadanAnak: z.preprocess(
+  lingkarLengan: z.preprocess(
     (val) => (val === undefined ? undefined : parseFloat(val as string)),
     z
       .number()
-      .min(1, { message: "Tinggi Badan Anak harus lebih dari 0" })
+      .min(1, { message: "Lingkar Lengan  harus lebih dari 0" })
       .optional()
   ),
-  beratBadanAnak: z.preprocess(
-    (val) => (val === undefined ? undefined : parseFloat(val as string)),
-    z
-      .number()
-      .min(1, { message: "Berat Badan Anak harus lebih dari 0" })
-      .optional()
-  ),
-  umurAnak: z.preprocess(
-    (val) => (val === undefined ? undefined : parseFloat(val as string)),
-    z.number().min(1, { message: "Umur Anak harus lebih dari 0" }).optional()
-  ),
-  lingkarLenganAnak: z.preprocess(
-    (val) => (val === undefined ? undefined : parseFloat(val as string)),
-    z
-      .number()
-      .min(1, { message: "Lingkar Lengan Anak harus lebih dari 0" })
-      .optional()
-  ),
-  lingkarKepalaAnak: z.preprocess(
+  tinggiPundus: z.preprocess(
     (val) => (val === undefined ? undefined : parseFloat(val as string)),
     z
       .number()
       .min(1, { message: "Lingkar Kepala Anak harus lebih dari 0" })
       .optional()
   ),
+
+  umurKehamilan: z.preprocess(
+    (val) => (val === undefined ? undefined : parseFloat(val as string)),
+    z.number().min(1, { message: "Harus lebih dari 0" }).optional()
+  ),
 });
 
-type LayananFormValues = z.infer<typeof layananSchema>;
+type LayananIbuHamilFormValues = z.infer<typeof layananIbuHamilSchema>;
 
-type LayananIbuAnakFormProps = {
+type LayananIbuHamilFormProps = {
   value: string;
   label: string;
 };
 
-interface LayananIbuAnakProps {
-  data: LayananIbuAnakFormProps[];
+interface LayananIbuHamilProps {
+  data: LayananIbuHamilFormProps[];
 }
 
-const LayananIbuAnak: React.FC<LayananIbuAnakProps> = ({ data }) => {
+const LayananIbuHamil: React.FC<LayananIbuHamilProps> = ({ data }) => {
   const [isSubmitting, setIsSubmitting] = React.useState(false);
 
   const { toast } = useToast();
 
-  const form = useForm<LayananFormValues>({
-    resolver: zodResolver(layananSchema),
+  const form = useForm<LayananIbuHamilFormValues>({
+    resolver: zodResolver(layananIbuHamilSchema),
     defaultValues: {
-      ibuId: "",
-      tinggiBadanAnak: undefined,
-      beratBadanAnak: undefined,
-      lingkarLenganAnak: undefined,
-      lingkarKepalaAnak: undefined,
+    bumilId: "",
+    tinggiBadan: undefined,
+    beratBadan: undefined,
+    lingkarLengan: undefined,
+    tinggiPundus: undefined,
+    umurKehamilan: undefined,
+    
     },
   });
 
-  const onSubmit = async (data: LayananFormValues) => {
+  const onSubmit = async (data: LayananIbuHamilFormValues) => {
     setIsSubmitting(true);
 
     try {
@@ -136,7 +136,7 @@ const LayananIbuAnak: React.FC<LayananIbuAnakProps> = ({ data }) => {
         {/* Pilih Nama Ibu */}
         <FormField
           control={form.control}
-          name="ibuId"
+          name="bumilId"
           render={({ field }) => (
             <FormItem className="flex flex-col">
               <Label>Pilih Nama Ibu</Label>
@@ -148,70 +148,32 @@ const LayananIbuAnak: React.FC<LayananIbuAnakProps> = ({ data }) => {
                   placeholder="Pilih nama ibu..."
                 />
               </FormControl>
-              <FormMessage>{form.formState.errors.ibuId?.message}</FormMessage>
+              <FormMessage>{form.formState.errors.bumilId?.message}</FormMessage>
             </FormItem>
           )}
         />
 
       
 
-        {/* Pilih Nama Ayah */}
-        <FormField
-          control={form.control}
-          name="ayahId"
-          render={({ field }) => (
-            <FormItem className="flex flex-col">
-              <Label>Pilih Nama Ayah</Label>
-              <FormControl>
-                <ComboboxWarga
-                  options={data}
-                  value={field.value}
-                  onChange={(value) => field.onChange(value)}
-                  placeholder="Pilih nama ayah..."
-                />
-              </FormControl>
-              <FormMessage>{form.formState.errors.ayahId?.message}</FormMessage>
-            </FormItem>
-          )}
-        />
-
-        {/* Pilih Nama Anak/Balita */}
-        <FormField
-          control={form.control}
-          name="anakId"
-          render={({ field }) => (
-            <FormItem className="flex flex-col">
-              <Label>Pilih Nama Anak/Balita</Label>
-              <FormControl>
-                <ComboboxWarga
-                  options={data}
-                  value={field.value}
-                  onChange={(value) => field.onChange(value)}
-                  placeholder="Pilih nama anak/balita..."
-                />
-              </FormControl>
-              <FormMessage>{form.formState.errors.anakId?.message}</FormMessage>
-            </FormItem>
-          )}
-        />
+    
 
 
         {/* Berat Badan Anak/Balita */}
         <FormField
           control={form.control}
-          name="beratBadanAnak"
+          name="beratBadan"
           render={({ field }) => (
             <FormItem className="flex flex-col">
               <Label>Berat Badan Anak/Balita (kg)</Label>
               <FormControl>
                 <Input
                   type="number"
-                  placeholder="Masukkan Berat Badan Anak/Balita"
+                  placeholder="Masukkan Berat Badan "
                   {...field}
                 />
               </FormControl>
               <FormMessage>
-                {form.formState.errors.beratBadanAnak?.message}
+                {form.formState.errors.beratBadan?.message}
               </FormMessage>
             </FormItem>
           )}
@@ -220,19 +182,19 @@ const LayananIbuAnak: React.FC<LayananIbuAnakProps> = ({ data }) => {
         {/* Tinggi Badan Anak/Balita */}
         <FormField
           control={form.control}
-          name="tinggiBadanAnak"
+          name="tinggiBadan"
           render={({ field }) => (
             <FormItem className="flex flex-col">
               <Label>Tinggi Badan Anak/Balita (cm)</Label>
               <FormControl>
                 <Input
                   type="number"
-                  placeholder="Masukkan Tinggi Badan Anak/Balita"
+                  placeholder="Masukkan Tinggi Badan"
                   {...field}
                 />
               </FormControl>
               <FormMessage>
-                {form.formState.errors.tinggiBadanAnak?.message}
+                {form.formState.errors.tinggiBadan?.message}
               </FormMessage>
             </FormItem>
           )}
@@ -241,7 +203,7 @@ const LayananIbuAnak: React.FC<LayananIbuAnakProps> = ({ data }) => {
         {/* Lingkar Lengan Anak/Balita */}
         <FormField
           control={form.control}
-          name="lingkarLenganAnak"
+          name="lingkarLengan"
           render={({ field }) => (
             <FormItem className="flex flex-col">
               <Label>Lingkar Lengan Anak/Balita (cm)</Label>
@@ -253,7 +215,7 @@ const LayananIbuAnak: React.FC<LayananIbuAnakProps> = ({ data }) => {
                 />
               </FormControl>
               <FormMessage>
-                {form.formState.errors.lingkarLenganAnak?.message}
+                {form.formState.errors.lingkarLengan?.message}
               </FormMessage>
             </FormItem>
           )}
@@ -261,7 +223,7 @@ const LayananIbuAnak: React.FC<LayananIbuAnakProps> = ({ data }) => {
 
         <FormField
           control={form.control}
-          name="lingkarKepalaAnak"
+          name="tinggiPundus"
           render={({ field }) => (
             <FormItem className="flex flex-col">
               <Label>Lingkar Kepala Anak/Balita (cm)</Label>
@@ -273,7 +235,7 @@ const LayananIbuAnak: React.FC<LayananIbuAnakProps> = ({ data }) => {
                 />
               </FormControl>
               <FormMessage>
-                {form.formState.errors.lingkarKepalaAnak?.message}
+                {form.formState.errors.tinggiPundus?.message}
               </FormMessage>
             </FormItem>
           )}
@@ -290,4 +252,4 @@ const LayananIbuAnak: React.FC<LayananIbuAnakProps> = ({ data }) => {
   );
 };
 
-export default LayananIbuAnak;
+export default LayananIbuHamil;
