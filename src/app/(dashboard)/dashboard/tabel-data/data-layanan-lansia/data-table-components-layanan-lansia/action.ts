@@ -2,10 +2,10 @@
 
 import db from "@/lib/db";
 
-export async function deleteLayananLansia(id_layanan: string) {
+export async function deleteLayananPosbindu(id_layanan: string) {
   try {
     // Menghapus data berdasarkan id_layanan
-    await db.layananLansia.delete({
+    await db.layananPosbindu.delete({
       where: {
         id: id_layanan,
       },
@@ -13,11 +13,11 @@ export async function deleteLayananLansia(id_layanan: string) {
 
     return { success: true };
   } catch (error) {
-    throw new Error("Gagal menghapus layanan lansia");
+    throw new Error("Gagal menghapus layanan posbindu");
   }
 }
 
-export async function editLayananLansia(
+export async function editLayananPosbindu(
   id_layanan: string,
   data: {
     beratBadan?: number;
@@ -37,7 +37,7 @@ export async function editLayananLansia(
     }
 
     // Cek apakah layanan dengan ID tersebut ada di database
-    const existingLayanan = await db.layananLansia.findUnique({
+    const existingLayanan = await db.layananPosbindu.findUnique({
       where: { id: id_layanan },
     });
 
@@ -49,26 +49,22 @@ export async function editLayananLansia(
     }
 
     // Update data layanan lansia
-    await db.layananLansia.update({
+    await db.layananPosbindu.update({
       where: { id: id_layanan },
       data: {
         beratBadan: data.beratBadan,
         tinggiBadan: data.tinggiBadan,
-        asamUrat: data.asamUrat,
-        gulaDarah: data.gulaDarah,
-        kolesterol: data.kolesterol,
         lingkarPerut: data.lingkarPerut,
         tensiDarah: data.tensiDarah,
-        keterangan: data.keterangan,
       },
     });
 
     return {
       success: true,
-      message: "Data layanan lansia berhasil diperbarui.",
+      message: "Data layanan posbindu berhasil diperbarui.",
     };
   } catch (error) {
-    console.error("Gagal mengedit layanan lansia:", error);
+    console.error("Gagal mengedit layanan posbindu:", error);
     return {
       success: false,
       error: error instanceof Error ? error.message : "Terjadi kesalahan.",

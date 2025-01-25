@@ -74,16 +74,16 @@ const layananSchema = z.object({
 
 type LayananFormValues = z.infer<typeof layananSchema>;
 
-type LayananIbuAnakFormProps = {
+type LayananAnakFormProps = {
   value: string;
   label: string;
 };
 
-interface LayananIbuAnakProps {
-  data: LayananIbuAnakFormProps[];
+interface LayananAnakProps {
+  data: LayananAnakFormProps[];
 }
 
-const LayananIbuAnak: React.FC<LayananIbuAnakProps> = ({ data }) => {
+const LayananAnak: React.FC<LayananAnakProps> = ({ data }) => {
   const [isSubmitting, setIsSubmitting] = React.useState(false);
 
   const { toast } = useToast();
@@ -295,4 +295,4 @@ const LayananIbuAnak: React.FC<LayananIbuAnakProps> = ({ data }) => {
   );
 };
 
-export default LayananIbuAnak;
+export default LayananAnak;

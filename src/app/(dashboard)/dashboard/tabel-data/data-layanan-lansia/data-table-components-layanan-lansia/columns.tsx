@@ -1,10 +1,10 @@
 "use client";
 
+import { Checkbox } from "@/components/ui/checkbox";
 import { ColumnDef } from "@tanstack/react-table";
-import { LayananLansia } from "./schema"; // Update schema import jika perlu
 import { DataTableColumnHeader } from "./data-table-column-header";
 import { DataTableRowActions } from "./data-table-row-actions";
-import { Checkbox } from "@/components/ui/checkbox";
+import { LayananLansia } from "./schema"; // Update schema import jika perlu
 
 export const columns: ColumnDef<LayananLansia>[] = [
   // {
@@ -88,39 +88,7 @@ export const columns: ColumnDef<LayananLansia>[] = [
       return tinggiBadan >= value[0] && tinggiBadan <= value[1];
     },
   },
-  {
-    accessorKey: "asamUrat", // Asam urat warga
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Asam Urat (mg/dL)" />
-    ),
-    cell: ({ row }) => (
-      <div className="flex w-[100px] items-center">
-        {row.getValue("asamUrat")}
-      </div>
-    ),
-  },
-  {
-    accessorKey: "gulaDarah", // Gula darah warga
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Gula Darah (mg/dL)" />
-    ),
-    cell: ({ row }) => (
-      <div className="flex w-[100px] items-center">
-        {row.getValue("gulaDarah")}
-      </div>
-    ),
-  },
-  {
-    accessorKey: "kolesterol", // Kolesterol warga
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Kolesterol (mg/dL)" />
-    ),
-    cell: ({ row }) => (
-      <div className="flex w-[100px] items-center">
-        {row.getValue("kolesterol")}
-      </div>
-    ),
-  },
+  
   {
     accessorKey: "lingkarPerut", // Lingkar perut warga
     header: ({ column }) => (

@@ -1,12 +1,12 @@
 "use client";
 
+import { Checkbox } from "@/components/ui/checkbox";
 import { ColumnDef } from "@tanstack/react-table";
-import { LayananIbuAnak } from "./schema";
 import { DataTableColumnHeader } from "./data-table-column-header";
 import { DataTableRowActions } from "./data-table-row-actions";
-import { Checkbox } from "@/components/ui/checkbox";
+import { LayananAnak } from "./schema";
 
-export const columns: ColumnDef<LayananIbuAnak>[] = [
+export const columns: ColumnDef<LayananAnak>[] = [
   // {
   //   id: "selection",
   //   header: ({ table }) => (
@@ -129,64 +129,6 @@ export const columns: ColumnDef<LayananIbuAnak>[] = [
     cell: ({ row }) => (
       <div className="flex w-[100px] items-center">
         <span>{row.getValue("lingkarKepalaAnak")}</span>
-      </div>
-    ),
-  },
-  {
-    accessorKey: "tinggiBadanIbu", // Height of the mother
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Tinggi Badan Ibu (cm)" />
-    ),
-    cell: ({ row }) => (
-      <div className="flex w-[100px] items-center">
-        <span>{row.getValue("tinggiBadanIbu")}</span>
-      </div>
-    ),
-  },
-  {
-    accessorKey: "beratBadanIbu", // Weight of the mother
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Berat Badan Ibu (kg)" />
-    ),
-    cell: ({ row }) => (
-      <div className="flex w-[100px] items-center">
-        <span>{row.getValue("beratBadanIbu")}</span>
-      </div>
-    ),
-  },
-  {
-    accessorKey: "lingkarPinggangIbu", // Waist circumference of the mother
-    header: ({ column }) => (
-      <DataTableColumnHeader
-        column={column}
-        title="Lingkar Pinggang Ibu (cm)"
-      />
-    ),
-    cell: ({ row }) => (
-      <div className="flex w-[100px] items-center">
-        <span>{row.getValue("lingkarPinggangIbu")}</span>
-      </div>
-    ),
-  },
-  {
-    accessorKey: "lingkarLenganIbu", // Waist circumference of the mother
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Lingkar Lengan Ibu (cm)" />
-    ),
-    cell: ({ row }) => (
-      <div className="flex w-[100px] items-center">
-        <span>{row.getValue("lingkarLenganIbu")}</span>
-      </div>
-    ),
-  },
-  {
-    accessorKey: "alatKontrasepsi", // Contraception method
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Alat Kontrasepsi" />
-    ),
-    cell: ({ row }) => (
-      <div className="flex w-[100px] items-center">
-        <span>{row.getValue("alatKontrasepsi")}</span>
       </div>
     ),
   },

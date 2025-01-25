@@ -18,19 +18,13 @@ export interface Ibu {
   nik: string;
 }
 
-export interface LayananIbuAnak {
+export interface LayananAnak {
   id: number;
   tinggiBadanAnak: number | null;
   beratBadanAnak: number | null;
   umurAnak: number | null;
   lingkarLenganAnak: number | null;
   lingkarKepalaAnak: number | null;
-  tinggiBadanIbu: number | null;
-  beratBadanIbu: number | null;
-  lingkarLenganIbu: number | null;
-  lingkarPinggangIbu: number | null;
-  alatKontrasepsi: string | null;
-  jenisKelaminAnak: string;
   createdAt: Date;
   anakId: number;
   ayahId: number;
@@ -50,11 +44,5 @@ export interface FormattedLayananIbuAnak {
   umurAnak: string | null;
   lingkarLenganAnak: number | null;
   lingkarKepalaAnak: number | null;
-  tinggiBadanIbu: number | null;
-  beratBadanIbu: number | null;
-  lingkarLenganIbu: number | null;
-  lingkarPinggangIbu: number | null;
-  alatKontrasepsi: string | null;
-  jenisKelaminAnak: string;
   date: string;
 }

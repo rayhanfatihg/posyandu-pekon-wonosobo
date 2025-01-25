@@ -2,32 +2,27 @@
 
 import db from "@/lib/db";
 
-export async function deleteLayananIbuAnak(id_layanan: string) {
+export async function deleteLayananAnak(id_layanan: string) {
   try {
     if (!id_layanan) {
       throw new Error("ID tidak valid");
     }
 
     // 2. Hapus data layananIbuAnak setelah relasi diputus
-    await db.layananIbuAnak.delete({
+    await db.layananAnak.delete({
       where: { id: id_layanan },
     });
 
-    return { success: true, message: "Layanan Ibu Anak berhasil dihapus." };
+    return { success: true, message: "Layanan Anak berhasil dihapus." };
   } catch (error) {
-    console.error("Gagal menghapus layanan ibu anak:", error);
-    return { success: false, message: "Gagal menghapus layanan ibu anak." };
+    console.error("Gagal menghapus layanan anak:", error);
+    return { success: false, message: "Gagal menghapus layanan anak." };
   }
 }
 
-export async function editLayananIbuAnak(
+export async function editLayananAnak(
   id_layanan: string,
   data: {
-    tinggiBadanIbu?: number;
-    beratBadanIbu?: number;
-    lingkarLenganIbu?: number;
-    lingkarPinggangIbu?: number;
-    alatKontrasepsi?: string;
     tinggiBadanAnak?: number;
     beratBadanAnak?: number;
     lingkarLenganAnak?: number;
@@ -41,7 +36,7 @@ export async function editLayananIbuAnak(
     }
 
     // Cek apakah layanan dengan ID tersebut ada
-    const existingLayanan = await db.layananIbuAnak.findUnique({
+    const existingLayanan = await db.layananAnak.findUnique({
       where: { id: id_layanan },
     });
 
@@ -53,14 +48,9 @@ export async function editLayananIbuAnak(
     }
 
     // Update data layanan ibu-anak
-    await db.layananIbuAnak.update({
+    await db.layananAnak.update({
       where: { id: id_layanan },
       data: {
-        tinggiBadanIbu: data.tinggiBadanIbu,
-        beratBadanIbu: data.beratBadanIbu,
-        lingkarLenganIbu: data.lingkarLenganIbu,
-        lingkarPinggangIbu: data.lingkarPinggangIbu,
-        alatKontrasepsi: data.alatKontrasepsi,
         tinggiBadanAnak: data.tinggiBadanAnak,
         beratBadanAnak: data.beratBadanAnak,
         lingkarLenganAnak: data.lingkarLenganAnak,
@@ -70,10 +60,10 @@ export async function editLayananIbuAnak(
 
     return {
       success: true,
-      message: "Data layanan ibu-anak berhasil diperbarui.",
+      message: "Data layanan anak berhasil diperbarui.",
     };
   } catch (error) {
-    console.error("Gagal mengedit layanan ibu-anak:", error);
+    console.error("Gagal mengedit layanan anak:", error);
     return {
       success: false,
       error: error instanceof Error ? error.message : "Terjadi kesalahan.",

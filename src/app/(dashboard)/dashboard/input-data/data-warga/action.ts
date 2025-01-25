@@ -1,6 +1,6 @@
 "use server";
 
-import { LayananAnak, LayananPosbindu } from './../../../../../../node_modules/.prisma/client/index.d';
+import { LayananAnak, LayananIbuHamil, LayananPosbindu } from './../../../../../../node_modules/.prisma/client/index.d';
 
 import db from "@/lib/db"; // Pastikan path ini benar dan sesuai struktur project Anda
 import { revalidatePath } from "next/cache";
@@ -10,14 +10,12 @@ export async function saveDataWarga({
   nama,
   nik,
   tanggalLahir,
-  umur,
-  dusun,
+  
 }: {
   nama: string;
   nik: string;
   tanggalLahir: Date;
-  umur: number;
-  dusun?: string;
+  
 }) {
   try {
     // Periksa apakah NIK sudah ada di database
@@ -53,9 +51,12 @@ export async function getAllDataWargaIbuAnak() {
     const wargaList = await db.warga.findMany({
       include: {
         LayananPosbindu: true,
+        LayananIbuHamil: true,
         LayananAnak_LayananAnak_anakIdTowarga: true,
-        LayananAnak_LayananAnak_ibuIdTowarga: true,
         LayananAnak_LayananAnak_ayahIdTowarga: true,
+        LayananAnak_LayananAnak_ibuIdTowarga: true,
+        
+        
         
       },
     });

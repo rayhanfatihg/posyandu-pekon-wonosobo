@@ -32,6 +32,7 @@ export default function InputDataPage() {
       setSelectedTab(storedTab);
     }
 
+// sourcery skip: avoid-function-declarations-in-blocks
     async function fetchData() {
       try {
         const result = await getAllDataWarga();

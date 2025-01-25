@@ -8,12 +8,6 @@
     "umurAnak": 5,
     "lingkarLenganAnak": 15,
     "lingkarKepalaAnak": 50,
-    "tinggiBadanIbu": 160,
-    "beratBadanIbu": 55,
-    "lingkarLenganIbu": 30,
-    "lingkarPinggangIbu": 80,
-    "alatKontrasepsi": "IUD",
-    "jenisKelaminAnak": "Laki-laki",
     "date": "2024-06-25"
   },
   {
@@ -25,12 +19,6 @@
     "umurAnak": 4,
     "lingkarLenganAnak": 13,
     "lingkarKepalaAnak": 48,
-    "tinggiBadanIbu": 155,
-    "beratBadanIbu": 60,
-    "lingkarLenganIbu": 28,
-    "lingkarPinggangIbu": 85,
-    "alatKontrasepsi": "Implant",
-    "jenisKelaminAnak": "Perempuan",
     "date": "2024-06-24"
   },
   {
@@ -42,12 +30,6 @@
     "umurAnak": 6,
     "lingkarLenganAnak": 16,
     "lingkarKepalaAnak": 52,
-    "tinggiBadanIbu": 165,
-    "beratBadanIbu": 65,
-    "lingkarLenganIbu": 32,
-    "lingkarPinggangIbu": 75,
-    "alatKontrasepsi": "Pill",
-    "jenisKelaminAnak": "Laki-laki",
     "date": "2024-06-23"
   },
   {
@@ -59,12 +41,6 @@
     "umurAnak": 5,
     "lingkarLenganAnak": 14,
     "lingkarKepalaAnak": 49,
-    "tinggiBadanIbu": 158,
-    "beratBadanIbu": 58,
-    "lingkarLenganIbu": 29,
-    "lingkarPinggangIbu": 78,
-    "alatKontrasepsi": "Condom",
-    "jenisKelaminAnak": "Perempuan",
     "date": "2024-06-22"
   },
   {
@@ -76,12 +52,6 @@
     "umurAnak": 5,
     "lingkarLenganAnak": 15,
     "lingkarKepalaAnak": 50,
-    "tinggiBadanIbu": 160,
-    "beratBadanIbu": 55,
-    "lingkarLenganIbu": 30,
-    "lingkarPinggangIbu": 80,
-    "alatKontrasepsi": "IUD",
-    "jenisKelaminAnak": "Laki-laki",
     "date": "2024-06-25"
   },
   {
@@ -93,12 +63,6 @@
     "umurAnak": 4,
     "lingkarLenganAnak": 13,
     "lingkarKepalaAnak": 48,
-    "tinggiBadanIbu": 155,
-    "beratBadanIbu": 60,
-    "lingkarLenganIbu": 28,
-    "lingkarPinggangIbu": 85,
-    "alatKontrasepsi": "Implant",
-    "jenisKelaminAnak": "Perempuan",
     "date": "2024-06-24"
   },
   {
@@ -110,12 +74,6 @@
     "umurAnak": 6,
     "lingkarLenganAnak": 16,
     "lingkarKepalaAnak": 52,
-    "tinggiBadanIbu": 165,
-    "beratBadanIbu": 65,
-    "lingkarLenganIbu": 32,
-    "lingkarPinggangIbu": 75,
-    "alatKontrasepsi": "Pill",
-    "jenisKelaminAnak": "Laki-laki",
     "date": "2024-06-23"
   },
   {
@@ -127,12 +85,6 @@
     "umurAnak": 5,
     "lingkarLenganAnak": 14,
     "lingkarKepalaAnak": 49,
-    "tinggiBadanIbu": 158,
-    "beratBadanIbu": 58,
-    "lingkarLenganIbu": 29,
-    "lingkarPinggangIbu": 78,
-    "alatKontrasepsi": "Condom",
-    "jenisKelaminAnak": "Perempuan",
     "date": "2024-06-22"
   },
   {
@@ -144,12 +96,6 @@
     "umurAnak": 5,
     "lingkarLenganAnak": 15,
     "lingkarKepalaAnak": 50,
-    "tinggiBadanIbu": 160,
-    "beratBadanIbu": 55,
-    "lingkarLenganIbu": 30,
-    "lingkarPinggangIbu": 80,
-    "alatKontrasepsi": "IUD",
-    "jenisKelaminAnak": "Laki-laki",
     "date": "2024-06-25"
   },
   {
@@ -161,12 +107,6 @@
     "umurAnak": 4,
     "lingkarLenganAnak": 13,
     "lingkarKepalaAnak": 48,
-    "tinggiBadanIbu": 155,
-    "beratBadanIbu": 60,
-    "lingkarLenganIbu": 28,
-    "lingkarPinggangIbu": 85,
-    "alatKontrasepsi": "Implant",
-    "jenisKelaminAnak": "Perempuan",
     "date": "2024-06-24"
   },
   {
@@ -178,12 +118,6 @@
     "umurAnak": 6,
     "lingkarLenganAnak": 16,
     "lingkarKepalaAnak": 52,
-    "tinggiBadanIbu": 165,
-    "beratBadanIbu": 65,
-    "lingkarLenganIbu": 32,
-    "lingkarPinggangIbu": 75,
-    "alatKontrasepsi": "Pill",
-    "jenisKelaminAnak": "Laki-laki",
     "date": "2024-06-23"
   },
   {
@@ -195,12 +129,6 @@
     "umurAnak": 5,
     "lingkarLenganAnak": 14,
     "lingkarKepalaAnak": 49,
-    "tinggiBadanIbu": 158,
-    "beratBadanIbu": 58,
-    "lingkarLenganIbu": 29,
-    "lingkarPinggangIbu": 78,
-    "alatKontrasepsi": "Condom",
-    "jenisKelaminAnak": "Perempuan",
     "date": "2024-06-22"
   }
 ]
