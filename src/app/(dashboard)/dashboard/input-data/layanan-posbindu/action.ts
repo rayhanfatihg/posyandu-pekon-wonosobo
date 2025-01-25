@@ -45,6 +45,7 @@ export async function saveDataLayananPosbindu(data: {
         lingkarLengan: data.lingkarLengan,
         lingkarPerut: data.lingkarPerut ?? null, // If not provided, set as null
         tensiDarah: data.tensiDarah,
+        keterangan: data.keterangan,
       },
     });
 

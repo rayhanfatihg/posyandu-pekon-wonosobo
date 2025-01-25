@@ -22,9 +22,6 @@ export async function editLayananPosbindu(
   data: {
     beratBadan?: number;
     tinggiBadan?: number;
-    asamUrat?: number;
-    gulaDarah?: number;
-    kolesterol?: number;
     lingkarPerut?: number;
     tensiDarah?: string;
     keterangan?: string;
@@ -56,6 +53,7 @@ export async function editLayananPosbindu(
         tinggiBadan: data.tinggiBadan,
         lingkarPerut: data.lingkarPerut,
         tensiDarah: data.tensiDarah,
+        keterangan: data.keterangan,
       },
     });
 

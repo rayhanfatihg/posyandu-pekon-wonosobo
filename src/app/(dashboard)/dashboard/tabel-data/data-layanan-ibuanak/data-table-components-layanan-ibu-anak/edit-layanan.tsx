@@ -1,9 +1,6 @@
 "use client";
 
 import * as React from "react";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
-import { z } from "zod";
 
 import {
   AlertDialog,
@@ -14,11 +11,15 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
-import { editLayananIbuAnak } from "./action";
+
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { editLayananAnak } from "./action";
 import { toast } from "@/hooks/use-toast";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
 
 // Schema Zod untuk Validasi Form
 const layananSchema = z.object({
@@ -107,7 +108,7 @@ export default function EditLayanan({
   });
 
   const handleEdit = async (data: any) => {
-    const response = await editLayananIbuAnak(
+    const response = await editLayananAnak(
       row_edit?.getValue("id_layanan"),
       data
     );
@@ -141,14 +142,6 @@ export default function EditLayanan({
             className="flex flex-col gap-4 p-2"
           >
             {[
-              { label: "Tinggi Badan Ibu (cm)", name: "tinggiBadanIbu" },
-              { label: "Berat Badan Ibu (kg)", name: "beratBadanIbu" },
-              { label: "Lingkar Lengan Ibu (cm)", name: "lingkarLenganIbu" },
-              {
-                label: "Lingkar Pinggang Ibu (cm)",
-                name: "lingkarPinggangIbu",
-              },
-              { label: "Alat Kontrasepsi", name: "alatKontrasepsi" },
               { label: "Tinggi Badan Anak (cm)", name: "tinggiBadanAnak" },
               { label: "Berat Badan Anak (kg)", name: "beratBadanAnak" },
               { label: "Lingkar Lengan Anak (cm)", name: "lingkarLenganAnak" },

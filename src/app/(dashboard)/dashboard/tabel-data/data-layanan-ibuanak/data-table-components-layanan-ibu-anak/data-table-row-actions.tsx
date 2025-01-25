@@ -1,6 +1,5 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -8,12 +7,14 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { Ellipsis } from "lucide-react";
-import { useState } from "react";
-import { deleteLayananIbuAnak } from "./action";
-import { toast } from "@/hooks/use-toast";
+
+import { Button } from "@/components/ui/button";
 import { ConfirmDeleteDialog } from "./confirm-delete-dialog";
 import EditLayanan from "./edit-layanan";
+import { Ellipsis } from "lucide-react";
+import { deleteLayananAnak } from "./action";
+import { toast } from "@/hooks/use-toast";
+import { useState } from "react";
 
 interface DataTableRowActionsProps {
   id_layanan: string;
@@ -32,7 +33,7 @@ export function DataTableRowActions({
   const handleDeleteClick = async () => {
     setIsDeleting(true);
     try {
-      const result = await deleteLayananIbuAnak(id_layanan);
+      const result = await deleteLayananAnak(id_layanan);
 
       if (result.success) {
         toast({

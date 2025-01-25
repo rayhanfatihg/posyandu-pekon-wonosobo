@@ -6,10 +6,6 @@ export interface LayananLansia {
   wargaId: string;
   beratBadan?: number | null;
   tinggiBadan?: number | null;
-  asamUrat?: number | null;
-  gulaDarah?: number | null;
-  keterangan?: string | null;
-  kolesterol?: number | null;
   lingkarPerut?: number | null;
   tensiDarah?: string | null;
   createdAt: string; // ISO String Date
@@ -21,7 +17,5 @@ export interface LayananLansia {
     nama: string;
     nik: string;
     tanggalLahir: string;
-    umur: number;
-    dusun?: string;
   };
 }

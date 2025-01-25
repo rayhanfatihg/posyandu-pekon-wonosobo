@@ -1,18 +1,18 @@
-import { redirect } from "next/navigation";
-import { ChartDemo1 } from "@/components/(dashboard)/charts/chart1";
-import { ChartDemo2 } from "@/components/(dashboard)/charts/chart2";
-import { ChartDemo3 } from "@/components/(dashboard)/charts/chart3";
-import { ChartDemo5 } from "@/components/(dashboard)/charts/chart5";
-import { ChartDemo6 } from "@/components/(dashboard)/charts/chart6";
-
-import getUser from "@/utils/supabase/getUser";
 import {
   getJadwalPosyandu,
   getLayananIbuAnakStats,
   getLayananLansiaStats,
   getWargaStats,
 } from "./action";
+
+import { ChartDemo1 } from "@/components/(dashboard)/charts/chart1";
+import { ChartDemo2 } from "@/components/(dashboard)/charts/chart2";
+import { ChartDemo3 } from "@/components/(dashboard)/charts/chart3";
+import { ChartDemo5 } from "@/components/(dashboard)/charts/chart5";
+import { ChartDemo6 } from "@/components/(dashboard)/charts/chart6";
 import { DashboardCard } from "@/components/(dashboard)/DashboardCard";
+import getUser from "@/utils/supabase/getUser";
+import { redirect } from "next/navigation";
 
 export default async function DashboardPage() {
   // Auth Check

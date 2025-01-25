@@ -1,9 +1,6 @@
 "use client";
 
 import * as React from "react";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
-import { z } from "zod";
 
 import {
   AlertDialog,
@@ -14,11 +11,15 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
-import { editLayananLansia } from "./action";
+
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { editLayananPosbindu } from "./action";
 import { toast } from "@/hooks/use-toast";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
 
 // Schema Zod untuk Validasi Form
 const layananSchema = z.object({
@@ -86,7 +87,7 @@ export default function EditLayananLansia({
   });
 
   const handleSubmit = async (data: LayananFormValues) => {
-    const response = await editLayananLansia(
+    const response = await editLayananPosbindu(
       row_edit?.getValue("id_layanan"),
       data
     );

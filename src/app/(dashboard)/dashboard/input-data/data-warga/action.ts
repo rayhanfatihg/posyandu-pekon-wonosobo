@@ -10,11 +10,13 @@ export async function saveDataWarga({
   nama,
   nik,
   tanggalLahir,
+  umur,
   
 }: {
   nama: string;
   nik: string;
   tanggalLahir: Date;
+  umur: number,
   
 }) {
   try {
@@ -33,6 +35,7 @@ export async function saveDataWarga({
         nama,
         nik,
         tanggalLahir,
+        umur,
         
       },
     });

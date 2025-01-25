@@ -2,19 +2,16 @@
 
 import db from "@/lib/db";
 
-export async function getDataLayananLansia() {
+export async function getDataLayananPosbindu() {
   try {
     // Mengambil data dari tabel LayananLansia dan tabel terkait Warga
-    const layananLansiaData = await db.layananLansia.findMany({
+    const layananPosbinduData = await db.layananPosbindu.findMany({
       select: {
         id: true,
         wargaId: true,
         beratBadan: true,
         tinggiBadan: true,
-        asamUrat: true,
-        gulaDarah: true,
         keterangan: true,
-        kolesterol: true,
         lingkarPerut: true,
         tensiDarah: true,
         createdAt: true,
@@ -25,7 +22,6 @@ export async function getDataLayananLansia() {
             nama: true,
             nik: true,
             tanggalLahir: true,
-            umur: true,
           },
         },
       },
@@ -40,18 +36,14 @@ export async function getDataLayananLansia() {
     };
 
     // Format data untuk menyesuaikan dengan struktur yang diinginkan
-    const formattedData = layananLansiaData.map((item) => ({
+    const formattedData = layananPosbinduData.map((item) => ({
       id_layanan: item.id,
       namaWarga: item.warga.nama,
       nik: item.warga.nik,
       tanggalLahir: item.warga.tanggalLahir, // Anda bisa format ini jika diperlukan
-      umur: item.warga.umur,
       beratBadan: item.beratBadan ?? null,
       tinggiBadan: item.tinggiBadan ?? null,
-      asamUrat: item.asamUrat ?? null,
-      gulaDarah: item.gulaDarah ?? null,
       keterangan: item.keterangan ?? null,
-      kolesterol: item.kolesterol ?? null,
       lingkarPerut: item.lingkarPerut ?? null,
       tensiDarah: item.tensiDarah ?? null,
       date: formatDate(item.createdAt), // Format tanggal dibuat

@@ -72,10 +72,7 @@ export default function LayananLansiaForm({
       wargaId: "",
       beratBadan: undefined,
       tinggiBadan: undefined,
-      asamUrat: undefined,
-      gulaDarah: undefined,
       keterangan: "",
-      kolesterol: undefined,
       lingkarPerut: undefined,
       tensiDarah: "",
     },
@@ -185,72 +182,11 @@ export default function LayananLansiaForm({
           )}
         />
 
-        {/* Asam Urat */}
-        <FormField
-          control={form.control}
-          name="asamUrat"
-          render={({ field }) => (
-            <FormItem className="flex flex-col">
-              <Label>Asam Urat (mg/dL)</Label>
-              <FormControl>
-                <Input
-                  {...field}
-                  type="number"
-                  step="0.1"
-                  placeholder="Kadar asam urat dalam mg/dL"
-                />
-              </FormControl>
-              <FormMessage>
-                {form.formState.errors.asamUrat?.message}
-              </FormMessage>
-            </FormItem>
-          )}
-        />
+        
 
-        {/* Gula Darah */}
-        <FormField
-          control={form.control}
-          name="gulaDarah"
-          render={({ field }) => (
-            <FormItem className="flex flex-col">
-              <Label>Gula Darah (mg/dL)</Label>
-              <FormControl>
-                <Input
-                  {...field}
-                  type="number"
-                  step="0.1"
-                  placeholder="Kadar gula darah dalam mg/dL"
-                />
-              </FormControl>
-              <FormMessage>
-                {form.formState.errors.gulaDarah?.message}
-              </FormMessage>
-            </FormItem>
-          )}
-        />
+        
 
-        {/* Kolesterol */}
-        <FormField
-          control={form.control}
-          name="kolesterol"
-          render={({ field }) => (
-            <FormItem className="flex flex-col">
-              <Label>Kolesterol (mg/dL)</Label>
-              <FormControl>
-                <Input
-                  {...field}
-                  type="number"
-                  step="0.1"
-                  placeholder="Kadar kolesterol dalam mg/dL"
-                />
-              </FormControl>
-              <FormMessage>
-                {form.formState.errors.kolesterol?.message}
-              </FormMessage>
-            </FormItem>
-          )}
-        />
-
+       
         {/* Lingkar Perut */}
         <FormField
           control={form.control}

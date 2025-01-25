@@ -1,6 +1,3 @@
-import { DataTable } from "./data-table-components-layanan-lansia/data-table";
-import { columns } from "./data-table-components-layanan-lansia/columns";
-
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -9,7 +6,10 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
-import { getDataLayananLansia } from "./action";
+
+import { DataTable } from "./data-table-components-layanan-lansia/data-table";
+import { columns } from "./data-table-components-layanan-lansia/columns";
+import { getDataLayananPosbindu } from "./action";
 
 function BreadcrumbTabelData() {
   return (
@@ -34,7 +34,7 @@ function BreadcrumbTabelData() {
 }
 
 export default async function Page() {
-  const data = await getDataLayananLansia();
+  const data = await getDataLayananPosbindu();
 
   return (
     <div className="h-full">

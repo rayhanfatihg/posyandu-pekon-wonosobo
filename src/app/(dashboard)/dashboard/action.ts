@@ -23,22 +23,14 @@ export async function getWargaStats() {
 
 export async function getLayananIbuAnakStats() {
   try {
-    const layananIbuAnak = await db.layananIbuAnak.findMany({
+    const layananIbuAnak = await db.layananAnak.findMany({
       select: {
         id: true,
         anakId: true,
-        ibuId: true,
-        jenisKelaminAnak: true,
         tinggiBadanAnak: true,
         beratBadanAnak: true,
-        umurAnak: true,
         lingkarLenganAnak: true,
         lingkarKepalaAnak: true,
-        tinggiBadanIbu: true,
-        beratBadanIbu: true,
-        lingkarLenganIbu: true,
-        lingkarPinggangIbu: true,
-        alatKontrasepsi: true,
       },
     });
 
@@ -51,15 +43,12 @@ export async function getLayananIbuAnakStats() {
 
 export async function getLayananLansiaStats() {
   try {
-    const layananLansia = await db.layananLansia.findMany({
+    const layananLansia = await db.layananPosbindu.findMany({
       select: {
         id: true,
         wargaId: true,
         beratBadan: true,
         tinggiBadan: true,
-        asamUrat: true,
-        gulaDarah: true,
-        kolesterol: true,
         tensiDarah: true,
         lingkarPerut: true,
       },
