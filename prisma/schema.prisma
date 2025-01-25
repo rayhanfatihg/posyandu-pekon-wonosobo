@@ -10,7 +10,7 @@ datasource db {
 
 model blog {
   id           String        @id @default(uuid())
-  createdAt    DateTime      @default(now()) @db.Timestamptz(6)
+  createdAt    DateTime      @db.Timestamp(6)
   title        String?
   image_url    String?
   is_premium   Boolean?
@@ -21,7 +21,7 @@ model blog {
 model blog_content {
   blog_id   String   @id @default(uuid())
   content   String?
-  createdAt DateTime @default(now()) @db.Timestamptz(6)
+  createdAt DateTime @db.Timestamp(6)
   blog      blog     @relation(fields: [blog_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
 }
 
@@ -30,7 +30,7 @@ model JadwalPosyandu {
   namaAcara String?
   tanggal   DateTime? @db.Date
   jam       String?
-  createdAt DateTime  @default(now()) @db.Timestamptz(6)
+  createdAt DateTime  @db.Timestamp(6)
   updatedAt DateTime? @updatedAt @db.Timestamp(6)
 }
 
@@ -41,7 +41,7 @@ model LayananAnak {
   beratBadanAnak                  Float?
   lingkarLenganAnak               Float?
   lingkarKepalaAnak               Float?
-  createdAt                       DateTime  @default(now()) @db.Timestamptz(6)
+  createdAt                       DateTime  @default(now()) @db.Timestamp(6)
   updatedAt                       DateTime? @db.Timestamp(6)
   anakId                          String?
   ayahId                          String?
@@ -71,7 +71,7 @@ model warga {
   nama                                  String
   nik                                   String            @unique
   tanggalLahir                          DateTime          @db.Timestamp(6)
-  createdAt                             DateTime          @default(now()) @db.Timestamptz(6)
+  createdAt                             DateTime          @db.Timestamp(6)
   updatedAt                             DateTime?         @db.Timestamp(6)
   umur                                  BigInt?
   LayananAnak_LayananAnak_anakIdTowarga LayananAnak[]     @relation("LayananAnak_anakIdTowarga")
@@ -89,7 +89,7 @@ model LayananPosbindu {
   lingkarPerut  Float?
   lingkarLengan Float?
   tensiDarah    String?
-  createdAt     DateTime  @default(now()) @db.Timestamptz(6)
+  createdAt     DateTime  @db.Timestamp(6)
   updatedAt     DateTime? @db.Timestamp(6)
   keterangan    String?
   warga         warga     @relation(fields: [wargaId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "LayananLansia_wargaId_fkey")

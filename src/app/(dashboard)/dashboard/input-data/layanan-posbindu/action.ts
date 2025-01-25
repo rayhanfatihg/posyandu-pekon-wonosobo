@@ -43,7 +43,7 @@ export async function saveDataLayananPosbindu(data: {
         beratBadan: data.beratBadan,
         tinggiBadan: data.tinggiBadan,
         lingkarLengan: data.lingkarLengan,
-        lingkarPerut: data.lingkarPerut ?? null, // If not provided, set as null
+        lingkarPerut: data.lingkarPerut, 
         tensiDarah: data.tensiDarah,
         keterangan: data.keterangan,
       },

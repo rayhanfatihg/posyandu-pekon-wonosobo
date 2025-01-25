@@ -1,5 +1,3 @@
-import Image from "next/image";
-import Link from "next/link";
 import {
   Calendar,
   ClipboardType,
@@ -8,7 +6,6 @@ import {
   LogOut,
   Newspaper,
 } from "lucide-react";
-
 import {
   Sidebar,
   SidebarContent,
@@ -19,8 +16,11 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
-import { signOut } from "@/app/(auth)/login/action";
+
+import Image from "next/image";
+import Link from "next/link";
 import getUser from "@/utils/supabase/getUser";
+import { signOut } from "@/app/(auth)/login/action";
 
 const items = [
   {
@@ -75,10 +75,10 @@ export default async function AppSidebar() {
               alt="Posyandu Marga Agung"
               className="h-12 w-16"
             />
-            <span className="sr-only">Posyandu Marga Agung</span>
+            <span className="sr-only">Posyandu Wonosobo</span>
           </Link>
 
-          <SidebarGroupLabel>Dashboard Posyandu Marga Agung</SidebarGroupLabel>
+          <SidebarGroupLabel>Dashboard Posyandu Wonosobo</SidebarGroupLabel>
 
           <p className="mt-10 px-2 text-sm">Hallo, {user?.email}</p>
 

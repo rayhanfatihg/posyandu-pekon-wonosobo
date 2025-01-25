@@ -21,7 +21,7 @@ export async function getWargaStats() {
   }
 }
 
-export async function getLayananIbuAnakStats() {
+export async function getLayananAnakStats() {
   try {
     const layananIbuAnak = await db.layananAnak.findMany({
       select: {
@@ -41,7 +41,7 @@ export async function getLayananIbuAnakStats() {
   }
 }
 
-export async function getLayananLansiaStats() {
+export async function getLayananPosbinduStats() {
   try {
     const layananLansia = await db.layananPosbindu.findMany({
       select: {

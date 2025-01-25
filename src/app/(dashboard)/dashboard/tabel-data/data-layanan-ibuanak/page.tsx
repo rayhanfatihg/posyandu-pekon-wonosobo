@@ -1,6 +1,3 @@
-import { DataTable } from "./data-table-components-layanan-ibu-anak/data-table";
-import { columns } from "./data-table-components-layanan-ibu-anak/columns";
-
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -9,7 +6,10 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
-import { getDataLayananIbuAnak } from "./action";
+
+import { DataTable } from "./data-table-components-layanan-ibu-anak/data-table";
+import { columns } from "./data-table-components-layanan-ibu-anak/columns";
+import { getDataLayananAnak } from "./action";
 
 function BreadcrumbTabelData() {
   return (
@@ -26,7 +26,7 @@ function BreadcrumbTabelData() {
         </BreadcrumbItem>
         <BreadcrumbSeparator />
         <BreadcrumbItem>
-          <BreadcrumbPage>Layanan Ibu dan Anak</BreadcrumbPage>
+          <BreadcrumbPage>Anak</BreadcrumbPage>
         </BreadcrumbItem>
       </BreadcrumbList>
     </Breadcrumb>
@@ -34,11 +34,11 @@ function BreadcrumbTabelData() {
 }
 
 export default async function Page() {
-  const data = await getDataLayananIbuAnak();
+  const data = await getDataLayananAnak();
 
   return (
     <div className="h-full">
-      <h1 className="text-2xl font-bold">Data Layanan Ibu dan Anak</h1>
+      <h1 className="text-2xl font-bold">Data Layanan Anak</h1>
 
       <BreadcrumbTabelData />
 

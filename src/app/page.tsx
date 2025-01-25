@@ -1,10 +1,9 @@
-import Image from "next/image";
-import Link from "next/link";
-
 import { Button } from "@/components/ui/button";
 import CardBeritaArtikel from "@/components/(guest)/berita-artikel/CardBeritaArtikel";
 import Footer from "@/components/footer";
+import Image from "next/image";
 import JadwalKegiatanBulanIni from "@/components/(guest)/jadwal-kegiatan/jadwal-kegiatan";
+import Link from "next/link";
 import Navbar from "@/components/navbar";
 import { readBlog } from "@/components/(guest)/berita-artikel/dashboard/action";
 
@@ -23,7 +22,7 @@ export default async function Home() {
             src="/logo-posyandu.png"
             width={1000}
             height={1000}
-            alt="Posyandu Marga Agung"
+            alt="Posyandu Wonosobo"
             className="h-32 w-36 rounded-md border"
           />
 
@@ -31,7 +30,7 @@ export default async function Home() {
             src="/logo-sgds.png"
             width={1000}
             height={1000}
-            alt="Posyandu Marga Agung"
+            alt="Posyandu Wonosobo"
             className="h-32 w-36 rounded-md border"
           />
         </div>

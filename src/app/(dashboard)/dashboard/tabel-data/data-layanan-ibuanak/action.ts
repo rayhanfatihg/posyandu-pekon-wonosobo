@@ -1,5 +1,6 @@
 "use server";
 
+import db from "@/lib/db";
 import fs from "fs";
 import path from "path";
 
@@ -15,25 +16,18 @@ export async function getData() {
   return JSON.parse(data);
 }
 
-import db from "@/lib/db";
+
 // Fetch data from LayananIbuAnak and related tables
-export async function getDataLayananIbuAnak() {
+export async function getDataLayananAnak() {
   try {
     // Fetch data from LayananIbuAnak table with relations to Warga (Anak, Ibu, Ayah)
-    const layananData = await db.layananIbuAnak.findMany({
+    const layananData = await db.layananAnak.findMany({
       select: {
         id: true,
         tinggiBadanAnak: true,
         beratBadanAnak: true,
-        umurAnak: true,
         lingkarLenganAnak: true,
         lingkarKepalaAnak: true,
-        tinggiBadanIbu: true,
-        beratBadanIbu: true,
-        lingkarLenganIbu: true,
-        lingkarPinggangIbu: true,
-        alatKontrasepsi: true,
-        jenisKelaminAnak: true,
         createdAt: true,
         anakId: true,
         ayahId: true,
@@ -44,7 +38,6 @@ export async function getDataLayananIbuAnak() {
             nama: true,
             nik: true,
             tanggalLahir: true,
-            umur: true,
           },
         },
         ayah: {
@@ -110,12 +103,6 @@ export async function getDataLayananIbuAnak() {
         umurAnak: umurFormatted,
         lingkarLenganAnak: item.lingkarLenganAnak ?? null,
         lingkarKepalaAnak: item.lingkarKepalaAnak ?? null,
-        tinggiBadanIbu: item.tinggiBadanIbu ?? null,
-        beratBadanIbu: item.beratBadanIbu ?? null,
-        lingkarLenganIbu: item.lingkarLenganIbu ?? null,
-        lingkarPinggangIbu: item.lingkarPinggangIbu ?? null,
-        alatKontrasepsi: item.alatKontrasepsi ?? null,
-        jenisKelaminAnak: item.jenisKelaminAnak,
         date: formatDate(item.createdAt),
       };
     });

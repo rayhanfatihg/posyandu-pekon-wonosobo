@@ -1,7 +1,7 @@
 import {
   getJadwalPosyandu,
-  getLayananIbuAnakStats,
-  getLayananLansiaStats,
+  getLayananAnakStats,
+  getLayananPosbinduStats,
   getWargaStats,
 } from "./action";
 
@@ -20,15 +20,15 @@ export default async function DashboardPage() {
   if (!user) return redirect("/login");
 
   // Fetch Data
-  const [wargaStats, layananIbuAnakStats, layananLansiaStats] =
+  const [wargaStats, layananAnakStats, layananPosbinduStats] =
     await Promise.all([
       getWargaStats(),
-      getLayananIbuAnakStats(),
-      getLayananLansiaStats(),
+      getLayananAnakStats(),
+      getLayananPosbinduStats(),
     ]);
 
-  const layananIbuAnakCount = layananIbuAnakStats.length;
-  const layananLansiaCount = layananLansiaStats.length;
+  const layananAnakCount = layananAnakStats.length;
+  const layananPosbinduCount = layananPosbinduStats.length;
 
   return (
     <main className="flex min-h-screen w-full flex-col justify-start">
@@ -53,15 +53,15 @@ export default async function DashboardPage() {
           unit="Tahun"
         />
         <DashboardCard
-          title="Layanan Ibu Anak"
-          description="Total layanan Ibu Anak Tercatat"
-          value={parseInt(String(layananIbuAnakCount))}
+          title="Layanan Anak"
+          description="Total layanan Anak Tercatat"
+          value={parseInt(String(layananAnakCount))}
           unit="Layanan"
         />
         <DashboardCard
-          title="Layanan Lansia"
-          description="Total layanan Lansia Tercatat"
-          value={parseInt(String(layananLansiaCount))}
+          title="Layanan Posbindu"
+          description="Total layanan Posbindu Tercatat"
+          value={parseInt(String(layananPosbinduCount))}
           unit="Layanan"
         />
       </div>
