@@ -81,6 +81,9 @@ export default function InputDataPage() {
             <TabsTrigger value="lansia" className="w-full">
               Layanan Lansia
             </TabsTrigger>
+            <TabsTrigger value="ibuhamil" className="w-full">
+              Layanan Ibu Hamil
+            </TabsTrigger>
           </TabsList>
 
           {/* Tabs Content */}
@@ -100,6 +103,14 @@ export default function InputDataPage() {
               )
             )}
           </TabsContent>
+          <TabsContent value="ibuhammil">
+            {loading ? (
+              <Skeleton />
+            ) : (
+              wargaOptions.length > 0 && <LayananIbuHamil data={wargaOptions} />
+            )}
+          </TabsContent>
+          
         </Tabs>
       </div>
     </main>
