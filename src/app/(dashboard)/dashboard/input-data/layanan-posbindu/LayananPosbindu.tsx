@@ -59,7 +59,7 @@ interface LayananLansiaFormProps {
   label: string;
 }
 
-export default function LayananLansiaForm({
+export default function LayananPosbinduForm({
   data,
 }: {
   data: LayananLansiaFormProps[];

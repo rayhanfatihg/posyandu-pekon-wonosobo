@@ -3,9 +3,9 @@
 import React, { useEffect, useState } from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
-import LayananIbuAnak from "./layanan-anak/LayananAnak";
+import LayananAnak from "./layanan-anak/LayananAnak";
 import LayananIbuHamil from "./layanan-ibu-hamil/layananIbuHamil";
-import LayananLansiaForm from "./layanan-posbindu/LayananPosbindu";
+import LayananPosbinduForm from "./layanan-posbindu/LayananPosbindu";
 import { getAllDataWarga } from"./layanan-posbindu/action";
 
 function Skeleton() {
@@ -19,7 +19,7 @@ function Skeleton() {
 }
 
 export default function InputDataPage() {
-  const [selectedTab, setSelectedTab] = useState("ibuanak");
+  const [selectedTab, setSelectedTab] = useState("anak");
   const [loading, setLoading] = useState(true);
 
   const [wargaOptions, setWargaOptions] = React.useState<
@@ -76,11 +76,11 @@ export default function InputDataPage() {
           className="mt-4"
         >
           <TabsList className="flex w-[310px] sm:w-[400px]">
-            <TabsTrigger value="ibuanak" className="w-full">
-              Layanan Ibu & Anak
+            <TabsTrigger value="anak" className="w-full">
+              Layanan Anak
             </TabsTrigger>
-            <TabsTrigger value="lansia" className="w-full">
-              Layanan Lansia
+            <TabsTrigger value="posbindu" className="w-full">
+              Layanan Posbindu
             </TabsTrigger>
             <TabsTrigger value="ibuhamil" className="w-full">
               Layanan Ibu Hamil
@@ -88,19 +88,19 @@ export default function InputDataPage() {
           </TabsList>
 
           {/* Tabs Content */}
-          <TabsContent value="ibuanak">
+          <TabsContent value="anak">
             {loading ? (
               <Skeleton />
             ) : (
-              wargaOptions.length > 0 && <LayananIbuAnak data={wargaOptions} />
+              wargaOptions.length > 0 && <LayananAnak data={wargaOptions} />
             )}
           </TabsContent>
-          <TabsContent value="lansia">
+          <TabsContent value="posbindu">
             {loading ? (
               <Skeleton />
             ) : (
               wargaOptions.length > 0 && (
-                <LayananLansiaForm data={wargaOptions} />
+                <LayananPosbinduForm data={wargaOptions} />
               )
             )}
           </TabsContent>

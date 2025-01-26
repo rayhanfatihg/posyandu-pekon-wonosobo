@@ -32,7 +32,7 @@ export async function getDataLayananAnak() {
         anakId: true,
         ayahId: true,
         ibuId: true,
-        anak: {
+        warga_LayananAnak_anakIdTowarga: {
           select: {
             id: true,
             nama: true,
@@ -40,14 +40,14 @@ export async function getDataLayananAnak() {
             tanggalLahir: true,
           },
         },
-        ayah: {
+        warga_LayananAnak_ayahIdTowarga: {
           select: {
             id: true,
             nama: true,
             nik: true,
           },
         },
-        ibu: {
+        warga_LayananAnak_ibuIdTowarga: {
           select: {
             id: true,
             nama: true,
@@ -86,18 +86,18 @@ export async function getDataLayananAnak() {
 
     // Format the data to match the mock structure
     const formattedData = layananData.map((item) => {
-      const umurFormatted = item.anak.tanggalLahir
-        ? calculateAge(new Date(item.anak.tanggalLahir))
+      const umurFormatted = item.warga_LayananAnak_anakIdTowarga?.tanggalLahir
+        ? calculateAge(new Date(item.warga_LayananAnak_anakIdTowarga?.tanggalLahir))
         : null;
 
       return {
         id_layanan: item.id,
-        namaAnak: item.anak.nama,
-        nikAnak: item.anak.nik,
-        namaIbu: item.ibu.nama,
-        nikIbu: item.ibu.nik,
-        namaAyah: item.ayah.nama,
-        nikAyah: item.ayah.nik,
+        namaAnak: item.warga_LayananAnak_anakIdTowarga?.nama,
+        nikAnak: item.warga_LayananAnak_anakIdTowarga?.nik,
+        namaIbu: item.warga_LayananAnak_ibuIdTowarga?.nama,
+        nikIbu: item.warga_LayananAnak_ibuIdTowarga?.nik,
+        namaAyah: item.warga_LayananAnak_ayahIdTowarga?.nama,
+        nikAyah: item.warga_LayananAnak_ayahIdTowarga?.nik,
         tinggiBadanAnak: item.tinggiBadanAnak ?? null,
         beratBadanAnak: item.beratBadanAnak ?? null,
         umurAnak: umurFormatted,

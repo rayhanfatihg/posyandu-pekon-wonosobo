@@ -1,11 +1,5 @@
 "use client";
 
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
-import { z } from "zod";
-
-import { toast } from "@/hooks/use-toast";
-import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
@@ -13,8 +7,6 @@ import {
   FormItem,
   FormMessage,
 } from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import {
   Select,
   SelectContent,
@@ -23,8 +15,15 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 
-import { saveDataWarga } from "./action";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import { Loader2Icon } from "lucide-react";
+import { saveDataWarga } from "./action";
+import { toast } from "@/hooks/use-toast";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
 
 const wargaSchema = z
   .object({
@@ -63,7 +62,7 @@ export default function InputDataWarga() {
       nama: "",
       nik: "",
       tanggalLahir: "",
-      dusun: "",
+      
     },
   });
 
@@ -176,37 +175,7 @@ export default function InputDataWarga() {
               )}
             />
 
-            {/* Dusun Field */}
-            <FormField
-              control={form.control}
-              name="dusun"
-              render={({ field }) => (
-                <FormItem>
-                  <Label htmlFor="dusun">Dusun</Label>
-                  <FormControl>
-                    <Select
-                      onValueChange={field.onChange}
-                      value={field.value ?? ""} // Ensure it's always controlled
-                    >
-                      <SelectTrigger id="dusun">
-                        <SelectValue placeholder="Pilih dusun" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="Dusun 1">Dusun 1</SelectItem>
-                        <SelectItem value="Dusun 2">Dusun 2</SelectItem>
-                        <SelectItem value="Dusun 3">Dusun 3</SelectItem>
-                        <SelectItem value="Dusun 4">Dusun 4</SelectItem>
-                        <SelectItem value="Dusun 5">Dusun 5</SelectItem>
-                        <SelectItem value="Dusun 6">Dusun 6</SelectItem>
-                      </SelectContent>
-                    </Select>
-                  </FormControl>
-                  <FormMessage>
-                    {form.formState.errors.dusun?.message}
-                  </FormMessage>
-                </FormItem>
-              )}
-            />
+            
 
             <div className="flex w-full">
               <Button

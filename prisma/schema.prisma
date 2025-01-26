@@ -36,7 +36,7 @@ model JadwalPosyandu {
 
 /// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
 model LayananAnak {
-  id                              String    @id
+  id                              String    @id @default(uuid())
   tinggiBadanAnak                 Float?
   beratBadanAnak                  Float?
   lingkarLenganAnak               Float?
@@ -46,14 +46,14 @@ model LayananAnak {
   anakId                          String?
   ayahId                          String?
   ibuId                           String?
-  warga_LayananAnak_anakIdTowarga warga?    @relation("LayananAnak_anakIdTowarga", fields: [anakId], references: [id], onDelete: NoAction, onUpdate: NoAction)
-  warga_LayananAnak_ayahIdTowarga warga?    @relation("LayananAnak_ayahIdTowarga", fields: [ayahId], references: [id], onDelete: NoAction, onUpdate: NoAction)
-  warga_LayananAnak_ibuIdTowarga  warga?    @relation("LayananAnak_ibuIdTowarga", fields: [ibuId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  warga_LayananAnak_anakIdTowarga warga?    @relation("LayananAnak_anakIdTowarga", fields: [anakId], references: [id], onDelete: Restrict)
+  warga_LayananAnak_ayahIdTowarga warga?    @relation("LayananAnak_ayahIdTowarga", fields: [ayahId], references: [id], onDelete: Restrict)
+  warga_LayananAnak_ibuIdTowarga  warga?    @relation("LayananAnak_ibuIdTowarga", fields: [ibuId], references: [id], onDelete: Restrict)
 }
 
 /// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
 model LayananIbuHamil {
-  id            String    @id
+  id            String    @id @default(uuid())
   createdAt     DateTime  @default(now()) @db.Timestamptz(6)
   bumilId       String?
   tinggiBadan   Float?
@@ -62,12 +62,12 @@ model LayananIbuHamil {
   tinggiPundus  Float?
   umurKehamilan Float?
   updatedAt     DateTime? @db.Timestamp(6)
-  warga         warga?    @relation(fields: [bumilId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  warga         warga?    @relation(fields: [bumilId], references: [id], onDelete: Restrict)
 }
 
 /// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
 model warga {
-  id                                    String            @id
+  id                                    String            @id @default(uuid())
   nama                                  String
   nik                                   String            @unique
   tanggalLahir                          DateTime          @db.Timestamp(6)
@@ -82,7 +82,7 @@ model warga {
 }
 
 model LayananPosbindu {
-  id            String    @id(map: "LayananLansia_pkey")
+  id            String    @id @default(uuid())
   wargaId       String
   beratBadan    Float?
   tinggiBadan   Float?
@@ -92,5 +92,5 @@ model LayananPosbindu {
   createdAt     DateTime  @db.Timestamp(6)
   updatedAt     DateTime? @db.Timestamp(6)
   keterangan    String?
-  warga         warga     @relation(fields: [wargaId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "LayananLansia_wargaId_fkey")
+  warga         warga     @relation(fields: [wargaId], references: [id], map: "LayananLansia_wargaId_fkey")
 }
