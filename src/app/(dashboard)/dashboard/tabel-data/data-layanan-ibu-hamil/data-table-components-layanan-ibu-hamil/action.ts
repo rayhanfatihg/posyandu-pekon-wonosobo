@@ -5,7 +5,7 @@ import db from "@/lib/db";
 export async function deleteLayananIbuHamil(id_layanan: string) {
   try {
     // Menghapus data berdasarkan id_layanan
-    await db.layananPosbindu.delete({
+    await db.layananIbuHamil.delete({
       where: {
         id: id_layanan,
       },

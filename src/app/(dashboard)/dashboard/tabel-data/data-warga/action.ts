@@ -2,28 +2,15 @@
 
 import db from "@/lib/db";
 
-export async function getDataLayananPosbindu() {
+export async function getDataWarga() {
   try {
     // Mengambil data dari tabel LayananLansia dan tabel terkait Warga
-    const layananPosbinduData = await db.layananPosbindu.findMany({
+    const warga = await db.warga.findMany({
       select: {
         id: true,
-        wargaId: true,
-        beratBadan: true,
-        tinggiBadan: true,
-        keterangan: true,
-        lingkarPerut: true,
-        tensiDarah: true,
-        createdAt: true,
-        updatedAt: true,
-        warga: {
-          select: {
-            id: true,
-            nama: true,
-            nik: true,
-            tanggalLahir: true,
-          },
-        },
+        nik: true,
+        nama: true,
+        tanggalLahir: true,
       },
     });
 
@@ -36,17 +23,12 @@ export async function getDataLayananPosbindu() {
     };
 
     // Format data untuk menyesuaikan dengan struktur yang diinginkan
-    const formattedData = layananPosbinduData.map((item) => ({
+    const formattedData = warga.map((item) => ({
       id_layanan: item.id,
-      namaWarga: item.warga.nama,
-      nik: item.warga.nik,
-      tanggalLahir: item.warga.tanggalLahir, // Anda bisa format ini jika diperlukan
-      beratBadan: item.beratBadan ?? null,
-      tinggiBadan: item.tinggiBadan ?? null,
-      keterangan: item.keterangan ?? null,
-      lingkarPerut: item.lingkarPerut ?? null,
-      tensiDarah: item.tensiDarah ?? null,
-      date: formatDate(item.createdAt), // Format tanggal dibuat
+      namaWarga: item.nama,
+      nik: item.nik,
+      tanggalLahir: item.tanggalLahir, // Anda bisa format ini jika diperlukan
+      //date: formatDate(item.createdAt), // Format tanggal dibuat
     }));
 
     return formattedData;

@@ -84,7 +84,33 @@ export default function Page() {
           </CardContent>
           <CardFooter>
             <Link
-              href="/dashboard/tabel-data/data-layanan-lansia"
+              href="/dashboard/tabel-data/data-layanan-ibu-hamil"
+              className={buttonVariants()}
+            >
+              Lihat Tabel Layanan
+            </Link>
+          </CardFooter>
+        </Card>
+
+        <Card className="aspect-square flex justify-center items-center flex-col">
+          <CardHeader>
+            <CardTitle className="text-center">
+              Tabel Data 
+              <br />
+              Warga
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <Image
+              src="/ibu-hamil.png"
+              width={300}
+              height={200}
+              alt="Layanan Lansia"
+            />
+          </CardContent>
+          <CardFooter>
+            <Link
+              href="/dashboard/tabel-data/data-warga"
               className={buttonVariants()}
             >
               Lihat Tabel Layanan

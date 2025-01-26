@@ -9,7 +9,7 @@ import {
 
 import { DataTable } from "./data-table-components-layanan-lansia/data-table";
 import { columns } from "./data-table-components-layanan-lansia/columns";
-import { getDataLayananPosbindu } from "./action";
+import { getDataWarga } from "./action";
 
 function BreadcrumbTabelData() {
   return (
@@ -26,7 +26,7 @@ function BreadcrumbTabelData() {
         </BreadcrumbItem>
         <BreadcrumbSeparator />
         <BreadcrumbItem>
-          <BreadcrumbPage>Layanan Lansia</BreadcrumbPage>
+          <BreadcrumbPage>Data Warga</BreadcrumbPage>
         </BreadcrumbItem>
       </BreadcrumbList>
     </Breadcrumb>
@@ -34,11 +34,11 @@ function BreadcrumbTabelData() {
 }
 
 export default async function Page() {
-  const data = await getDataLayananPosbindu();
+  const data = await getDataWarga();
 
   return (
     <div className="h-full">
-      <h1 className="text-2xl font-bold">Data Layanan Lansia</h1>
+      <h1 className="text-2xl font-bold">Data Warga</h1>
 
       <BreadcrumbTabelData />
 

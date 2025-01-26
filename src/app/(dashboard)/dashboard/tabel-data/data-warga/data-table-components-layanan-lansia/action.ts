@@ -2,10 +2,10 @@
 
 import db from "@/lib/db";
 
-export async function deleteLayananPosbindu(id_layanan: string) {
+export async function deleteWarga(id_layanan: string) {
   try {
     // Menghapus data berdasarkan id_layanan
-    await db.layananPosbindu.delete({
+    await db.warga.delete({
       where: {
         id: id_layanan,
       },
@@ -17,14 +17,13 @@ export async function deleteLayananPosbindu(id_layanan: string) {
   }
 }
 
-export async function editLayananPosbindu(
+export async function editWarga(
   id_layanan: string,
   data: {
-    beratBadan?: number;
-    tinggiBadan?: number;
-    lingkarPerut?: number;
-    tensiDarah?: string;
-    keterangan?: string;
+    nama?: string;
+    nik?: string;
+    tanggalLahir?: Date;
+    
   }
 ) {
   try {
@@ -46,14 +45,12 @@ export async function editLayananPosbindu(
     }
 
     // Update data layanan lansia
-    await db.layananPosbindu.update({
+    await db.warga.update({
       where: { id: id_layanan },
       data: {
-        beratBadan: data.beratBadan,
-        tinggiBadan: data.tinggiBadan,
-        lingkarPerut: data.lingkarPerut,
-        tensiDarah: data.tensiDarah,
-        keterangan: data.keterangan,
+        nama: data.nama,
+        nik: data.nik,
+        tanggalLahir: data.tanggalLahir,
       },
     });
 

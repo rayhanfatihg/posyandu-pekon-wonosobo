@@ -12,7 +12,7 @@ import { Button } from "@/components/ui/button";
 import { ConfirmDeleteDialog } from "./confirm-delete-dialog";
 import EditLayananLansia from "./edit-layanan";
 import { Ellipsis } from "lucide-react";
-import { deleteLayananPosbindu } from "./action";
+import { deleteWarga } from "./action";
 import { toast } from "@/hooks/use-toast";
 import { useState } from "react";
 
@@ -33,7 +33,7 @@ export function DataTableRowActions({
   const handleDeleteClick = async () => {
     setIsDeleting(true);
     try {
-      const result = await deleteLayananPosbindu(id_layanan);
+      const result = await deleteWarga(id_layanan);
 
       if (result.success) {
         toast({

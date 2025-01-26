@@ -15,7 +15,7 @@ import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { editLayananPosbindu } from "./action";
+import { editWarga } from "./action";
 import { toast } from "@/hooks/use-toast";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
@@ -87,7 +87,7 @@ export default function EditLayananLansia({
   });
 
   const handleSubmit = async (data: LayananFormValues) => {
-    const response = await editLayananPosbindu(
+    const response = await editWarga(
       row_edit?.getValue("id_layanan"),
       data
     );

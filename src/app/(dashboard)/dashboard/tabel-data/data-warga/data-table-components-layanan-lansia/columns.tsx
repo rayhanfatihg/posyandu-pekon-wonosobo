@@ -4,9 +4,9 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { ColumnDef } from "@tanstack/react-table";
 import { DataTableColumnHeader } from "./data-table-column-header";
 import { DataTableRowActions } from "./data-table-row-actions";
-import { LayananLansia } from "./schema"; // Update schema import jika perlu
+import { Warga } from "./schema"; // Update schema import jika perlu
 
-export const columns: ColumnDef<LayananLansia>[] = [
+export const columns: ColumnDef<Warga>[] = [
   // {
   //   id: "select",
   //   header: ({ table }) => (
@@ -37,80 +37,39 @@ export const columns: ColumnDef<LayananLansia>[] = [
     cell: ({ row }) => <p className="text-left">{row.index + 1}</p>,
   },
   {
-    accessorKey: "namaWarga", // Ganti dengan nama warga dari data Layanan Lansia
+    accessorKey: "nama", // Ganti dengan nama warga dari data Layanan Lansia
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Nama Warga" />
     ),
     cell: ({ row }) => (
-      <div className="w-[150px]">{row.getValue("namaWarga")}</div>
+      <div className="w-[150px]">{row.getValue("nama")}</div>
     ),
     enableSorting: true,
     enableHiding: false,
   },
   {
-    accessorKey: "umur", // Umur warga
+    accessorKey: "nik", // Umur warga
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Umur (Tahun)" />
+      <DataTableColumnHeader column={column} title="nik" />
     ),
     cell: ({ row }) => (
-      <div className="flex w-[100px] items-center">{row.getValue("umur")}</div>
+      <div className="flex w-[100px] items-center">{row.getValue("nik")}</div>
     ),
     enableSorting: true,
     enableHiding: false,
   },
   {
-    accessorKey: "beratBadan", // Berat badan warga
+    accessorKey: "tanggalLahir", // Umur warga
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Berat Badan (kg)" />
+      <DataTableColumnHeader column={column} title="tanggal lahir" />
     ),
     cell: ({ row }) => (
-      <div className="flex w-[100px] items-center">
-        {row.getValue("beratBadan")}
-      </div>
+      <div className="flex w-[100px] items-center">{row.getValue("tanggalLahir")}</div>
     ),
-    filterFn: (row, id, value) => {
-      const beratBadan = row.getValue(id) as number;
-      return beratBadan >= value[0] && beratBadan <= value[1];
-    },
-  },
-  {
-    accessorKey: "tinggiBadan", // Tinggi badan warga
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Tinggi Badan (cm)" />
-    ),
-    cell: ({ row }) => (
-      <div className="flex w-[100px] items-center">
-        {row.getValue("tinggiBadan")}
-      </div>
-    ),
-    filterFn: (row, id, value) => {
-      const tinggiBadan = row.getValue(id) as number;
-      return tinggiBadan >= value[0] && tinggiBadan <= value[1];
-    },
+    enableSorting: true,
+    enableHiding: false,
   },
   
-  {
-    accessorKey: "lingkarPerut", // Lingkar perut warga
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Lingkar Perut (cm)" />
-    ),
-    cell: ({ row }) => (
-      <div className="flex w-[100px] items-center">
-        {row.getValue("lingkarPerut")}
-      </div>
-    ),
-  },
-  {
-    accessorKey: "tensiDarah", // Tensi darah warga
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Tensi Darah" />
-    ),
-    cell: ({ row }) => (
-      <div className="flex w-[100px] items-center">
-        {row.getValue("tensiDarah")}
-      </div>
-    ),
-  },
   {
     accessorKey: "date",
     header: ({ column }) => (
@@ -136,17 +95,7 @@ export const columns: ColumnDef<LayananLansia>[] = [
       return rowDate >= startDate && rowDate <= endDate;
     },
   },
-  {
-    accessorKey: "keterangan", // Keterangan tambahan
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Keterangan" />
-    ),
-    cell: ({ row }) => (
-      <div className="flex w-[200px] items-center">
-        {row.getValue("keterangan")}
-      </div>
-    ),
-  },
+  
   {
     // id: "actions",
     accessorKey: "id_layanan",

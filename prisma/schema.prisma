@@ -70,7 +70,7 @@ model warga {
   id                                    String            @id @default(uuid())
   nama                                  String
   nik                                   String            @unique
-  tanggalLahir                          DateTime          @db.Timestamp(6)
+  tanggalLahir                          DateTime          @db.Timestamp(0)
   createdAt                             DateTime          @db.Timestamp(6)
   updatedAt                             DateTime          @db.Timestamp(6)
   umur                                  Int
