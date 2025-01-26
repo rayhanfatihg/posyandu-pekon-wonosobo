@@ -67,6 +67,10 @@ export default function InputDataWarga() {
   });
 
   const onSubmit = async (data: WargaFormValues) => {
+
+  console.log("Submitted tanggalLahir:", data.tanggalLahir);
+  console.log("Converted tanggalLahir:", new Date(data.tanggalLahir));
+  
     const age =
       new Date().getFullYear() - new Date(data.tanggalLahir).getFullYear();
     const wargaDataWithAge = {
@@ -77,7 +81,13 @@ export default function InputDataWarga() {
 
     console.log("Payload to saveDataWarga:", wargaDataWithAge);
 
+    console.log("Payload before sending:", wargaDataWithAge);
+
+
     const result = await saveDataWarga(wargaDataWithAge);
+
+    
+
 
     if (result.success) {
       toast({
