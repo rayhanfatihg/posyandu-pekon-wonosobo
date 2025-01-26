@@ -10,7 +10,7 @@ datasource db {
 
 model blog {
   id           String        @id @default(uuid())
-  createdAt    DateTime      @db.Timestamp(6)
+  createdAt    DateTime     @default(now()) @db.Timestamp(6)
   title        String?
   image_url    String?
   is_premium   Boolean?
@@ -21,7 +21,7 @@ model blog {
 model blog_content {
   blog_id   String   @id @default(uuid())
   content   String?
-  createdAt DateTime @db.Timestamp(6)
+  createdAt DateTime @default(now()) @db.Timestamp(6)
   blog      blog     @relation(fields: [blog_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
 }
 
@@ -30,7 +30,7 @@ model JadwalPosyandu {
   namaAcara String?
   tanggal   DateTime? @db.Date
   jam       String?
-  createdAt DateTime  @db.Timestamp(6)
+  createdAt DateTime  @default(now()) @db.Timestamp(6)
   updatedAt DateTime? @updatedAt @db.Timestamp(6)
 }
 
@@ -42,7 +42,7 @@ model LayananAnak {
   lingkarLenganAnak               Float?
   lingkarKepalaAnak               Float?
   createdAt                       DateTime  @default(now()) @db.Timestamp(6)
-  updatedAt                       DateTime? @db.Timestamp(6)
+  updatedAt                       DateTime? @default(now()) @db.Timestamp(6)
   anakId                          String?
   ayahId                          String?
   ibuId                           String?
@@ -61,7 +61,7 @@ model LayananIbuHamil {
   lingkarLengan Float?
   tinggiPundus  Float?
   umurKehamilan Float?
-  updatedAt     DateTime? @db.Timestamp(6)
+  updatedAt     DateTime? @default(now()) @db.Timestamp(6)
   warga         warga?    @relation(fields: [bumilId], references: [id], onDelete: Restrict)
 }
 
@@ -71,8 +71,8 @@ model warga {
   nama                                  String
   nik                                   String            @unique
   tanggalLahir                          DateTime          @db.Timestamp(0)
-  createdAt                             DateTime          @db.Timestamp(6)
-  updatedAt                             DateTime          @db.Timestamp(6)
+  createdAt                             DateTime         @default(now()) @db.Timestamp(6)
+  updatedAt                             DateTime?         @default(now()) @db.Timestamp(6)
   umur                                  Int
   LayananAnak_LayananAnak_anakIdTowarga LayananAnak[]     @relation("LayananAnak_anakIdTowarga")
   LayananAnak_LayananAnak_ayahIdTowarga LayananAnak[]     @relation("LayananAnak_ayahIdTowarga")
@@ -89,8 +89,8 @@ model LayananPosbindu {
   lingkarPerut  Float?
   lingkarLengan Float?
   tensiDarah    String?
-  createdAt     DateTime  @db.Timestamp(6)
-  updatedAt     DateTime? @db.Timestamp(6)
+  createdAt     DateTime  @default(now()) @db.Timestamp(6)
+  updatedAt     DateTime? @default(now()) @db.Timestamp(6)
   keterangan    String?
   warga         warga     @relation(fields: [wargaId], references: [id], map: "LayananLansia_wargaId_fkey")
 }

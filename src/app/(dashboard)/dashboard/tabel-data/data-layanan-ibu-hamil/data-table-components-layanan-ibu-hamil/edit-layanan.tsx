@@ -25,30 +25,26 @@ import { zodResolver } from "@hookform/resolvers/zod";
 const layananSchema = z.object({
   beratBadan: z.preprocess(
     (val) => (val === "" ? undefined : parseFloat(val as string)),
-    z.number().min(1, "Berat badan harus valid").optional()
+    z.number().min(1, "Berat badan harus valid")
   ),
   tinggiBadan: z.preprocess(
     (val) => (val === "" ? undefined : parseFloat(val as string)),
-    z.number().min(1, "Tinggi badan harus valid").optional()
+    z.number().min(1, "Tinggi badan harus valid")
   ),
-  asamUrat: z.preprocess(
+  
+  lingkarLengan: z.preprocess(
     (val) => (val === "" ? undefined : parseFloat(val as string)),
-    z.number().min(1, "Asam urat harus valid").optional()
+    z.number().min(1, "Lingkar perut harus valid")
   ),
-  gulaDarah: z.preprocess(
+  tinggiPundus: z.preprocess(
     (val) => (val === "" ? undefined : parseFloat(val as string)),
-    z.number().min(1, "Gula darah harus valid").optional()
+    z.number().min(1, "Lingkar perut harus valid")
   ),
-  kolesterol: z.preprocess(
+
+  umurKehamilan: z.preprocess(
     (val) => (val === "" ? undefined : parseFloat(val as string)),
-    z.number().min(1, "Kolesterol harus valid").optional()
+    z.number().min(1, "Lingkar perut harus valid")
   ),
-  lingkarPerut: z.preprocess(
-    (val) => (val === "" ? undefined : parseFloat(val as string)),
-    z.number().min(1, "Lingkar perut harus valid").optional()
-  ),
-  tensiDarah: z.string().optional(),
-  keterangan: z.string().optional(),
 });
 
 type LayananFormValues = z.infer<typeof layananSchema>;
@@ -77,12 +73,9 @@ export default function EditLayananLansia({
     defaultValues: {
       beratBadan: getSanitizedValue(row_edit?.getValue("beratBadan")),
       tinggiBadan: getSanitizedValue(row_edit?.getValue("tinggiBadan")),
-      asamUrat: getSanitizedValue(row_edit?.getValue("asamUrat")),
-      gulaDarah: getSanitizedValue(row_edit?.getValue("gulaDarah")),
-      kolesterol: getSanitizedValue(row_edit?.getValue("kolesterol")),
-      lingkarPerut: getSanitizedValue(row_edit?.getValue("lingkarPerut")),
-      tensiDarah: getSanitizedValue(row_edit?.getValue("tensiDarah")),
-      keterangan: getSanitizedValue(row_edit?.getValue("keterangan")),
+      lingkarLengan: getSanitizedValue(row_edit?.getValue("lingkarLengan")),
+      tinggiPundus: getSanitizedValue(row_edit?.getValue("tinggiPundus")),
+      umurKehamilan: getSanitizedValue(row_edit?.getValue("umurKehamilan")),
     },
   });
 
@@ -125,12 +118,8 @@ export default function EditLayananLansia({
             {[
               { label: "Berat Badan (kg)", name: "beratBadan" },
               { label: "Tinggi Badan (cm)", name: "tinggiBadan" },
-              { label: "Asam Urat (mg/dL)", name: "asamUrat" },
-              { label: "Gula Darah (mg/dL)", name: "gulaDarah" },
-              { label: "Kolesterol (mg/dL)", name: "kolesterol" },
-              { label: "Lingkar Perut (cm)", name: "lingkarPerut" },
-              { label: "Tensi Darah", name: "tensiDarah" },
-              { label: "Keterangan", name: "keterangan" },
+              { label: "Lingkar Lengan (cm)", name: "lingkarLengan" },
+              { label: "Umur Kehamilan", name: "umurKehamilan" },
             ].map((field) => (
               <div key={field.name}>
                 <label className="text-sm font-medium">{field.label}</label>

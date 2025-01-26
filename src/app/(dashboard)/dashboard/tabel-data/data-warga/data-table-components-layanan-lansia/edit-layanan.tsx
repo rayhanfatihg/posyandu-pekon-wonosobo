@@ -23,32 +23,19 @@ import { zodResolver } from "@hookform/resolvers/zod";
 
 // Schema Zod untuk Validasi Form
 const layananSchema = z.object({
-  beratBadan: z.preprocess(
+  nama: z.preprocess(
     (val) => (val === "" ? undefined : parseFloat(val as string)),
-    z.number().min(1, "Berat badan harus valid").optional()
+    z.number().min(1, "Berat badan harus valid")
   ),
-  tinggiBadan: z.preprocess(
+  nik: z.preprocess(
     (val) => (val === "" ? undefined : parseFloat(val as string)),
-    z.number().min(1, "Tinggi badan harus valid").optional()
+    z.number().min(1, "Tinggi badan harus valid")
   ),
-  asamUrat: z.preprocess(
+  tanggalLahir: z.preprocess(
     (val) => (val === "" ? undefined : parseFloat(val as string)),
-    z.number().min(1, "Asam urat harus valid").optional()
+    z.number().min(1, "Tanggal Lahir harus valid")
   ),
-  gulaDarah: z.preprocess(
-    (val) => (val === "" ? undefined : parseFloat(val as string)),
-    z.number().min(1, "Gula darah harus valid").optional()
-  ),
-  kolesterol: z.preprocess(
-    (val) => (val === "" ? undefined : parseFloat(val as string)),
-    z.number().min(1, "Kolesterol harus valid").optional()
-  ),
-  lingkarPerut: z.preprocess(
-    (val) => (val === "" ? undefined : parseFloat(val as string)),
-    z.number().min(1, "Lingkar perut harus valid").optional()
-  ),
-  tensiDarah: z.string().optional(),
-  keterangan: z.string().optional(),
+ 
 });
 
 type LayananFormValues = z.infer<typeof layananSchema>;
@@ -75,14 +62,9 @@ export default function EditLayananLansia({
   const form = useForm<LayananFormValues>({
     resolver: zodResolver(layananSchema),
     defaultValues: {
-      beratBadan: getSanitizedValue(row_edit?.getValue("beratBadan")),
-      tinggiBadan: getSanitizedValue(row_edit?.getValue("tinggiBadan")),
-      asamUrat: getSanitizedValue(row_edit?.getValue("asamUrat")),
-      gulaDarah: getSanitizedValue(row_edit?.getValue("gulaDarah")),
-      kolesterol: getSanitizedValue(row_edit?.getValue("kolesterol")),
-      lingkarPerut: getSanitizedValue(row_edit?.getValue("lingkarPerut")),
-      tensiDarah: getSanitizedValue(row_edit?.getValue("tensiDarah")),
-      keterangan: getSanitizedValue(row_edit?.getValue("keterangan")),
+      nama: getSanitizedValue(row_edit?.getValue("nama")),
+      nik: getSanitizedValue(row_edit?.getValue("nik")),
+      tanggalLahir: getSanitizedValue(row_edit?.getValue("tanggalLahir")),
     },
   });
 
