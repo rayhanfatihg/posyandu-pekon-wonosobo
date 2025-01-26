@@ -1,5 +1,3 @@
-import Link from "next/link";
-
 import {
   Card,
   CardContent,
@@ -7,7 +5,9 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+
 import Image from "next/image";
+import Link from "next/link";
 import { buttonVariants } from "@/components/ui/button";
 
 export default function Page() {
@@ -19,7 +19,7 @@ export default function Page() {
             <CardTitle className="text-center">
               Tabel Data Layanan
               <br />
-              Ibu dan Anak
+              Anak
             </CardTitle>
           </CardHeader>
           <CardContent>
@@ -45,12 +45,38 @@ export default function Page() {
             <CardTitle className="text-center">
               Tabel Data Layanan
               <br />
-              Lansia
+              Posbindu
             </CardTitle>
           </CardHeader>
           <CardContent>
             <Image
               src="/layanan-lansia.png"
+              width={300}
+              height={200}
+              alt="Layanan Lansia"
+            />
+          </CardContent>
+          <CardFooter>
+            <Link
+              href="/dashboard/tabel-data/data-layanan-lansia"
+              className={buttonVariants()}
+            >
+              Lihat Tabel Layanan
+            </Link>
+          </CardFooter>
+        </Card>
+
+        <Card className="aspect-square flex justify-center items-center flex-col">
+          <CardHeader>
+            <CardTitle className="text-center">
+              Tabel Data Layanan
+              <br />
+              Ibu Hamil
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <Image
+              src="/ibu-hamil.png"
               width={300}
               height={200}
               alt="Layanan Lansia"
