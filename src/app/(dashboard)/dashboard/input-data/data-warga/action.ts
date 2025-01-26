@@ -24,12 +24,16 @@ export async function saveDataWarga({
 
     console.log("Received data in backend:", { nama, nik, tanggalLahir, umur });
 
+    if (!nama || !nik || !tanggalLahir || !umur) {
+      throw new Error("Missing required fields in the payload.");
+    }
+
+
     const parsedDate = new Date(tanggalLahir);
   if (isNaN(parsedDate.getTime())) {
     return { success: false, error: "Tanggal Lahir is invalid" };
   }
 
-    
     const existingWarga = await db.warga.findUnique({
       where: { nik },
     });

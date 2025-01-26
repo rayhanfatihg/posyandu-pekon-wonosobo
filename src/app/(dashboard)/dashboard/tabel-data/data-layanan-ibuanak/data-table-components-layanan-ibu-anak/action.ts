@@ -23,6 +23,7 @@ export async function deleteLayananAnak(id_layanan: string) {
 export async function editLayananAnak(
   id_layanan: string,
   data: {
+    nik?: string;
     tinggiBadanAnak?: number;
     beratBadanAnak?: number;
     lingkarLenganAnak?: number;

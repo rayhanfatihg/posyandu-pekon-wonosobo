@@ -35,7 +35,6 @@ const wargaSchema = z
     tanggalLahir: z.string().refine((value) => !isNaN(Date.parse(value)), {
       message: "Tanggal Lahir tidak valid",
     }),
-    dusun: z.string().optional(),
   })
   .superRefine((data, ctx) => {
     Object.keys(data).forEach((key) => {
@@ -70,12 +69,14 @@ export default function InputDataWarga() {
 
   console.log("Submitted tanggalLahir:", data.tanggalLahir);
   console.log("Converted tanggalLahir:", new Date(data.tanggalLahir));
+
+  const utcTanggalLahir = new Date(data.tanggalLahir).toISOString();
   
     const age =
       new Date().getFullYear() - new Date(data.tanggalLahir).getFullYear();
     const wargaDataWithAge = {
       ...data,
-      tanggalLahir: new Date(data.tanggalLahir),
+      tanggalLahir:  new Date(data.tanggalLahir),
       umur: age,
     };
 

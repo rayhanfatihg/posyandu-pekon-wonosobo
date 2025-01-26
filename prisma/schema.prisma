@@ -72,8 +72,8 @@ model warga {
   nik                                   String            @unique
   tanggalLahir                          DateTime          @db.Timestamp(6)
   createdAt                             DateTime          @db.Timestamp(6)
-  updatedAt                             DateTime?         @db.Timestamp(6)
-  umur                                  BigInt?
+  updatedAt                             DateTime          @db.Timestamp(6)
+  umur                                  Int
   LayananAnak_LayananAnak_anakIdTowarga LayananAnak[]     @relation("LayananAnak_anakIdTowarga")
   LayananAnak_LayananAnak_ayahIdTowarga LayananAnak[]     @relation("LayananAnak_ayahIdTowarga")
   LayananAnak_LayananAnak_ibuIdTowarga  LayananAnak[]     @relation("LayananAnak_ibuIdTowarga")
@@ -82,7 +82,7 @@ model warga {
 }
 
 model LayananPosbindu {
-  id            String    @id @default(uuid())
+  id            String    @id(map: "LayananLansia_pkey") @default(uuid())
   wargaId       String
   beratBadan    Float?
   tinggiBadan   Float?
