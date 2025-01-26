@@ -94,10 +94,10 @@ const LayananAnak: React.FC<LayananAnakProps> = ({ data }) => {
       ibuId: "",
       ayahId: "",
       anakId: "",
-      tinggiBadanAnak: undefined,
-      beratBadanAnak: undefined,
-      lingkarLenganAnak: undefined,
-      lingkarKepalaAnak: undefined,
+      tinggiBadanAnak: 0,
+      beratBadanAnak: 0,
+      lingkarLenganAnak: 0,
+      lingkarKepalaAnak: 0,
     },
   });
 

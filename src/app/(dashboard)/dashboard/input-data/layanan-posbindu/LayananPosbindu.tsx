@@ -70,10 +70,10 @@ export default function LayananPosbinduForm({
     resolver: zodResolver(layananLansiaSchema),
     defaultValues: {
       wargaId: "",
-      beratBadan: undefined,
-      tinggiBadan: undefined,
+      beratBadan: 0,
+      tinggiBadan: 0,
       keterangan: "",
-      lingkarPerut: undefined,
+      lingkarPerut: 0,
       tensiDarah: "",
     },
   });

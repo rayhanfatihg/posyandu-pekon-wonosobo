@@ -25,30 +25,20 @@ import { zodResolver } from "@hookform/resolvers/zod";
 const layananSchema = z.object({
   beratBadan: z.preprocess(
     (val) => (val === "" ? undefined : parseFloat(val as string)),
-    z.number().min(1, "Berat badan harus valid").optional()
+    z.number().min(1, "Berat badan harus valid")
   ),
   tinggiBadan: z.preprocess(
     (val) => (val === "" ? undefined : parseFloat(val as string)),
-    z.number().min(1, "Tinggi badan harus valid").optional()
+    z.number().min(1, "Tinggi badan harus valid")
   ),
-  asamUrat: z.preprocess(
-    (val) => (val === "" ? undefined : parseFloat(val as string)),
-    z.number().min(1, "Asam urat harus valid").optional()
-  ),
-  gulaDarah: z.preprocess(
-    (val) => (val === "" ? undefined : parseFloat(val as string)),
-    z.number().min(1, "Gula darah harus valid").optional()
-  ),
-  kolesterol: z.preprocess(
-    (val) => (val === "" ? undefined : parseFloat(val as string)),
-    z.number().min(1, "Kolesterol harus valid").optional()
-  ),
+  
+ 
   lingkarPerut: z.preprocess(
     (val) => (val === "" ? undefined : parseFloat(val as string)),
-    z.number().min(1, "Lingkar perut harus valid").optional()
+    z.number().min(1, "Lingkar perut harus valid")
   ),
-  tensiDarah: z.string().optional(),
-  keterangan: z.string().optional(),
+  tensiDarah: z.string(),
+  keterangan: z.string(),
 });
 
 type LayananFormValues = z.infer<typeof layananSchema>;
@@ -77,9 +67,6 @@ export default function EditLayananLansia({
     defaultValues: {
       beratBadan: getSanitizedValue(row_edit?.getValue("beratBadan")),
       tinggiBadan: getSanitizedValue(row_edit?.getValue("tinggiBadan")),
-      asamUrat: getSanitizedValue(row_edit?.getValue("asamUrat")),
-      gulaDarah: getSanitizedValue(row_edit?.getValue("gulaDarah")),
-      kolesterol: getSanitizedValue(row_edit?.getValue("kolesterol")),
       lingkarPerut: getSanitizedValue(row_edit?.getValue("lingkarPerut")),
       tensiDarah: getSanitizedValue(row_edit?.getValue("tensiDarah")),
       keterangan: getSanitizedValue(row_edit?.getValue("keterangan")),
@@ -125,9 +112,6 @@ export default function EditLayananLansia({
             {[
               { label: "Berat Badan (kg)", name: "beratBadan" },
               { label: "Tinggi Badan (cm)", name: "tinggiBadan" },
-              { label: "Asam Urat (mg/dL)", name: "asamUrat" },
-              { label: "Gula Darah (mg/dL)", name: "gulaDarah" },
-              { label: "Kolesterol (mg/dL)", name: "kolesterol" },
               { label: "Lingkar Perut (cm)", name: "lingkarPerut" },
               { label: "Tensi Darah", name: "tensiDarah" },
               { label: "Keterangan", name: "keterangan" },

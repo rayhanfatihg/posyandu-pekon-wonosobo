@@ -26,7 +26,7 @@ function BreadcrumbTabelData() {
         </BreadcrumbItem>
         <BreadcrumbSeparator />
         <BreadcrumbItem>
-          <BreadcrumbPage>Layanan Lansia</BreadcrumbPage>
+          <BreadcrumbPage>Layanan Posbindu</BreadcrumbPage>
         </BreadcrumbItem>
       </BreadcrumbList>
     </Breadcrumb>
@@ -38,7 +38,7 @@ export default async function Page() {
 
   return (
     <div className="h-full">
-      <h1 className="text-2xl font-bold">Data Layanan Lansia</h1>
+      <h1 className="text-2xl font-bold">Data Layanan Posbindu</h1>
 
       <BreadcrumbTabelData />
 

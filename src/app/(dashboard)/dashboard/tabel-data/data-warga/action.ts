@@ -25,9 +25,9 @@ export async function getDataWarga() {
     // Format data untuk menyesuaikan dengan struktur yang diinginkan
     const formattedData = warga.map((item) => ({
       id_layanan: item.id,
-      namaWarga: item.nama,
+      nama: item.nama,
       nik: item.nik,
-      tanggalLahir: item.tanggalLahir, // Anda bisa format ini jika diperlukan
+      tanggalLahir: item.tanggalLahir ? formatDate(item.tanggalLahir) : null,
       //date: formatDate(item.createdAt), // Format tanggal dibuat
     }));
 

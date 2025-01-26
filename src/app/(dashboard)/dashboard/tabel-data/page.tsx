@@ -102,7 +102,7 @@ export default function Page() {
           </CardHeader>
           <CardContent>
             <Image
-              src="/ibu-hamil.png"
+              src="/warga.png"
               width={300}
               height={200}
               alt="Layanan Lansia"

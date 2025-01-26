@@ -1,17 +1,23 @@
 "use client";
 
-import { Table } from "@tanstack/react-table";
+import { TrashIcon, X } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
+import { CalendarDatePicker } from "@/components/calendar-date-picker";
+import { DataTableViewOptions } from "./data-table-view-options";
 import { Input } from "@/components/ui/input";
+import SaveButton from "../SaveButton";
+import { Table } from "@tanstack/react-table";
+import { useState } from "react";
+
 // import { incomeType, categories } from "./data";
 // import { DataTableFacetedFilter } from "./data-table-faceted-filter";
 // import { DataTableViewOptions } from "@/components/ui/data-table-view-options";
-import { CalendarDatePicker } from "@/components/calendar-date-picker";
-import { useState } from "react";
-import { DataTableViewOptions } from "./data-table-view-options";
-import { TrashIcon, X } from "lucide-react";
-import SaveButton from "../SaveButton";
+
+
+
+
+
 
 interface DataTableToolbarProps<TData> {
   table: Table<TData>;
@@ -43,12 +49,12 @@ export function DataTableToolbar<TData>({
   };
 
   const getFilterValue = () => {
-    const namaWargaFilter = table
-      .getColumn("namaWarga")
+    const namaFilter = table
+      .getColumn("nama")
       ?.getFilterValue() as string;
 
     // Return the first non-empty value among the filters, or empty string if none
-    return namaWargaFilter || "";
+    return namaFilter || "";
   };
 
   return (

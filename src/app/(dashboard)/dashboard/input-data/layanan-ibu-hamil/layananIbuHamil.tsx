@@ -87,11 +87,11 @@ const LayananIbuHamil: React.FC<LayananIbuHamilProps> = ({ data }) => {
     resolver: zodResolver(layananIbuHamilSchema),
     defaultValues: {
     bumilId: "",
-    tinggiBadan: undefined,
-    beratBadan: undefined,
-    lingkarLengan: undefined,
-    tinggiPundus: undefined,
-    umurKehamilan: undefined,
+    tinggiBadan: 0,
+    beratBadan: 0,
+    lingkarLengan: 0,
+    tinggiPundus: 0,
+    umurKehamilan: 0,
     
     },
   });

@@ -7,10 +7,4 @@ export interface Warga {
   nik: string;
   tanggalLahir: Date;
   // Relations
-  warga: {
-    id: string;
-    nama: string;
-    nik: string;
-    tanggalLahir: string;
-  };
 }

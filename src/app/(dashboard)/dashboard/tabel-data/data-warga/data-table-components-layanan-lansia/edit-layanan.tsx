@@ -23,17 +23,11 @@ import { zodResolver } from "@hookform/resolvers/zod";
 
 // Schema Zod untuk Validasi Form
 const layananSchema = z.object({
-  nama: z.preprocess(
-    (val) => (val === "" ? undefined : parseFloat(val as string)),
-    z.number().min(1, "Berat badan harus valid")
-  ),
-  nik: z.preprocess(
-    (val) => (val === "" ? undefined : parseFloat(val as string)),
-    z.number().min(1, "Tinggi badan harus valid")
-  ),
+  nama: z.string(),
+  nik: z.string(),
   tanggalLahir: z.preprocess(
-    (val) => (val === "" ? undefined : parseFloat(val as string)),
-    z.number().min(1, "Tanggal Lahir harus valid")
+    (val) => (typeof val === "string" || val instanceof Date ? new Date(val) : undefined),
+    z.date({ required_error: "Tanggal Lahir harus diisi", invalid_type_error: "Tanggal Lahir harus berupa tanggal yang valid" })
   ),
  
 });
