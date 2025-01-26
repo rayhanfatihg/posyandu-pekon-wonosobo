@@ -164,7 +164,7 @@ const LayananIbuHamil: React.FC<LayananIbuHamilProps> = ({ data }) => {
           name="beratBadan"
           render={({ field }) => (
             <FormItem className="flex flex-col">
-              <Label>Berat Badan Anak/Balita (kg)</Label>
+              <Label>Berat Badan </Label>
               <FormControl>
                 <Input
                   type="number"
@@ -185,7 +185,7 @@ const LayananIbuHamil: React.FC<LayananIbuHamilProps> = ({ data }) => {
           name="tinggiBadan"
           render={({ field }) => (
             <FormItem className="flex flex-col">
-              <Label>Tinggi Badan Anak/Balita (cm)</Label>
+              <Label>Tinggi Badan </Label>
               <FormControl>
                 <Input
                   type="number"
@@ -206,7 +206,7 @@ const LayananIbuHamil: React.FC<LayananIbuHamilProps> = ({ data }) => {
           name="lingkarLengan"
           render={({ field }) => (
             <FormItem className="flex flex-col">
-              <Label>Lingkar Lengan Anak/Balita (cm)</Label>
+              <Label>Lingkar Lengan</Label>
               <FormControl>
                 <Input
                   type="number"
@@ -226,11 +226,11 @@ const LayananIbuHamil: React.FC<LayananIbuHamilProps> = ({ data }) => {
           name="tinggiPundus"
           render={({ field }) => (
             <FormItem className="flex flex-col">
-              <Label>Lingkar Kepala Anak/Balita (cm)</Label>
+              <Label>Tinggi Pundus (cm)</Label>
               <FormControl>
                 <Input
                   type="number"
-                  placeholder="Masukkan Lingkar tinggi pundus"
+                  placeholder="Masukkan tinggi pundus"
                   {...field}
                 />
               </FormControl>
@@ -246,7 +246,7 @@ const LayananIbuHamil: React.FC<LayananIbuHamilProps> = ({ data }) => {
           name="umurKehamilan"
           render={({ field }) => (
             <FormItem className="flex flex-col">
-              <Label>Lingkar Kepala Anak/Balita (cm)</Label>
+              <Label>Umur kehamilan</Label>
               <FormControl>
                 <Input
                   type="number"
