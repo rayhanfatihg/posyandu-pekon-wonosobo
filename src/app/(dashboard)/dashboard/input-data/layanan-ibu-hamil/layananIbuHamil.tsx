@@ -210,7 +210,7 @@ const LayananIbuHamil: React.FC<LayananIbuHamilProps> = ({ data }) => {
               <FormControl>
                 <Input
                   type="number"
-                  placeholder="Masukkan Lingkar Lengan Anak/Balita"
+                  placeholder="Masukkan Lingkar Lengan "
                   {...field}
                 />
               </FormControl>
@@ -230,7 +230,27 @@ const LayananIbuHamil: React.FC<LayananIbuHamilProps> = ({ data }) => {
               <FormControl>
                 <Input
                   type="number"
-                  placeholder="Masukkan Lingkar Lengan Anak/Balita"
+                  placeholder="Masukkan Lingkar tinggi pundus"
+                  {...field}
+                />
+              </FormControl>
+              <FormMessage>
+                {form.formState.errors.tinggiPundus?.message}
+              </FormMessage>
+            </FormItem>
+          )}
+        />
+
+        <FormField
+          control={form.control}
+          name="umurKehamilan"
+          render={({ field }) => (
+            <FormItem className="flex flex-col">
+              <Label>Lingkar Kepala Anak/Balita (cm)</Label>
+              <FormControl>
+                <Input
+                  type="number"
+                  placeholder="Masukkan umur kehamilan"
                   {...field}
                 />
               </FormControl>

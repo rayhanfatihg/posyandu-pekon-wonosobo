@@ -89,28 +89,14 @@ export default function InputDataPage() {
 
           {/* Tabs Content */}
           <TabsContent value="anak">
-            {loading ? (
-              <Skeleton />
-            ) : (
-              wargaOptions.length > 0 && <LayananAnak data={wargaOptions} />
-            )}
-          </TabsContent>
-          <TabsContent value="posbindu">
-            {loading ? (
-              <Skeleton />
-            ) : (
-              wargaOptions.length > 0 && (
-                <LayananPosbinduForm data={wargaOptions} />
-              )
-            )}
-          </TabsContent>
-          <TabsContent value="ibuhammil">
-            {loading ? (
-              <Skeleton />
-            ) : (
-              wargaOptions.length > 0 && <LayananIbuHamil data={wargaOptions} />
-            )}
-          </TabsContent>
+  <LayananAnak data={wargaOptions} />
+</TabsContent>
+<TabsContent value="posbindu">
+  <LayananPosbinduForm data={wargaOptions} />
+</TabsContent>
+<TabsContent value="ibuhamil">
+  <LayananIbuHamil data={wargaOptions} />
+</TabsContent>
           
         </Tabs>
       </div>

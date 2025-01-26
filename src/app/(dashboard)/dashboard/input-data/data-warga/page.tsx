@@ -75,6 +75,8 @@ export default function InputDataWarga() {
       umur: age,
     };
 
+    console.log("Payload to saveDataWarga:", wargaDataWithAge);
+
     const result = await saveDataWarga(wargaDataWithAge);
 
     if (result.success) {

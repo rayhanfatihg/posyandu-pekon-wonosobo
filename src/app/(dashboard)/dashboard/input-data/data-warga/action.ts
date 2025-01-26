@@ -21,6 +21,9 @@ export async function saveDataWarga({
 }) {
   try {
     // Periksa apakah NIK sudah ada di database
+
+    console.log("Received payload:", { nama, nik, tanggalLahir, umur });
+    
     const existingWarga = await db.warga.findUnique({
       where: { nik },
     });
