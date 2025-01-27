@@ -3,10 +3,8 @@ import Footer from "@/components/footer";
 import Image from "next/image";
 import Link from "next/link";
 import Navbar from "@/components/navbar";
-import { readBlog } from "@/components/(guest)/berita-artikel/dashboard/action";
 
 export default async function Home() {
-  const articles = await readBlog();
 
   const currentMonthName = getMonthNameInIndonesian(new Date().getMonth());
 
