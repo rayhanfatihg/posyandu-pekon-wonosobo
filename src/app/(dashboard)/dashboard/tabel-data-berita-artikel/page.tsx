@@ -1,5 +1,3 @@
-import React from "react";
-
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import {
   Table,
@@ -10,8 +8,9 @@ import {
   TableRow,
 } from "@/components/ui/table";
 
-import { getTablePost } from "./action";
 import InteractiveButton from "./InteractiveButton";
+import React from "react";
+import { getTablePost } from "./action";
 
 export default async function BlogTablePage() {
   const data = await getTablePost();
@@ -40,7 +39,7 @@ export default async function BlogTablePage() {
                     <TableCell>{item.title}</TableCell>
                     <TableCell>
                       <a
-                        href={item.image_url}
+                        href=""
                         target="_blank"
                         rel="noopener noreferrer"
                       >

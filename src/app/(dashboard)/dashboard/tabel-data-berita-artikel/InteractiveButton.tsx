@@ -1,8 +1,5 @@
 "use client";
 
-import React, { useState } from "react";
-import { toast } from "@/hooks/use-toast";
-import { togglePostStatus, deletePost } from "./action";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -14,6 +11,10 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
+import React, { useState } from "react";
+import { deletePost, togglePostStatus } from "./action";
+
+import { toast } from "@/hooks/use-toast";
 
 interface InteractiveButtonProps {
   id: string;
