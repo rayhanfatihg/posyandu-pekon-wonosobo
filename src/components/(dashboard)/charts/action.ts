@@ -327,6 +327,8 @@ export async function getStatusGiziAnak() {
       },
     });
 
+    console.log("Fetched Raw Data:", layananData);
+
     // Inisialisasi kategori status gizi
     let giziBaik = 0;
     let kurangGizi = 0;
@@ -334,13 +336,22 @@ export async function getStatusGiziAnak() {
 
     // Hitung status gizi berdasarkan berat badan dan tinggi badan
     layananData.forEach((item) => {
+
+      if (!item.beratBadanAnak || !item.tinggiBadanAnak) {
+        console.warn("Invalid Data:", item); // Log invalid entries
+        return; // Skip this entry
+      }
+      
       if (item.beratBadanAnak && item.tinggiBadanAnak) {
         // Hitung rasio BB/TB (berat badan / tinggi badan dalam meter persegi)
         const tinggiMeter = item.tinggiBadanAnak / 100; // cm -> meter
         const bmi = item.beratBadanAnak / (tinggiMeter * tinggiMeter);
 
+        console.log(`BMI: ${bmi} (Berat: ${item.beratBadanAnak}, Tinggi: ${item.tinggiBadanAnak})`);
+
         if (bmi >= 18.5 && bmi <= 24.9) {
           giziBaik++;
+          console.log("Gizi Baik incremented, current count:", giziBaik);
         } else if (bmi >= 17 && bmi < 18.5) {
           kurangGizi++;
         } else if (bmi < 17) {
@@ -360,6 +371,7 @@ export async function getStatusGiziAnak() {
       { status: "Gizi Buruk", jumlah: giziBuruk, fill: "hsl(var(--chart-1))" },
     ];
 
+    console.log("data gizi ada", chartData)
     return { success: true, data: chartData };
   } catch (error) {
     console.error("Gagal mengambil status gizi anak:", error);

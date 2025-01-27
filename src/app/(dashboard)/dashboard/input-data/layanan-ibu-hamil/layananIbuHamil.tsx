@@ -57,7 +57,7 @@ const layananIbuHamilSchema = z.object({
     (val) => (val === undefined ? undefined : parseFloat(val as string)),
     z
       .number()
-      .min(1, { message: "Lingkar Kepala Anak harus lebih dari 0" })
+      .min(1, { message: "Tinggi pundus harus lebih dari 0" })
       .optional()
   ),
 

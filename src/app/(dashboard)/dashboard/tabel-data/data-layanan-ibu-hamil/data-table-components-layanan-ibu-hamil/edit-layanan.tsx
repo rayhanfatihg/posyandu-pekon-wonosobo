@@ -88,7 +88,7 @@ export default function EditLayananLansia({
     if (response.success) {
       toast({
         title: "Berhasil",
-        description: "Data layanan lansia berhasil diperbarui.",
+        description: "Data layanan Ibu Hamil berhasil diperbarui.",
       });
       onClose();
 

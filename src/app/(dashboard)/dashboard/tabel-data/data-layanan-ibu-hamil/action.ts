@@ -45,6 +45,7 @@ export async function getDataLayananIbuHamil() {
       tinggiBadan: item.tinggiBadan ?? null,
       lingkarLengan: item.lingkarLengan ?? null,
       umurKehamilan: item.umurKehamilan ?? null,
+      tinggiPundus: item.tinggiPundus ?? null,
       date: formatDate(item.createdAt), // Format tanggal dibuat
     }));
 
