@@ -1,8 +1,6 @@
 import { Button } from "@/components/ui/button";
-import CardBeritaArtikel from "@/components/(guest)/berita-artikel/CardBeritaArtikel";
 import Footer from "@/components/footer";
 import Image from "next/image";
-import JadwalKegiatanBulanIni from "@/components/(guest)/jadwal-kegiatan/jadwal-kegiatan";
 import Link from "next/link";
 import Navbar from "@/components/navbar";
 import { readBlog } from "@/components/(guest)/berita-artikel/dashboard/action";
@@ -47,15 +45,9 @@ export default async function Home() {
 
       <section className="flex flex-col items-center justify-start py-20">
         <h2 className="text-center text-2xl font-bold">
-          Jadwal Posyandu Bulan {currentMonthName}
         </h2>
 
-        <div className="mt-5 w-fit">
-          {/* <CalendarDemo /> */}
-
-          <JadwalKegiatanBulanIni />
-        </div>
-
+       
         {/* <div className="mx-auto mt-5 flex w-fit min-w-[300px] flex-col items-start px-4">
           <p className="font-bold">Keterangan</p>
 
@@ -67,29 +59,7 @@ export default async function Home() {
         </div> */}
       </section>
 
-      <section className="flex flex-col items-center justify-center py-20">
-        <h2 className="text-2xl font-bold">List Berita & Artikel</h2>
-
-        <div className="mt-5 flex w-fit flex-wrap justify-center gap-2">
-          {articles
-            .slice(0, 3)
-            .map(({ id, title, image_url, blog_content }) => (
-              <Link key={id} href={`/berita-artikel/${id}`}>
-                <CardBeritaArtikel
-                  img={image_url}
-                  title={title}
-                  desc={blog_content[0]?.content.slice(0, 100) || ""}
-                />
-              </Link>
-            ))}
-        </div>
-
-        <Link href="/berita-artikel" className="mt-10 flex w-fit">
-          <Button type="submit" size="sm" className="w-full">
-            Lihat Semua Berita & Artikel
-          </Button>
-        </Link>
-      </section>
+      
 
       <Footer />
     </main>

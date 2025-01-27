@@ -31,13 +31,7 @@ export default async function Navbar() {
               Posyandu Marga Agung
             </Link>
 
-            <Link
-              href="/berita-artikel"
-              className="flex items-center text-sm font-medium transition-colors duration-300 ease-in-out hover:text-primary"
-              prefetch={false}
-            >
-              Berita & Artikel
-            </Link>
+            
           </nav>
 
           <div className="flex items-center gap-4">

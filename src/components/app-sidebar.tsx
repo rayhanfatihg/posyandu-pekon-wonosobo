@@ -43,21 +43,7 @@ const items = [
     url: "/tabel-data",
     icon: ClipboardType,
   },
-  {
-    title: "Tambah Artikel & Berita",
-    url: "/tambah-berita-artikel",
-    icon: Newspaper,
-  },
-  {
-    title: "Atur Posting Artikel & Berita",
-    url: "/tabel-data-berita-artikel",
-    icon: Newspaper,
-  },
-  {
-    title: "Atur Jadwal Posyandu",
-    url: "/jadwal-posyandu",
-    icon: Calendar,
-  },
+  
 ];
 
 export default async function AppSidebar() {
