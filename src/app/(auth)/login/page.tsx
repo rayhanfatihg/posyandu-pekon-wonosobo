@@ -1,15 +1,14 @@
 "use client";
 
-import { useState } from "react";
-import Image from "next/image";
-
-import { useToast } from "@/hooks/use-toast";
-import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+
+import { Button } from "@/components/ui/button";
+import Image from "next/image";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-
 import { login } from "./action";
+import { useState } from "react";
+import { useToast } from "@/hooks/use-toast";
 
 export default function LoginPage() {
   const [isLoading, setIsLoading] = useState(false);
@@ -47,7 +46,7 @@ export default function LoginPage() {
           src="/logo-posyandu.png"
           width={1000}
           height={1000}
-          alt="Posyandu Marga Agung"
+          alt="Posyandu Wonosobo"
           className="h-32 w-36 rounded-md border"
         />
 
@@ -55,7 +54,7 @@ export default function LoginPage() {
           src="/logo-sgds.png"
           width={1000}
           height={1000}
-          alt="Posyandu Marga Agung"
+          alt="Posyandu Wonosobo"
           className="h-32 w-36 rounded-md border"
         />
       </div>
@@ -68,7 +67,7 @@ export default function LoginPage() {
               <br />
               Admin & Kader Posyandu
               <br />
-              Desa Marga Agung
+              Wonosobo
             </h1>
 
             <div className="mt-10 flex flex-col items-start justify-center gap-1">
