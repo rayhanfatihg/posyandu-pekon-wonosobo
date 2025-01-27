@@ -17,7 +17,7 @@ import {
 
 interface InteractiveButtonProps {
   id: string;
-  isCurrentlyPublished: boolean;
+  isCurrentlyPublished: boolean | null;
 }
 
 export default function InteractiveButton({
