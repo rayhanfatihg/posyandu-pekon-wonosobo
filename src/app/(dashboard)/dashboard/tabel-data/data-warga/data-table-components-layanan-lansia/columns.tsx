@@ -53,7 +53,7 @@ export const columns: ColumnDef<Warga>[] = [
       <DataTableColumnHeader column={column} title="nik" />
     ),
     cell: ({ row }) => (
-      <div className="flex w-[100px] items-center">{row.getValue("nik")}</div>
+      <div className="flex w-[200px] items-center">{row.getValue("nik")}</div>
     ),
     enableSorting: true,
     enableHiding: false,

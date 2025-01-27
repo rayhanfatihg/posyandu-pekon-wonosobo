@@ -21,19 +21,24 @@ import {
 import { getCombinedLayananPerBulan } from "./action";
 
 const chartConfig = {
-  pemeriksaanIbuAnak: {
-    label: "Pemeriksaan Ibu & Anak",
+  pemeriksaanAnak: {
+    label: "Pemeriksaan Anak",
     color: "hsl(var(--chart-1))",
   },
-  pemeriksaanLansia: {
-    label: "Pemeriksaan Lansia",
+  pemeriksaanPosbindu: {
+    label: "Pemeriksaan Posbindu",
+    color: "hsl(var(--chart-2))",
+  },
+
+  pemeriksaanIbuHamil: {
+    label: "Pemeriksaan Ibu Hamil",
     color: "hsl(var(--chart-2))",
   },
 } satisfies ChartConfig;
 
 export function ChartDemo3() {
   const [chartData, setChartData] = useState<
-    { bulan: string; pemeriksaanIbuAnak: number; pemeriksaanLansia: number }[]
+    { bulan: string; pemeriksaanAnak: number; pemeriksaanPosbindu: number; pemeriksaanIbuHamil: number; }[]
   >([]);
   const [tren, setTren] = useState<"meningkat" | "menurun" | "stabil">(
     "stabil"
@@ -45,8 +50,8 @@ export function ChartDemo3() {
       if (response.success) {
         // Filter data: hanya tampilkan jika salah satu nilai > 0
         const filteredData = response.data.filter(
-          (item: { pemeriksaanIbuAnak: number; pemeriksaanLansia: number }) =>
-            item.pemeriksaanIbuAnak > 0 || item.pemeriksaanLansia > 0
+          (item: { pemeriksaanAnak: number; pemeriksaanPosbindu: number; pemeriksaanIbuHamil: number; }) =>
+            item.pemeriksaanAnak > 0 || item.pemeriksaanPosbindu > 0 || item.pemeriksaanIbuHamil > 0
         );
 
         setChartData(filteredData);
@@ -57,9 +62,9 @@ export function ChartDemo3() {
           const previousMonth = filteredData[filteredData.length - 2];
 
           const totalLastMonth =
-            lastMonth.pemeriksaanIbuAnak + lastMonth.pemeriksaanLansia;
+            lastMonth.pemeriksaanAnak + lastMonth.pemeriksaanPosbindu + lastMonth.pemeriksaanIbuHamil;
           const totalPreviousMonth =
-            previousMonth.pemeriksaanIbuAnak + previousMonth.pemeriksaanLansia;
+            previousMonth.pemeriksaanAnak + previousMonth.pemeriksaanPosbindu + lastMonth.pemeriksaanIbuHamil;
 
           if (totalLastMonth > totalPreviousMonth) {
             setTren("meningkat");

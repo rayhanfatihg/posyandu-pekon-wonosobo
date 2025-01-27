@@ -3,9 +3,9 @@
 import db from "@/lib/db";
 
 // Fungsi untuk mengambil jumlah pemeriksaan Layanan Ibu Anak per bulan (Januari - Desember)
-export async function getLayananIbuAnakPerBulan() {
+export async function getLayananAnakPerBulan() {
   try {
-    const layananData = await db.layananIbuAnak.findMany({
+    const layananData = await db.layananAnak.findMany({
       select: { createdAt: true },
     });
 
@@ -17,7 +17,7 @@ export async function getLayananIbuAnakPerBulan() {
 
     const formattedData = pemeriksaanPerBulan.map((jumlah, index) => ({
       bulan: new Date(0, index).toLocaleString("id-ID", { month: "long" }),
-      pemeriksaanIbuAnak: jumlah,
+      pemeriksaanAnak: jumlah,
     }));
 
     return { success: true, data: formattedData };
@@ -28,9 +28,9 @@ export async function getLayananIbuAnakPerBulan() {
 }
 
 // Fungsi untuk mengambil jumlah pemeriksaan Layanan Lansia per bulan (Januari - Desember)
-export async function getLayananLansiaPerBulan() {
+export async function getLayananPosbinduPerBulan() {
   try {
-    const layananData = await db.layananLansia.findMany({
+    const layananData = await db.layananPosbindu.findMany({
       select: { createdAt: true },
     });
 
@@ -42,7 +42,31 @@ export async function getLayananLansiaPerBulan() {
 
     const formattedData = pemeriksaanPerBulan.map((jumlah, index) => ({
       bulan: new Date(0, index).toLocaleString("id-ID", { month: "long" }),
-      pemeriksaanLansia: jumlah,
+      pemeriksaanPosbindu: jumlah,
+    }));
+
+    return { success: true, data: formattedData };
+  } catch (error) {
+    console.error("Gagal mengambil data Layanan Lansia:", error);
+    return { success: false, data: [], error: "Gagal mengambil data." };
+  }
+}
+
+export async function getLayananIbuHamilPerBulan() {
+  try {
+    const layananData = await db.layananIbuHamil.findMany({
+      select: { createdAt: true },
+    });
+
+    const pemeriksaanPerBulan = Array(12).fill(0);
+    layananData.forEach((item) => {
+      const month = new Date(item.createdAt).getMonth();
+      pemeriksaanPerBulan[month]++;
+    });
+
+    const formattedData = pemeriksaanPerBulan.map((jumlah, index) => ({
+      bulan: new Date(0, index).toLocaleString("id-ID", { month: "long" }),
+      pemeriksaanIbuHamil: jumlah,
     }));
 
     return { success: true, data: formattedData };
@@ -54,20 +78,22 @@ export async function getLayananLansiaPerBulan() {
 
 // Fungsi untuk menggabungkan data Layanan Ibu Anak dan Lansia
 export async function getCombinedLayananPerBulan() {
-  const [ibuAnakResponse, lansiaResponse] = await Promise.all([
-    getLayananIbuAnakPerBulan(),
-    getLayananLansiaPerBulan(),
+  const [anakResponse, posbinduResponse,ibuHamilResponse] = await Promise.all([
+    getLayananAnakPerBulan(),
+    getLayananPosbinduPerBulan(),
+    getLayananIbuHamilPerBulan(),
   ]);
 
-  if (!ibuAnakResponse.success || !lansiaResponse.success) {
+  if (!anakResponse.success || !posbinduResponse.success || ibuHamilResponse.success) {
     return { success: false, data: [], error: "Gagal mengambil data layanan." };
   }
 
   // Gabungkan data berdasarkan bulan
-  const combinedData = ibuAnakResponse.data.map((item, index) => ({
+  const combinedData = anakResponse.data.map((item, index) => ({
     bulan: item.bulan,
-    pemeriksaanIbuAnak: item.pemeriksaanIbuAnak,
-    pemeriksaanLansia: lansiaResponse.data[index]?.pemeriksaanLansia || 0,
+    pemeriksaanAnak: item.pemeriksaanAnak,
+    pemeriksaanPosbindu: posbinduResponse.data[index]?.pemeriksaanPosbindu || 0,
+    pemeriksaanIbuHamil: ibuHamilResponse.data[index]?.pemeriksaanIbuHamil || 0,
   }));
 
   return { success: true, data: combinedData };
@@ -76,15 +102,12 @@ export async function getCombinedLayananPerBulan() {
 // Fungsi untuk mengambil rata-rata pemeriksaan Layanan Lansia per bulan
 export async function getRataRataLayananLansiaPerBulan() {
   try {
-    const layananData = await db.layananLansia.findMany({
+    const layananData = await db.layananPosbindu.findMany({
       select: {
         createdAt: true,
-        gulaDarah: true,
         tensiDarah: true,
         beratBadan: true,
         tinggiBadan: true,
-        asamUrat: true,
-        kolesterol: true,
         lingkarPerut: true,
       },
     });
@@ -97,15 +120,11 @@ export async function getRataRataLayananLansiaPerBulan() {
         totalTensi: 0,
         totalBerat: 0,
         totalTinggi: 0,
-        totalAsamUrat: 0,
-        totalKolesterol: 0,
         totalLingkarPerut: 0,
         jumlahGds: 0,
         jumlahTensi: 0,
         jumlahBerat: 0,
         jumlahTinggi: 0,
-        jumlahAsamUrat: 0,
-        jumlahKolesterol: 0,
         jumlahLingkarPerut: 0,
       }));
 
@@ -113,10 +132,6 @@ export async function getRataRataLayananLansiaPerBulan() {
     layananData.forEach((item) => {
       const month = new Date(item.createdAt).getMonth();
 
-      if (item.gulaDarah !== null) {
-        bulanData[month].totalGds += item.gulaDarah;
-        bulanData[month].jumlahGds++;
-      }
 
       if (item.tensiDarah !== null) {
         bulanData[month].totalTensi += parseFloat(item.tensiDarah);
@@ -133,15 +148,7 @@ export async function getRataRataLayananLansiaPerBulan() {
         bulanData[month].jumlahTinggi++;
       }
 
-      if (item.asamUrat !== null) {
-        bulanData[month].totalAsamUrat += item.asamUrat;
-        bulanData[month].jumlahAsamUrat++;
-      }
-
-      if (item.kolesterol !== null) {
-        bulanData[month].totalKolesterol += item.kolesterol;
-        bulanData[month].jumlahKolesterol++;
-      }
+      
 
       if (item.lingkarPerut !== null) {
         bulanData[month].totalLingkarPerut += item.lingkarPerut;
@@ -184,16 +191,6 @@ export async function getRataRataLayananLansiaPerBulan() {
           data.jumlahTinggi > 0
             ? parseFloat((data.totalTinggi / data.jumlahTinggi).toFixed(2))
             : 0,
-        rataRataAsamUrat:
-          data.jumlahAsamUrat > 0
-            ? parseFloat((data.totalAsamUrat / data.jumlahAsamUrat).toFixed(2))
-            : 0,
-        rataRataKolesterol:
-          data.jumlahKolesterol > 0
-            ? parseFloat(
-                (data.totalKolesterol / data.jumlahKolesterol).toFixed(2)
-              )
-            : 0,
         rataRataLingkarPerut:
           data.jumlahLingkarPerut > 0
             ? parseFloat(
@@ -213,7 +210,7 @@ export async function getRataRataLayananLansiaPerBulan() {
 export async function getRataRataPemeriksaanAnak() {
   try {
     // Ambil semua data LayananIbuAnak
-    const layananData = await db.layananIbuAnak.findMany({
+    const layananData = await db.layananAnak.findMany({
       select: {
         createdAt: true,
         beratBadanAnak: true,
@@ -323,11 +320,10 @@ export async function getRataRataPemeriksaanAnak() {
 export async function getStatusGiziAnak() {
   try {
     // Ambil semua data layanan ibu anak
-    const layananData = await db.layananIbuAnak.findMany({
+    const layananData = await db.layananAnak.findMany({
       select: {
         beratBadanAnak: true,
         tinggiBadanAnak: true,
-        umurAnak: true,
       },
     });
 

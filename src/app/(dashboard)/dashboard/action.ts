@@ -23,7 +23,7 @@ export async function getWargaStats() {
 
 export async function getLayananAnakStats() {
   try {
-    const layananIbuAnak = await db.layananAnak.findMany({
+    const layananAnak = await db.layananAnak.findMany({
       select: {
         id: true,
         anakId: true,
@@ -34,7 +34,7 @@ export async function getLayananAnakStats() {
       },
     });
 
-    return layananIbuAnak;
+    return layananAnak;
   } catch (error) {
     console.error("Gagal mengambil data layanan ibu dan anak:", error);
     throw new Error("Gagal mengambil data layanan ibu dan anak");

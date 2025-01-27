@@ -49,7 +49,6 @@ export function ChartDemo5() {
       rataRataTensi: number;
       rataRataBerat: number;
       rataRataTinggi: number;
-      rataRataKolesterol: number;
     }[]
   >([]);
   const [tren, setTren] = useState<"meningkat" | "menurun" | "stabil">(
@@ -66,8 +65,8 @@ export function ChartDemo5() {
             item.rataRataGds > 0 ||
             item.rataRataTensi > 0 ||
             item.rataRataBerat > 0 ||
-            item.rataRataTinggi > 0 ||
-            item.rataRataKolesterol > 0
+            item.rataRataTinggi > 0
+            
           );
         });
 
@@ -82,15 +81,14 @@ export function ChartDemo5() {
             lastMonth.rataRataGds +
             lastMonth.rataRataTensi +
             lastMonth.rataRataBerat +
-            lastMonth.rataRataTinggi +
-            lastMonth.rataRataKolesterol;
+            lastMonth.rataRataTinggi;
+            
 
           const totalPreviousMonth =
             previousMonth.rataRataGds +
             previousMonth.rataRataTensi +
             previousMonth.rataRataBerat +
-            previousMonth.rataRataTinggi +
-            previousMonth.rataRataKolesterol;
+            previousMonth.rataRataTinggi;
 
           if (totalLastMonth > totalPreviousMonth) {
             setTren("meningkat");
