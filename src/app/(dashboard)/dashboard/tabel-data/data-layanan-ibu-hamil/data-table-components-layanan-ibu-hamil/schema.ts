@@ -9,7 +9,8 @@ export interface LayananIbuHamil {
   beratBadan?: number | null;
   tinggiBadan?: number | null;
   tinggiPundus?: number | null;
-  lingkarLengan?: string | null;
+  umurKehamilan?: number | null;
+  lingkarLengan?: number | null;
   createdAt: string; // ISO String Date
   updatedAt: string; // ISO String Date
 

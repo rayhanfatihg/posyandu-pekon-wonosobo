@@ -27,10 +27,6 @@ const layananSchema = z.object({
     (val) => (val === "" ? undefined : parseFloat(val as string)),
     z.number().min(1, "Tinggi badan ibu harus valid").optional()
   ),
-  beratBadanIbu: z.preprocess(
-    (val) => (val === "" ? undefined : parseFloat(val as string)),
-    z.number().min(1, "Berat badan ibu harus valid").optional()
-  ),
   lingkarLenganIbu: z.preprocess(
     (val) => (val === "" ? undefined : parseFloat(val as string)),
     z.number().min(1, "Lingkar lengan ibu harus valid").optional()
@@ -86,15 +82,7 @@ export default function EditLayanan({
   const form = useForm<LayananFormValues>({
     resolver: zodResolver(layananSchema),
     defaultValues: {
-      tinggiBadanIbu: getSanitizedValue(row_edit?.getValue("tinggiBadanIbu")),
-      beratBadanIbu: getSanitizedValue(row_edit?.getValue("beratBadanIbu")),
-      lingkarLenganIbu: getSanitizedValue(
-        row_edit?.getValue("lingkarLenganIbu")
-      ),
-      lingkarPinggangIbu: getSanitizedValue(
-        row_edit?.getValue("lingkarPinggangIbu")
-      ),
-      alatKontrasepsi: getSanitizedValue(row_edit?.getValue("alatKontrasepsi")),
+
       tinggiBadanAnak: getSanitizedValue(row_edit?.getValue("tinggiBadanAnak")),
       beratBadanAnak: getSanitizedValue(row_edit?.getValue("beratBadanAnak")),
       umurAnak: getSanitizedValue(row_edit?.getValue("umurAnak")),

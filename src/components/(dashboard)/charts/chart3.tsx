@@ -110,7 +110,7 @@ export function ChartDemo3() {
               content={<ChartTooltipContent hideLabel />}
             />
             <Bar
-              dataKey="pemeriksaanIbuAnak"
+              dataKey="pemeriksaanAnak"
               fill="hsl(var(--chart-1))"
               radius={8}
             >
@@ -122,7 +122,7 @@ export function ChartDemo3() {
               />
             </Bar>
             <Bar
-              dataKey="pemeriksaanLansia"
+              dataKey="pemeriksaanPosbindu"
               fill="hsl(var(--chart-2))"
               radius={8}
             >
@@ -133,6 +133,19 @@ export function ChartDemo3() {
                 fontSize={12}
               />
             </Bar>
+            <Bar
+              dataKey="pemeriksaanIbuHamil"
+              fill="hsl(var(--chart-2))"
+              radius={8}
+            >
+              <LabelList
+                position="top"
+                offset={12}
+                className="fill-foreground"
+                fontSize={12}
+              />
+            </Bar>
+            
           </BarChart>
         </ChartContainer>
       </CardContent>

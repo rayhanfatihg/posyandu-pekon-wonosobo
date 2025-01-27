@@ -84,7 +84,7 @@ export async function getCombinedLayananPerBulan() {
     getLayananIbuHamilPerBulan(),
   ]);
 
-  if (!anakResponse.success || !posbinduResponse.success || ibuHamilResponse.success) {
+  if (!anakResponse.success || !posbinduResponse.success || !ibuHamilResponse.success) {
     return { success: false, data: [], error: "Gagal mengambil data layanan." };
   }
 

@@ -46,6 +46,7 @@ export async function saveDataLayananIbuHamil(data: {
         beratBadan: data.beratBadan,
         lingkarLengan: data.lingkarLengan,
         tinggiPundus: data.tinggiPundus,
+        umurKehamilan: data.umurKehamilan
       },
     });
 

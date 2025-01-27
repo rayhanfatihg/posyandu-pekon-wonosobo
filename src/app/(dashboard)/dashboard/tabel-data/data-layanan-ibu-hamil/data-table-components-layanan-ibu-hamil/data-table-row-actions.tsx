@@ -38,11 +38,11 @@ export function DataTableRowActions({
       if (result.success) {
         toast({
           title: "Layanan berhasil dihapus.",
-          description: "Data layanan lansia berhasil dihapus.",
+          description: "Data layanan Ibu Hamil berhasil dihapus.",
         });
         window.location.reload();
       } else {
-        throw new Error("Gagal menghapus layanan lansia");
+        throw new Error("Gagal menghapus layanan Ibu Hamil");
       }
     } catch (error) {
       toast({
