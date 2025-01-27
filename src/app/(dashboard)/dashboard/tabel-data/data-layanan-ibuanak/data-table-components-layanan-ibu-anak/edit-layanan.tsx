@@ -23,19 +23,6 @@ import { zodResolver } from "@hookform/resolvers/zod";
 
 // Schema Zod untuk Validasi Form
 const layananSchema = z.object({
-  tinggiBadanIbu: z.preprocess(
-    (val) => (val === "" ? undefined : parseFloat(val as string)),
-    z.number().min(1, "Tinggi badan ibu harus valid").optional()
-  ),
-  lingkarLenganIbu: z.preprocess(
-    (val) => (val === "" ? undefined : parseFloat(val as string)),
-    z.number().min(1, "Lingkar lengan ibu harus valid").optional()
-  ),
-  lingkarPinggangIbu: z.preprocess(
-    (val) => (val === "" ? undefined : parseFloat(val as string)),
-    z.number().min(1, "Lingkar pinggang ibu harus valid").optional()
-  ),
-  alatKontrasepsi: z.string().optional(),
   tinggiBadanAnak: z.preprocess(
     (val) => (val === "" ? undefined : parseFloat(val as string)),
     z.number().min(1, "Tinggi badan anak harus valid").optional()

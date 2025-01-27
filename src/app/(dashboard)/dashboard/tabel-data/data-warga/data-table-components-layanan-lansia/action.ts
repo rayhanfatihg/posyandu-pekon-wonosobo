@@ -40,7 +40,7 @@ export async function editWarga(
     if (!existingLayanan) {
       return {
         success: false,
-        error: "Data layanan lansia tidak ditemukan.",
+        error: "Data warga tidak ditemukan.",
       };
     }
 
@@ -56,10 +56,10 @@ export async function editWarga(
 
     return {
       success: true,
-      message: "Data layanan posbindu berhasil diperbarui.",
+      message: "Data warga berhasil diperbarui.",
     };
   } catch (error) {
-    console.error("Gagal mengedit layanan posbindu:", error);
+    console.error("Gagal mengedit warga:", error);
     return {
       success: false,
       error: error instanceof Error ? error.message : "Terjadi kesalahan.",

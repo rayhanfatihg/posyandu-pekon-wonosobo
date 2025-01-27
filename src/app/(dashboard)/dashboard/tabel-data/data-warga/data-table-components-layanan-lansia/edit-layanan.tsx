@@ -46,7 +46,7 @@ interface EditLayananProps {
 const getSanitizedValue = (value: any) =>
   value === null || value === undefined ? "" : value;
 
-export default function EditLayananLansia({
+export default function EditWarga({
   open,
   onClose,
   onConfirm,
@@ -91,7 +91,7 @@ export default function EditLayananLansia({
       <AlertDialogContent>
         <ScrollArea className="max-h-[90vh]">
           <AlertDialogHeader>
-            <AlertDialogTitle>Edit Data Layanan Lansia</AlertDialogTitle>
+            <AlertDialogTitle>Edit Data Warga</AlertDialogTitle>
           </AlertDialogHeader>
 
           <form
@@ -99,14 +99,9 @@ export default function EditLayananLansia({
             className="flex flex-col gap-4 p-2"
           >
             {[
-              { label: "Berat Badan (kg)", name: "beratBadan" },
-              { label: "Tinggi Badan (cm)", name: "tinggiBadan" },
-              { label: "Asam Urat (mg/dL)", name: "asamUrat" },
-              { label: "Gula Darah (mg/dL)", name: "gulaDarah" },
-              { label: "Kolesterol (mg/dL)", name: "kolesterol" },
-              { label: "Lingkar Perut (cm)", name: "lingkarPerut" },
-              { label: "Tensi Darah", name: "tensiDarah" },
-              { label: "Keterangan", name: "keterangan" },
+              { label: "Nama", name: "nama" },
+              { label: "NIK", name: "nik" },
+              { label: "Tanggal Lahir", name: "tanggalLahir" },
             ].map((field) => (
               <div key={field.name}>
                 <label className="text-sm font-medium">{field.label}</label>

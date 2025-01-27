@@ -82,7 +82,7 @@ export default function EditLayananLansia({
     if (response.success) {
       toast({
         title: "Berhasil",
-        description: "Data layanan lansia berhasil diperbarui.",
+        description: "Data layanan posbindu berhasil diperbarui.",
       });
       onClose();
 
@@ -102,7 +102,7 @@ export default function EditLayananLansia({
       <AlertDialogContent>
         <ScrollArea className="max-h-[90vh]">
           <AlertDialogHeader>
-            <AlertDialogTitle>Edit Data Layanan Lansia</AlertDialogTitle>
+            <AlertDialogTitle>Edit Data Layanan Posbindu</AlertDialogTitle>
           </AlertDialogHeader>
 
           <form

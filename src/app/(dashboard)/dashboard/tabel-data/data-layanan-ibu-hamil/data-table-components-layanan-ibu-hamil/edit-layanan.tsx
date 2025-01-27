@@ -108,7 +108,7 @@ export default function EditLayananLansia({
       <AlertDialogContent>
         <ScrollArea className="max-h-[90vh]">
           <AlertDialogHeader>
-            <AlertDialogTitle>Edit Data Layanan Lansia</AlertDialogTitle>
+            <AlertDialogTitle>Edit Data Layanan Ibu Hamil</AlertDialogTitle>
           </AlertDialogHeader>
 
           <form
@@ -119,6 +119,7 @@ export default function EditLayananLansia({
               { label: "Berat Badan (kg)", name: "beratBadan" },
               { label: "Tinggi Badan (cm)", name: "tinggiBadan" },
               { label: "Lingkar Lengan (cm)", name: "lingkarLengan" },
+              { label: "Tinggi Pundus (cm)", name: "tinggiPundus" },
               { label: "Umur Kehamilan", name: "umurKehamilan" },
             ].map((field) => (
               <div key={field.name}>
