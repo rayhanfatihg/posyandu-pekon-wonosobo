@@ -61,6 +61,27 @@ export async function getLayananPosbinduStats() {
   }
 }
 
+export async function getLayananIbuHamilStats() {
+  try {
+    const layananIbuHamil = await db.layananIbuHamil.findMany({
+      select: {
+        id: true,
+        bumilId: true,
+        beratBadan: true,
+        tinggiBadan: true,
+        lingkarLengan: true,
+        tinggiPundus: true,
+        umurKehamilan: true,
+      },
+    });
+
+    return layananIbuHamil;
+  } catch (error) {
+    console.error("Gagal mengambil data layanan lansia:", error);
+    throw new Error("Gagal mengambil data layanan lansia");
+  }
+}
+
 export async function getJadwalPosyandu() {
   try {
     const jadwalPosyandu = await db.jadwalPosyandu.findMany({
