@@ -22,13 +22,6 @@ export default async function Home() {
             className="h-32 w-36 rounded-md border"
           />
 
-          <Image
-            src="/logo-sgds.png"
-            width={1000}
-            height={1000}
-            alt="Posyandu Wonosobo"
-            className="h-32 w-36 rounded-md border"
-          />
         </div>
 
         <h1 className="text-4xl font-semibold sm:text-5xl md:text-6xl lg:text-7xl">

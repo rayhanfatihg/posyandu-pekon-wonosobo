@@ -87,11 +87,11 @@ const LayananIbuHamil: React.FC<LayananIbuHamilProps> = ({ data }) => {
     resolver: zodResolver(layananIbuHamilSchema),
     defaultValues: {
     bumilId: "",
-    tinggiBadan: 0,
-    beratBadan: 0,
-    lingkarLengan: 0,
-    tinggiPundus: 0,
-    umurKehamilan: 0,
+    tinggiBadan: undefined,
+    beratBadan: undefined,
+    lingkarLengan: undefined,
+    tinggiPundus: undefined,
+    umurKehamilan: undefined,
     
     },
   });
@@ -164,11 +164,11 @@ const LayananIbuHamil: React.FC<LayananIbuHamilProps> = ({ data }) => {
           name="beratBadan"
           render={({ field }) => (
             <FormItem className="flex flex-col">
-              <Label>Berat Badan </Label>
+              <Label>Berat Badan (kg) </Label>
               <FormControl>
                 <Input
                   type="number"
-                  placeholder="Masukkan Berat Badan "
+                  placeholder="Masukkan Berat Badan (kg) "
                   {...field}
                 />
               </FormControl>
@@ -185,11 +185,11 @@ const LayananIbuHamil: React.FC<LayananIbuHamilProps> = ({ data }) => {
           name="tinggiBadan"
           render={({ field }) => (
             <FormItem className="flex flex-col">
-              <Label>Tinggi Badan </Label>
+              <Label>Tinggi Badan (cm)</Label>
               <FormControl>
                 <Input
                   type="number"
-                  placeholder="Masukkan Tinggi Badan"
+                  placeholder="Masukkan Tinggi Badan (cm)"
                   {...field}
                 />
               </FormControl>
@@ -206,11 +206,11 @@ const LayananIbuHamil: React.FC<LayananIbuHamilProps> = ({ data }) => {
           name="lingkarLengan"
           render={({ field }) => (
             <FormItem className="flex flex-col">
-              <Label>Lingkar Lengan</Label>
+              <Label>Lingkar Lengan (cm)</Label>
               <FormControl>
                 <Input
                   type="number"
-                  placeholder="Masukkan Lingkar Lengan "
+                  placeholder="Masukkan Lingkar Lengan (cm) "
                   {...field}
                 />
               </FormControl>
@@ -246,7 +246,7 @@ const LayananIbuHamil: React.FC<LayananIbuHamilProps> = ({ data }) => {
           name="umurKehamilan"
           render={({ field }) => (
             <FormItem className="flex flex-col">
-              <Label>Umur kehamilan</Label>
+              <Label>Umur kehamilan (bulan)</Label>
               <FormControl>
                 <Input
                   type="number"

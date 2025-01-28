@@ -19,7 +19,7 @@ export default async function Navbar() {
               className="h-12 w-16"
             />
 
-            <span className="sr-only">Posyandu Marga Agung</span>
+            <span className="sr-only">Posyandu Wonosobo</span>
           </Link>
 
           <nav className="hidden gap-4 md:flex">
@@ -28,7 +28,7 @@ export default async function Navbar() {
               className="flex items-center text-sm font-medium transition-colors duration-300 ease-in-out hover:text-primary"
               prefetch={false}
             >
-              Posyandu Marga Agung
+              Posyandu Wonosobo
             </Link>
 
             
@@ -59,7 +59,7 @@ export default async function Navbar() {
             className="flex items-center text-sm font-medium transition-colors duration-300 ease-in-out hover:text-primary"
             prefetch={false}
           >
-            Posyandu Marga Agung
+            Posyandu Wonosobo
           </Link>
 
           <Link

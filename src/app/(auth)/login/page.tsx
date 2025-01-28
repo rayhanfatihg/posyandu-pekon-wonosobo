@@ -50,13 +50,6 @@ export default function LoginPage() {
           className="h-32 w-36 rounded-md border"
         />
 
-        <Image
-          src="/logo-sgds.png"
-          width={1000}
-          height={1000}
-          alt="Posyandu Wonosobo"
-          className="h-32 w-36 rounded-md border"
-        />
       </div>
 
       <Card className="mt-5 w-[320px] border-none">

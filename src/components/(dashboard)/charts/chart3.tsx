@@ -135,7 +135,7 @@ export function ChartDemo3() {
             </Bar>
             <Bar
               dataKey="pemeriksaanIbuHamil"
-              fill="hsl(var(--chart-2))"
+              fill="hsl(var(--chart-3))"
               radius={8}
             >
               <LabelList
@@ -171,7 +171,7 @@ export function ChartDemo3() {
           )}
         </div>
         <div className="leading-none text-muted-foreground">
-          Menampilkan total pemeriksaan layanan ibu & anak dan lansia per bulan
+          Menampilkan total pemeriksaan layanan anak, posbindu dan ibu hamil per bulan
         </div>
       </CardFooter>
     </Card>

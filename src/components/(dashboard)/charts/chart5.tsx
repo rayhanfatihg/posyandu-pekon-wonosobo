@@ -197,7 +197,7 @@ export function ChartDemo5() {
           )}
         </div>
         <div className="leading-none text-muted-foreground">
-          Menampilkan rata-rata berbagai pemeriksaan lansia per bulan.
+          Menampilkan rata-rata berbagai pemeriksaan posbindu per bulan.
         </div>
       </CardFooter>
     </Card>

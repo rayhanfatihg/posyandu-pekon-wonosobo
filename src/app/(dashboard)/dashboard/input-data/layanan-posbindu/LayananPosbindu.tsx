@@ -70,10 +70,10 @@ export default function LayananPosbinduForm({
     resolver: zodResolver(layananLansiaSchema),
     defaultValues: {
       wargaId: "",
-      beratBadan: 0,
-      tinggiBadan: 0,
+      beratBadan: undefined,
+      tinggiBadan: undefined,
       keterangan: "",
-      lingkarPerut: 0,
+      lingkarPerut: undefined,
       tensiDarah: "",
     },
   });
@@ -88,7 +88,7 @@ export default function LayananPosbinduForm({
       if (result.success) {
         toast({
           title: "Data berhasil disimpan!",
-          description: "Data layanan lansia berhasil disimpan",
+          description: "Data layanan posbindu berhasil disimpan",
         });
       } else {
         toast({
@@ -122,13 +122,13 @@ export default function LayananPosbinduForm({
           name="wargaId"
           render={({ field }) => (
             <FormItem className="flex flex-col">
-              <Label>Pilih Nama Lansia</Label>
+              <Label>Pilih Nama warga</Label>
               <FormControl>
                 <ComboboxWarga
                   options={data}
                   value={field.value}
                   onChange={(value) => field.onChange(value)}
-                  placeholder="Cari nama lansia dari daftar..."
+                  placeholder="Cari nama  warga dari daftar..."
                 />
               </FormControl>
               <FormMessage>
