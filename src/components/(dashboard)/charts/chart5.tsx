@@ -108,7 +108,7 @@ export function ChartDemo5() {
   return (
     <Card className="flex-1">
       <CardHeader>
-        <CardTitle>Rata-Rata Pemeriksaan Lansia</CardTitle>
+        <CardTitle>Rata-Rata Pemeriksaan Posbinu</CardTitle>
         <CardDescription>Periode Januari - Desember</CardDescription>
       </CardHeader>
       <CardContent>
@@ -124,14 +124,7 @@ export function ChartDemo5() {
             />
             <ChartTooltip content={<ChartTooltipContent />} />
 
-            {/* Rata-rata GDS */}
-            <Bar dataKey="rataRataGds" fill="hsl(var(--chart-1))" radius={8}>
-              <LabelList
-                position="top"
-                className="fill-foreground"
-                fontSize={12}
-              />
-            </Bar>
+            
 
             {/* Rata-rata Tekanan Darah */}
             <Bar dataKey="rataRataTensi" fill="hsl(var(--chart-2))" radius={8}>
