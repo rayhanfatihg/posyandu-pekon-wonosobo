@@ -20,5 +20,6 @@ export interface LayananIbuHamil {
     nama: string;
     nik: string;
     tanggalLahir: string;
+    umur: number;
   };
 }

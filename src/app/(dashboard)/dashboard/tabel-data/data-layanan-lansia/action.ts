@@ -22,6 +22,7 @@ export async function getDataLayananPosbindu() {
             nama: true,
             nik: true,
             tanggalLahir: true,
+            umur: true,
           },
         },
       },
@@ -40,6 +41,7 @@ export async function getDataLayananPosbindu() {
       id_layanan: item.id,
       namaWarga: item.warga.nama,
       nik: item.warga.nik,
+      umur: item.warga.umur,
       tanggalLahir: item.warga.tanggalLahir, // Anda bisa format ini jika diperlukan
       beratBadan: item.beratBadan ?? null,
       tinggiBadan: item.tinggiBadan ?? null,
