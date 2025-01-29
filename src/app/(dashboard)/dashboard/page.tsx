@@ -67,12 +67,7 @@ export default async function DashboardPage() {
           value={parseInt(String(layananPosbinduCount))}
           unit="Layanan"
         />
-        <DashboardCard
-          title="Layanan Posbindu"
-          description="Total layanan Posbindu Tercatat"
-          value={parseInt(String(layananPosbinduCount))}
-          unit="Layanan"
-        />
+        
 
 <DashboardCard
           title="Layanan Ibu Hamil"

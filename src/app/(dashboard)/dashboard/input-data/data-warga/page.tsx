@@ -34,7 +34,7 @@ const wargaSchema = z
       .max(16, { message: "NIK harus 16 karakter" }),
     tanggalLahir: z.string().refine((value) => !isNaN(Date.parse(value)), {
       message: "Tanggal Lahir tidak valid",
-    }),
+    })
   })
   .superRefine((data, ctx) => {
     Object.keys(data).forEach((key) => {
