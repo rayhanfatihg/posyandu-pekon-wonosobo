@@ -33,7 +33,7 @@ export async function getDataWarga() {
 
     return formattedData;
   } catch (error) {
-    console.error("Gagal mengambil data layanan lansia:", error);
-    throw new Error("Gagal mengambil data layanan lansia");
+    console.error("Gagal mengambil data warga:", error);
+    throw new Error("Gagal mengambil data warga");
   }
 }

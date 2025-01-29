@@ -37,7 +37,7 @@ const layananSchema = z.object({
  
  
   
-  alatKontrasepsi: z.string().optional(),
+  
   tinggiBadanAnak: z.preprocess(
     (val) => (val === undefined ? undefined : parseFloat(val as string)),
     z

@@ -45,7 +45,7 @@ export function DataTableToolbar<TData>({
     const searchQuery = event.target.value;
 
     // Set filter for all three name columns
-    table.getColumn("namaWarga")?.setFilterValue(searchQuery);
+    table.getColumn("nama")?.setFilterValue(searchQuery);
   };
 
   const getFilterValue = () => {
