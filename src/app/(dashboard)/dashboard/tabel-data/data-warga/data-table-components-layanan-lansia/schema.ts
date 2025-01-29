@@ -6,5 +6,6 @@ export interface Warga {
   nama: string;
   nik: string;
   tanggalLahir: Date;
+  date: string,
   // Relations
 }

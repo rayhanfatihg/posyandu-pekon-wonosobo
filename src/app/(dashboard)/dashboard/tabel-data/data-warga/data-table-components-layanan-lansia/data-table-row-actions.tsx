@@ -70,12 +70,6 @@ export function DataTableRowActions({
         </DropdownMenuTrigger>
 
         <DropdownMenuContent align="end" className="w-[160px]">
-          <DropdownMenuItem
-            onClick={() => setIsDialogEditOpen(true)}
-            className="cursor-pointer"
-          >
-            Edit
-          </DropdownMenuItem>
           <DropdownMenuSeparator />
           <DropdownMenuItem
             onClick={() => setIsDialogOpen(true)} // Membuka dialog konfirmasi

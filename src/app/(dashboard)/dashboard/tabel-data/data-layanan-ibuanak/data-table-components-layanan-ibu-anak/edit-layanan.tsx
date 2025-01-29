@@ -109,7 +109,7 @@ export default function EditLayanan({
       <AlertDialogContent>
         <ScrollArea className="max-h-[90vh]">
           <AlertDialogHeader>
-            <AlertDialogTitle>Edit Data Layanan Ibu-Anak</AlertDialogTitle>
+            <AlertDialogTitle>Edit Data Layanan Anak</AlertDialogTitle>
           </AlertDialogHeader>
 
           <form
